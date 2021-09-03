@@ -1,39 +1,20 @@
 import React from 'react'
+import "bootstrap/dist/css/bootstrap.css"
+import { Navbar, Nav, Container } from 'react-bootstrap'
 
 export const TastyNavbar = () => {
-    <>
-  <Navbar bg="dark" variant="dark">
+    return(
+        <div className="App">
+  <Navbar fixed="top" bg="light" variant="light">
     <Container>
-    <Navbar.Brand href="#home">Navbar</Navbar.Brand>
-    <Nav className="me-auto">
-      <Nav.Link href="#home">Home</Nav.Link>
-      <Nav.Link href="#features">Features</Nav.Link>
-      <Nav.Link href="#pricing">Pricing</Nav.Link>
+    <Nav className="ms-auto">
+      <Nav.Link >Login</Nav.Link>
+      <Nav.Link >Inicio</Nav.Link>
+      <Nav.Link >Pedidos</Nav.Link>
+    <Navbar.Brand className="d-flex align-items-center" >TASTY-WORLD</Navbar.Brand>
     </Nav>
     </Container>
   </Navbar>
-  <br />
-  <Navbar bg="primary" variant="dark">
-    <Container>
-    <Navbar.Brand href="#home">Navbar</Navbar.Brand>
-    <Nav className="me-auto">
-      <Nav.Link href="#home">Home</Nav.Link>
-      <Nav.Link href="#features">Features</Nav.Link>
-      <Nav.Link href="#pricing">Pricing</Nav.Link>
-    </Nav>
-    </Container>
-  </Navbar>
-
-  <br />
-  <Navbar bg="light" variant="light">
-    <Container>
-    <Navbar.Brand href="#home">Navbar</Navbar.Brand>
-    <Nav className="me-auto">
-      <Nav.Link href="#home">Home</Nav.Link>
-      <Nav.Link href="#features">Features</Nav.Link>
-      <Nav.Link href="#pricing">Pricing</Nav.Link>
-    </Nav>
-    </Container>
-  </Navbar>
-</>
+        </div>
+    )
 }
