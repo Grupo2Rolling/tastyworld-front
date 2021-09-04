@@ -8,7 +8,29 @@ const Login = () => {
     })
     const [login, setLogin] = useState({})
 
-    function handleSumit (e) {
+    useEffect(()=>{
+        if (login.token){
+            localStorage.setItem("auth",JSON.stringify(login))
+            setTimeout(()=>{
+                history.pushState("/")
+            }, 1000)
+        }
+    }, [login, history])
+
+    useEffect(()=>{
+        return()=>{
+            isMounted.current= false 
+        }
+    }, [])
+
+    const handleChance= ({target}) =>{
+        setFormValue({
+            ...formValue,
+            [target.name]: target.value    
+        })
+    }
+
+    const handleSumit = (e) => {
         e.preventDefault()
         const {email, password} = formValue
     }     
