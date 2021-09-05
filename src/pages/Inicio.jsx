@@ -3,6 +3,8 @@ import { getMenus } from "../helpers/menus";
 import  listaMenus from "../helpers/listamenus"
 import CardMenu from "../components/CardMenu";
 import Categoria from "../components/Categoria";
+import  listaCategorias from "../helpers/listaCategorias"
+import CardCategoria from "../components/CardCategoria";
 
 
 const Inicio = () => {
@@ -34,7 +36,9 @@ const Inicio = () => {
         <div className="d-flex justify-content-center my-3">
          {/* <Categoria categorias={categorias}/> */}
         </div>
-        <CardMenu listaMenus={listaMenus} />
+        
+          <CardCategoria listaCategorias={listaCategorias}/>
+        
       </div>
     </>
   );
