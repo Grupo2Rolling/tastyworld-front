@@ -9,11 +9,14 @@ const App = () => {
       
       <Switch>
         <Route exact path="/" component={Inicio} />
-        <Route exact path="/menu/:continente" component={Menu} />
+        <Route exact path="/menu/:categoria" render={({match})=>{
+          return <Menu categoria={match.params.categoria}/>}}/>
+      
         
       </Switch>
     </Router>
   );
 };
+
 
 export default App;

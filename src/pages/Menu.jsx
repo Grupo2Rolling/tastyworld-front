@@ -5,7 +5,7 @@ import  listaMenus from "../helpers/listamenus"
 import CardMenu from "../components/CardMenu";
 
 
-const Menu = ({continente}) => {
+const Menu = ({categoria}) => {
   const [menus, setMenus] = useState([]);
   
  
@@ -17,7 +17,7 @@ const Menu = ({continente}) => {
   //   });
   // }, []);
  const menusF=listaMenus.filter(function(menu){
-  return menu.continente==continente
+  return menu.categoria==categoria
 })
 
 

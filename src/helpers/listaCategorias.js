@@ -10,7 +10,7 @@ img:"https://caraotadigital.org/wp-content/uploads/2020/08/Lo-mejor-de-dos-milan
 estado:true,
     },
     { id:"0003",
-    nombre: "America del norte",
+    nombre: "America del Norte",
 img:"https://caraotadigital.org/wp-content/uploads/2020/08/Lo-mejor-de-dos-milanesas-de-pollo-rellenas-de-pure-de-papa-Video.jpg",
 estado:true,
     },
