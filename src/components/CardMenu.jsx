@@ -3,11 +3,12 @@ import React from "react";
 const CardMenu = ({ menus }) => {
   return (
     <>
-      <div className="row row-cols-1 row-cols-md-3 g-4">
+       <div className="row row-cols-1 row-cols-md-3 g-4">
         {menus.map((menu) => (
-          <div className="col" key={menu.id}>
-            <div className="card h-100">
-              <img
+          <div className="col d-flex justify-content-center" key={menu.id}>
+             <div className="wrapper">
+               <div className="card front-face">
+                 <img
                 src={menu.img}
                 className="card-img-top"
                 alt={menu.nombre}
@@ -15,11 +16,32 @@ const CardMenu = ({ menus }) => {
               <div className="card-body">
                 <h5 className="card-title">{menu.nombre}</h5>
                 <strong>{menu.categoria}</strong>
+                <div className="precioyBot">
+                  <h5>${menu.precio}</h5>
+                  <button className="btn btn-info botonAgr d-md-none"  >Agregar +</button></div>
                 
               </div>
               
             </div>
+            <div className="card back-face">
+              <img src={menu.img}
+                alt={menu.nombre} />
+            <div className="info">
+              <div className="title">
+               <h4>{menu.nombre}</h4>
+             </div>
+             <p>{menu.descripcion}</p>
+             </div>
+             <div className="precioyBot">
+                  <h5>${menu.precio}</h5>
+                  <button className="btn btn-info botonAgrBa d-md-none"  >Agregar +</button></div>
+                
+              </div>
+
+            </div>
           </div>
+          
+          
         ))}
       </div>
     </>

@@ -5,6 +5,7 @@ pais: "Argentina",
 categoria:"Latinoamerica",
 img:"https://caraotadigital.org/wp-content/uploads/2020/08/Lo-mejor-de-dos-milanesas-de-pollo-rellenas-de-pure-de-papa-Video.jpg",
 precio:"350",
+descripcion:"Una milanesa que al lado tiene puré de papas, qué esperabas? empanadas?",
 estado:true,
     },
     {
