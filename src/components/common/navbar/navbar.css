@@ -1,0 +1,72 @@
+@font-face {
+    font-family: 'Gotham';
+    src: url(../../../assets/fonts/FontsFree-Net-gotham-ultra.ttf);
+}
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
+
+.marca{
+    width: 8rem;
+    padding: 0.5rem;
+    position: absolute;
+    top: 0rem;
+    right: 1rem;
+}
+
+.link{
+    font-family: 'Montserrat';
+    text-decoration: none;
+    color: black!important;
+}
+
+.sidebar{
+    z-index: 5;
+    display: none;
+    position: fixed;
+    width: 250px;
+    top: 0;
+    background-color: rgb(230, 230, 230);
+    min-height: 100vh;
+    transition: 0.4s;
+}
+.cerrado{
+    transition: 0.4s;
+    left: -250px;
+}
+
+.abierto{
+    left: 0;
+}
+.toggle{
+    transition: 0.4s;
+    position: absolute;
+    display: none;
+}
+.toggle-cerrado{
+    position: absolute;
+    transition: 0.4s;
+    right: -40px
+}
+.navB{
+    padding: 0.6rem 0;
+    display: flex;
+}
+
+/* @media all and (min-width: 992px){
+
+}
+
+@media all and (max-width: 991px){
+
+} */
+
+@media all and (max-width: 550px){
+    .navB{
+        display: none;
+    }
+    .toggle, .sidebar{
+        display: block;
+    }
+}
+
+
+/* ----------------------------------------- */
