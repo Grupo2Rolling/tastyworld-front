@@ -1,0 +1,19 @@
+*{
+    box-sizing: border-box;
+}
+
+
+
+
+
+/* Sección footer */
+.footer-clase{
+    background-color: #36504F;
+    color: white;
+    bottom: 0;
+}
+
+.redes{
+    text-decoration: none;
+    color: white;
+}
