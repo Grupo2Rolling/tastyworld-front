@@ -1,6 +1,6 @@
 import { React, useState } from 'react'
 import { NavLink } from 'react-router-dom'
-import logo from '../../../assets/images/tastyworld-logo.png'
+import logo from '../../../assets/images/logo-blanco.png'
 import './navbar.css'
 
 
@@ -27,7 +27,7 @@ export const TastyNavbar = () => {
   ]
 
     return(
-        <div className='min-height'>
+        <div className='navBG'>
           <nav className={`justify-content-between container navB`}>
             <div className="d-flex align-items-center">
               {links.map(link=>(

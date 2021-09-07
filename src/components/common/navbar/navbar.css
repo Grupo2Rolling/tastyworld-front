@@ -15,7 +15,7 @@
 .link{
     font-family: 'Montserrat';
     text-decoration: none;
-    color: black!important;
+    color: white!important;
 }
 
 .sidebar{
@@ -24,7 +24,7 @@
     position: fixed;
     width: 250px;
     top: 0;
-    background-color: rgb(230, 230, 230);
+    background-color: #36504F;
     min-height: 100vh;
     transition: 0.4s;
 }
@@ -49,6 +49,11 @@
 .navB{
     padding: 0.6rem 0;
     display: flex;
+}
+
+.navBG{
+    height: 70px;
+    background-color: #36504F;
 }
 
 /* @media all and (min-width: 992px){
