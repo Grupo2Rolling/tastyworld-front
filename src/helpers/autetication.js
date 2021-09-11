@@ -1,7 +1,7 @@
-// const url = "http://localhost:8080"; LLAMAMOS AQUI TMB A NUESTRA URL 
+const url = "http://localhost:4005/api/auth/login" // LLAMAMOS AQUI TMB A NUESTRA URL 
 
 export const postAuth = async (data) => {
-  const resp = await fetch(`${url}/api/auth/login`, {
+  const resp = await fetch(`url`, {
     method: "POST",
     body: JSON.stringify(data),
     headers: {

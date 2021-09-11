@@ -1,8 +1,7 @@
-//VER COMO NOMRARON VARIABLES LOS CHICOS Y MODIFICAR
-const url = "http://localhost:4005"
+const url = "http://localhost:4005/api/categorias";
 
-export const usuariosGet = async (desde) => {
-  const resp = await fetch(`${url}/api/usuarios?desde=${desde}`, {
+export const getCategorias = async (desde) => {
+  const resp = await fetch(`${url}?desde=${desde}`, {
     method: "GET",
 
     headers: {
@@ -14,9 +13,8 @@ export const usuariosGet = async (desde) => {
   return datos;
 };
 
-
-export const getUsuarioId = async (id) => {
-  const resp = await fetch(`${url}/api/usuarios/${id}`, {
+export const getCategoriaId = async (id) => {
+  const resp = await fetch(`${url}/${id}`, {
     method: "GET",
 
     headers: {
@@ -28,9 +26,8 @@ export const getUsuarioId = async (id) => {
   return datos;
 };
 
-//Para crear:
-export const usuarioPost = async (data) => {
-  const resp = await fetch(`${url}/api/usuarios`, {
+export const postCategoria = async (data) => {
+  const resp = await fetch(`${url}`, {
     method: "POST",
     body: JSON.stringify(data),
     headers: {
@@ -43,9 +40,8 @@ export const usuarioPost = async (data) => {
   return datos;
 };
 
-// Para actulizar:
-export const usuarioPut = async (id, data) => {
-  const resp = await fetch(`${url}/api/usuarios/${id}`, {
+export const putCategoria = async (id, data) => {
+  const resp = await fetch(`${url}/${id}`, {
     method: "PUT",
     body: JSON.stringify(data),
     headers: {
@@ -58,9 +54,8 @@ export const usuarioPut = async (id, data) => {
   return datos;
 };
 
-//Para desailitar o eliminar
-export const usuarioDelete = async (id) => {
-  const resp = await fetch(`${url}/api/usuarios/${id}`, {
+export const deleteCategoria = async (id) => {
+  const resp = await fetch(`${url}/${id}`, {
     method: "DELETE",
 
     headers: {
@@ -72,4 +67,3 @@ export const usuarioDelete = async (id) => {
 
   return datos;
 };
-

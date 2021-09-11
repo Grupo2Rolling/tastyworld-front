@@ -1,8 +1,8 @@
-//VER COMO NOMRARON VARIABLES LOS CHICOS Y MODIFICAR
-const url = "http://localhost:4005"
+const url = "http://localhost:8080/api/menus";
 
-export const usuariosGet = async (desde) => {
-  const resp = await fetch(`${url}/api/usuarios?desde=${desde}`, {
+//Traer todos los menus
+export const getMenus = async (desde) => {
+  const resp = await fetch(`${url}?desde=${desde}`, {
     method: "GET",
 
     headers: {
@@ -14,9 +14,8 @@ export const usuariosGet = async (desde) => {
   return datos;
 };
 
-
-export const getUsuarioId = async (id) => {
-  const resp = await fetch(`${url}/api/usuarios/${id}`, {
+export const getMenusCont = async (continente) => {
+  const resp = await fetch(`${url}?continente=${continente}`, {
     method: "GET",
 
     headers: {
@@ -28,9 +27,23 @@ export const getUsuarioId = async (id) => {
   return datos;
 };
 
-//Para crear:
-export const usuarioPost = async (data) => {
-  const resp = await fetch(`${url}/api/usuarios`, {
+//Traer menu por Id
+export const getMenu = async (id) => {
+  const resp = await fetch(`${url}/${id}`, {
+    method: "GET",
+
+    headers: {
+      "Content-type": "application/json; charset=UTF-8",
+    },
+  });
+  const datos = await resp.json();
+
+  return datos;
+};
+
+//Agregar menu
+export const postMenu = async (data) => {
+  const resp = await fetch(`${url}`, {
     method: "POST",
     body: JSON.stringify(data),
     headers: {
@@ -43,9 +56,9 @@ export const usuarioPost = async (data) => {
   return datos;
 };
 
-// Para actulizar:
-export const usuarioPut = async (id, data) => {
-  const resp = await fetch(`${url}/api/usuarios/${id}`, {
+//Actualizar menu
+export const putMenu = async (id, data) => {
+  const resp = await fetch(`${url}/${id}`, {
     method: "PUT",
     body: JSON.stringify(data),
     headers: {
@@ -58,9 +71,9 @@ export const usuarioPut = async (id, data) => {
   return datos;
 };
 
-//Para desailitar o eliminar
-export const usuarioDelete = async (id) => {
-  const resp = await fetch(`${url}/api/usuarios/${id}`, {
+//Borrar menu
+export const deleteMenu = async (id) => {
+  const resp = await fetch(`${url}/${id}`, {
     method: "DELETE",
 
     headers: {
@@ -72,4 +85,3 @@ export const usuarioDelete = async (id) => {
 
   return datos;
 };
-
