@@ -26,6 +26,27 @@ const Administracion = () => {
             pais: 'Argentina'
         },
     ]
+
+    const datosUsuario = [
+      {
+          usuario: 'Pablo Giroud',
+          role: 'Admin'
+      },
+      {
+          usuario: 'Carina Auteri',
+          role: 'Usuario'
+      },
+      {
+          usuario: 'Gabriela Navarro',
+          role: 'Usuario'
+      },
+      {
+          usuario: 'Pablo Giroud',
+          role: 'Admin'
+      },
+      
+  ]
+
     const columnasProductos = [
         {
           name: 'NOMBRE',
@@ -65,10 +86,64 @@ const Administracion = () => {
           }
         }
       ]
+
+      const columnasUsuarios = [
+        {
+          name: 'NOMBRE USUARIO',
+          selector: 'usuario',
+          sortable: true,
+          width: '29%'
+        },
+        {
+          name: 'ROL',
+          selector: 'role',
+          sortable: true,
+          width: '29%'
+        },
+        {
+          name: 'ACCIONES',
+          allowOverflow: true,
+          center: true,
+          width: '10%',
+          cell: row => {
+            return (
+              <div className='d-flex'>
+                    <Link to={``} className='dropdown-item'>
+                      <Edit size={15} />
+                    </Link>
+                    <button className='dropdown-item'>
+                      <Trash size={15} />
+
+                    </button>
+              </div>
+            )
+          }
+        }
+      ]
     return (
         <div className="bg">
             <div>
             <h5 className="text-white p-4">PRODUCTOS</h5>
+            <button className="btn btn-light">+</button>
+            </div>
+            <div className='rounded mx-5'>
+            <DataTable
+            columns={columnasProductos}
+            data={datosProducto}
+            />  
+            </div>
+            <div>
+            <h5 className="text-white p-4">USUARIOS</h5>
+            <button className="btn btn-light">+</button>
+            </div>
+            <div className='rounded mx-5'>
+            <DataTable
+            columns={columnasUsuarios}
+            data={datosUsuario}
+            />  
+            </div>
+            <div>
+            <h5 className="text-white p-4">CATEGORÍAS</h5>
             <button className="btn btn-light">+</button>
             </div>
             <div className='rounded mx-5'>
