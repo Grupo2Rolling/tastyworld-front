@@ -4,12 +4,14 @@ import Home from "./components/Home"
 import { TastyNavbar } from './components/common/navbar/TastyNavbar'
 import "bootstrap/dist/css/bootstrap.css"
 import { TastyFooter } from './components/common/footer/TastyFooter'
+import Administracion from './components/Administracion'
 const App = () => {
     return (
         <Router>
             <TastyNavbar/>
             <Switch>
                 <Route exact path="/" component={Home} />
+                <Route exact path="/administracion" component={Administracion} />
             </Switch>
             <TastyFooter />
         </Router>
