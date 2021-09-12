@@ -1,10 +1,11 @@
 
-import React, { useState, useHistory } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Link, useHistory } from "react-router-dom";
-import { postAuth } from "../helpers/autentication";
+import { postAuth } from "../helpers/autetication";
 import {Container, Form, Button} from 'react-bootstrap'
 
 const Login = () => {
+    const isMounted = useRef(true)
     const history= useHistory()
     const [formValue, setFormValue] = useState({
         email:"",
@@ -39,7 +40,7 @@ const Login = () => {
         e.preventDefault()
         const {email, password} = formValue
         if (email && password){
-            setBtnDisale(true)
+            setBtnDisable(true)
         if (isMounted.current){
             postAuth(formValue).then((respuesta)=>{
                 setLogin(respuesta)
@@ -60,7 +61,7 @@ const Login = () => {
             <Form.Group className="mb-3" controlId="formBasicEmail">
                 <Form.Label>Aquí va tu mail</Form.Label>
                 <Form.Control type="email" placeholder="Enter email" value={formValue.email}
-                    onChange={ handleChange }/>
+                    onChange={ handleChance }/>
                 <Form.Text className="text-muted">
                     No compartas tu información con nadie.
                 </Form.Text>
@@ -68,12 +69,12 @@ const Login = () => {
             <Form.Group className="mb-3" controlId="formBasicPassword">
                 <Form.Label>Contraseña</Form.Label>
                 <Form.Control type="password" placeholder="Password" value={formValue.password}
-                    onChange={handleChange} />
+                    onChange={handleChance} />
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formBasicCheckbox">
                     <Form.Check type="checkbox" label="Check me out" />
             </Form.Group>
-            <Button variant="primary" type="submit" className="btn btn-success" disabled={btnDisable}>
+            <Button variant="primary" type="submit" className="btn btn-success" disabled={setBtnDisable}>
             INGRESAR
             </Button>
             

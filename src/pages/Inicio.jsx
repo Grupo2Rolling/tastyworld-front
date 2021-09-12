@@ -39,7 +39,7 @@ const Inicio = () => {
         
           <CardCategoria listaCategorias={listaCategorias}/>
 
-          <CardFin />
+          
         
       </div>
     </>
