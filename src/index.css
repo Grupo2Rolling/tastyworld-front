@@ -6,7 +6,9 @@
     font-family: 'Gotham';
     src: url(./assets/fonts/FontsFree-Net-gotham-ultra.ttf);
 }
-
+.min-height {
+    min-height: 70vh;
+}
 
 /* Sección administración */
 .bg{
