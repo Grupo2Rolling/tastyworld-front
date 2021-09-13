@@ -17,7 +17,7 @@ const Menu = ({categoria}) => {
   //   });
   // }, []);
  const menusF=listaMenus.filter(function(menu){
-  return menu.categoria==categoria
+  return menu.continente===categoria
 })
 
 
@@ -26,7 +26,8 @@ const Menu = ({categoria}) => {
     <>
       
       <div className="container mb-3">
-        <h1 className="mb-3">Elige tu viaje culinario</h1>
+        <h2 className="mb-3">Menús</h2>
+        <h3>Continentes</h3>
         <div className="d-flex justify-content-center my-3">
         <CardMenu menus={menusF} />
         </div>

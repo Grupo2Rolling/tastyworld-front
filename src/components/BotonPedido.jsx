@@ -3,16 +3,16 @@ import { Link } from "react-router-dom";
 import botonPed from "../assets/botonPed.svg"
 
 const BotonPedido = ()=>{
-const Pedidos= JSON.parse(localStorage.getItem("pedidos"))||null;
+const comanda= JSON.parse(localStorage.getItem("comanda"))||[];
 const [estadoBot, setEstadoBot] = useState(false)
 
 useEffect(() => {
-    if(Pedidos!= null){
+    if(comanda!= []){
         setEstadoBot(true)
     }
     
-}, [Pedidos])
-console.log(Pedidos);
+}, [comanda])
+console.log(comanda);
 console.log(estadoBot);
 return (
 <section>

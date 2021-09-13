@@ -1,4 +1,5 @@
-const url = "http://localhost:8080/api/menus";
+const url = "https://tasty-world-backend.herokuapp.com/";
+
 
 //Traer todos los menus
 export const getMenus = async (desde) => {

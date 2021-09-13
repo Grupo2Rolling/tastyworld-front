@@ -1,6 +1,13 @@
-import React from "react";
-
+import React, { useState } from "react";
+const comanda =JSON.parse(localStorage.getItem('comanda'))||[]
 const CardMenu = ({ menus }) => {
+ 
+  const agregarACarrito= (menu)=>{
+    comanda.push(menu);
+    localStorage.setItem('comanda', JSON.stringify(comanda));
+  }
+ 
+ 
   return (
     <>
        <div className="row row-cols-1 row-cols-md-3 g-4">
@@ -18,7 +25,7 @@ const CardMenu = ({ menus }) => {
                 <strong>{menu.categoria}</strong>
                 <div className="precioyBot">
                   <h5>${menu.precio}</h5>
-                  <button className="btn btn-info botonAgr d-md-none"  >Agregar +</button></div>
+                  <button className="btn btn-info botonAgr d-md-none" onClick={agregarACarrito(menu)} >Agregar +</button></div>
                 
               </div>
               
@@ -34,7 +41,7 @@ const CardMenu = ({ menus }) => {
              </div>
              <div className="precioyBot">
                   <h5>${menu.precio}</h5>
-                  <button className="btn btn-info botonAgrBa d-md-none"  >Agregar +</button></div>
+                  <button className="btn btn-info botonAgrBa d-md-none" onClick={agregarACarrito} >Agregar +</button></div>
                 
               </div>
 
