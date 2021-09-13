@@ -29,12 +29,9 @@ const Inicio = () => {
   return (
     <>
      <Parallax bgImage={Imagen2} strength={500}>
-      <Container className="inicioBackground">
+      <Container className="inicioBackground ">
         
-          <h2 className="mb-3">Aquí estaría el Navbar... Si tuviera uno!!</h2>
-          <div className="d-flex justify-content-center my-3">
-           {/* <Categoria categorias={categorias}/> */}
-          </div>
+          
         
             <CardCategoria lista={listaCategorias}/>
         

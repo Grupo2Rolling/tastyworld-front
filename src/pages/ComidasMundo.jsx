@@ -10,7 +10,11 @@ import CardMenu from "../components/CardMenu";
 
 const ComidasMundo = () => {
     
-  const [menus, setMenus] = useState([listaMenus]);
+  const [menus, setMenus] = useState({
+    lista: listaMenus,
+    loading: false,
+  }
+    );
   const [categorias,setCategorias]=useState([])
   
 
@@ -30,35 +34,30 @@ const ComidasMundo = () => {
   
 // }}
 // filtrarMenus(listaMenus,categoria);
-const handleClick=(e)=>{
-    console.log(e.target);
-}
+
  
   return (
     <>
       
-      
-        <h1 className="mb-3">Elige tu viaje culinario</h1>
+      <Container fluid className="inicioBackground">
+        <h1 className="mb-3">CONTINENTES</h1>
         <div className="d-flex justify-content-center my-3">
          {/* <Categoria categorias={categorias}/> */}
         </div>
-        <Container fluid>
+        <Container fluid >
                                  
                           <CardContinente lista={listaContinentes} menus={menus} setMenus={setMenus}/>
-                      
-                  
               
-            
         </Container>
         
         <Container fluid>
          
             
-        <CardMenu menus={menusF} />
+        <CardMenu menus={menus.lista} />
         </Container>
         <BotonPedido/>
       
-
+        </Container>
     </>
   );
 };

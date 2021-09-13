@@ -7,7 +7,7 @@ const CardCategoria = ({ lista }) => {
       <Container fluid className="row row-cols-1 row-cols-md-3 g-4">
         {lista.map((categoria) => (
           <Link className="cardLink" to={`/${categoria.nombre}`}>
-              <Card className="cardCateg" >
+              <Card className="cardCateg my-3 mx-4" >
                 
               <Card.Body key={categoria.id}>
                 

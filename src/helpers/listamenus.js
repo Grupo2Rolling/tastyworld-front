@@ -64,7 +64,7 @@ estado:true,
                         estado:true,
                             },
                             {
-                                id:"0007",
+                                id:"0008",
                                 nombre: "2 Pintas + 2 Hamburguesas Yenkee",
                             pais: "Canadá",
                             continente:"America del Norte",

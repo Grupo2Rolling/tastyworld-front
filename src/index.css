@@ -4,7 +4,8 @@
   --verdeM: #5E8886;
   --verdeC: #88B4B2;
   --salmon: #fdc9a6;
-*{
+}
+  *{
     box-sizing: border-box;
 }
 
@@ -18,7 +19,7 @@
     color: white;
     bottom: 0;
     width: 100%;
-    position: fixed;
+  
 }
 
 .redes{
@@ -28,7 +29,7 @@
 
 
 
-}
+
 .inicioBackground{
   width: 100vw;
   background-color: #36504f98;
@@ -61,7 +62,7 @@
     width: 80vw;
   }
 .contImgC{
-  background: linear-gradient(to right top, var(--salmon), var(--verdeM), #fcc098, var(--verdeOsc), #2d142c);
+  background: linear-gradient(to right top, var(--salmon), var(--verdeM), #fcc098, var(--verdeOsc));
   border-radius: 5%;
 }
 .imgC{
@@ -76,7 +77,7 @@
 
 }
 .botonAgrBa{
-  color:#ce3000;
+  color:var(--verdeOsc);
   background-color: white;
   border:none;
   
@@ -93,11 +94,12 @@
     height: 100%;
     width: 100%;
     padding: 5px;
-    background: #fff;
+    background: #fce4d5;
     border-radius: 10px;
     transform: translateY(0deg);
     transform-style: preserve-3d;
     backface-visibility: hidden;
+    text-align: center;
     box-shadow: 0px 10px 15px rgba(0,0,0,0.1);
     transition: transform 0.7s cubic-bezier(0.4,0.2,0.2,1);
   }
@@ -105,10 +107,12 @@
     transform: rotateY(-180deg);
   }
   .wrapper .card img{
-    height: 100%;
     width: 100%;
-    object-fit: cover;
+    object-fit: contain;
     border-radius: 10px;
+    padding: 3px;
+    background: linear-gradient(to right top, var(--salmon), var(--verdeM), #fcc098, var(--verdeOsc));
+  border-radius: 5%;
   }
   .wrapper .back-face{
     display: flex;
@@ -116,7 +120,7 @@
     justify-content: space-evenly;
     flex-direction: column;
     transform: rotateY(180deg);
-    background-color: #ce3000;
+    background-color: var(--verdeM);
     color: white;
   }
   .wrapper:hover > .back-face{
@@ -128,7 +132,7 @@
     padding: 3px;
     margin-top: 10px;
     border-radius: 20%;
-    background: linear-gradient(to right top, #612700, #df4406, #e75318, #690902, #2d142c);
+    background: linear-gradient(to right top, var(--salmon), var(--verdeM), #fcc098, var(--verdeOsc));
   }
   .wrapper .back-face .info, .precioyBot{
     text-align: center;
