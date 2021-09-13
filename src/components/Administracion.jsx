@@ -200,18 +200,6 @@ const Administracion = () => {
     },
   ];
 
-  const datosCategoria = [
-    {
-      categoria: "Comidas",
-    },
-    {
-      categoria: "Bebidas",
-    },
-    {
-      categoria: "Promos",
-    },
-  ];
-
   const columnasProductos = [
     {
       name: "NOMBRE",
@@ -284,33 +272,6 @@ const Administracion = () => {
     },
   ];
 
-  const columnasCategorias = [
-    {
-      name: "CATEGORÍA",
-      selector: "categoria",
-      sortable: true,
-      width: "29%",
-    },
-    {
-      name: "ACCIONES",
-      allowOverflow: true,
-      center: true,
-      width: "10%",
-      cell: (row) => {
-        return (
-          <div className="d-flex">
-            <Link to={``} className="dropdown-item">
-              <Edit size={15} />
-            </Link>
-            <button className="dropdown-item">
-              <Trash size={15} />
-            </button>
-          </div>
-        );
-      },
-    },
-  ];
-
   return (
     <div className="bg">
       <div className="d-flex align-items-center">
@@ -336,13 +297,6 @@ const Administracion = () => {
       </div>
       <div className="rounded mx-5">
         <DataTable columns={columnasUsuarios} data={datosUsuario} />
-      </div>
-      <div className="d-flex align-items-center">
-        <h5 className="text-white p-4">CATEGORÍAS</h5>
-        <button className="btn btn-light">+</button>
-      </div>
-      <div className="rounded mx-5">
-        <DataTable columns={columnasCategorias} data={datosCategoria} />
       </div>
       {/* <Button variant="primary" onClick={() => setModalShow(true)}>
               Launch vertically centered modal
