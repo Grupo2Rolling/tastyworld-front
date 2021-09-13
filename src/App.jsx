@@ -11,8 +11,9 @@ import { TastyFooter } from './components/common/footer/TastyFooter'
 const App = () => {
     return (
         <Router>
+          <TastyNavbar/> 
       <Switch>
-      <TastyNavbar/>
+     
         <Route exact path="/login" component={Login} />
         <Route exact path="/" component={Inicio} />
         <Route exact path="/menu/:continente" component={Menu} />
@@ -21,6 +22,7 @@ const App = () => {
         
       </Switch>
       <TastyFooter />
+     
     </Router>
 
 
