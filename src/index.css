@@ -3,6 +3,12 @@
 }
 
 
+@font-face {
+    font-family: 'Gotham';
+    src: url(./assets/fonts/FontsFree-Net-gotham-ultra.ttf);
+}
+
+
 
 
 
@@ -11,6 +17,10 @@
     background-color: #36504F;
     color: white;
     bottom: 0;
+
+    width: 100%;
+    position: fixed;
+
 }
 
 .redes{
