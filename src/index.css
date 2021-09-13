@@ -1,8 +1,32 @@
+
 :root{
   --verdeOsc: #36504F;
   --verdeM: #5E8886;
   --verdeC: #88B4B2;
   --salmon: #fdc9a6;
+*{
+    box-sizing: border-box;
+}
+
+
+
+
+
+/* Sección footer */
+.footer-clase{
+    background-color: #36504F;
+    color: white;
+    bottom: 0;
+    width: 100%;
+    position: fixed;
+}
+
+.redes{
+    text-decoration: none;
+    color: white;
+}
+
+
 
 }
 .inicioBackground{
@@ -115,4 +139,3 @@
   }
   
   
-
