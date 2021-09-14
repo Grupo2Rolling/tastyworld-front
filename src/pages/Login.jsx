@@ -18,7 +18,7 @@ const Login = () => {
         if (login.token){
             localStorage.setItem("auth",JSON.stringify(login))
             setTimeout(()=>{
-                history.pushState("/")
+                history.push("/")
             }, 1000)
         }
     }, [login, history])

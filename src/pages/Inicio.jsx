@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from "react";
-import { getMenus } from "../helpers/menus";
-import  listaMenus from "../helpers/listamenus"
-import CardMenu from "../components/CardMenu";
-import Categoria from "../components/Categoria";
+// import React, { useState, useEffect } from "react";
+// import { getMenus } from "../helpers/menus";
+// import  listaMenus from "../helpers/listamenus"
+// import CardMenu from "../components/CardMenu";
+// import Categoria from "../components/Categoria";
 import  listaCategorias from "../helpers/listaCategorias"
 import CardCategoria from "../components/CardCategoria";
-import CardFin from "../components/CardFin";
+
 
 const Inicio = () => {
   // const [menus, setMenus] = useState([]);

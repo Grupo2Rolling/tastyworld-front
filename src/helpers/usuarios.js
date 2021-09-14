@@ -1,5 +1,5 @@
 //VER COMO NOMRARON VARIABLES LOS CHICOS Y MODIFICAR
-const url = "http://localhost:4005"
+const url = "https://tasty-world-backend.herokuapp.com"
 
 export const usuariosGet = async (desde) => {
   const resp = await fetch(`${url}/api/usuarios?desde=${desde}`, {
