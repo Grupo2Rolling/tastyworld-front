@@ -1,0 +1,25 @@
+*{
+    box-sizing: border-box;
+}
+
+@font-face {
+    font-family: 'Gotham';
+    src: url(./assets/fonts/FontsFree-Net-gotham-ultra.ttf);
+}
+
+
+
+
+/* Sección footer */
+.footer-clase{
+    background-color: #36504F;
+    color: white;
+    bottom: 0;
+    width: 100%;
+    position: fixed;
+}
+
+.redes{
+    text-decoration: none;
+    color: white;
+}
