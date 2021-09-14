@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect, useRef } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { postAuth } from "../helpers/autetication";
 import {Container, Form, Button} from 'react-bootstrap'
 
@@ -29,7 +29,7 @@ const Login = () => {
         }
     }, [])
 
-    const handleChance= ({target}) =>{
+    const handleChange= ({target}) =>{
         setFormValue({
             ...formValue,
             [target.name]: target.value    
@@ -60,16 +60,22 @@ const Login = () => {
         <Form onSubmit={ handleSumit }>
             <Form.Group className="mb-3" controlId="formBasicEmail">
                 <Form.Label>Aquí va tu mail</Form.Label>
-                <Form.Control type="email" placeholder="Enter email" value={formValue.email}
-                    onChange={ handleChance }/>
+                <Form.Control type="email"
+                    className="form-control"
+                    name="email"
+                    value={formValue.email}
+                    onChange={handleChange}/>
                 <Form.Text className="text-muted">
                     No compartas tu información con nadie.
                 </Form.Text>
             </Form.Group>
             <Form.Group className="mb-3" controlId="formBasicPassword">
                 <Form.Label>Contraseña</Form.Label>
-                <Form.Control type="password" placeholder="Password" value={formValue.password}
-                    onChange={handleChance} />
+                <Form.Control type="password"
+                    className="form-control"
+                    name="password"
+                    value={formValue.password}
+                    onChange={handleChange} />
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formBasicCheckbox">
                     <Form.Check type="checkbox" label="Check me out" />
