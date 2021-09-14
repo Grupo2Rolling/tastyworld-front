@@ -2,7 +2,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useHistory } from "react-router-dom";
 import { postAuth } from "../helpers/autetication";
-import {Container, Form, Button} from 'react-bootstrap'
+import {Container, Card, Form, Button} from 'react-bootstrap'
 
 const Login = () => {
     const isMounted = useRef(true)
@@ -56,7 +56,10 @@ const Login = () => {
     
     
     return (
-        <Container>
+        <Container fluid>
+            <Card className="text-center">
+  <Card.Header>INICIAR SESIÓN</Card.Header>
+  <Card.Body>
         <Form onSubmit={ handleSumit }>
             <Form.Group className="mb-3" controlId="formBasicEmail">
                 <Form.Label>Aquí va tu mail</Form.Label>
@@ -65,9 +68,7 @@ const Login = () => {
                     name="email"
                     value={formValue.email}
                     onChange={handleChange}/>
-                <Form.Text className="text-muted">
-                    No compartas tu información con nadie.
-                </Form.Text>
+                
             </Form.Group>
             <Form.Group className="mb-3" controlId="formBasicPassword">
                 <Form.Label>Contraseña</Form.Label>
@@ -77,12 +78,13 @@ const Login = () => {
                     value={formValue.password}
                     onChange={handleChange} />
                 </Form.Group>
-                <Form.Group className="mb-3" controlId="formBasicCheckbox">
-                    <Form.Check type="checkbox" label="Check me out" />
-            </Form.Group>
-            <Button variant="primary" type="submit" className="btn btn-success" disabled={btnDisable}>
-            INGRESAR
-            </Button>
+                <Card.Link href="#">¿Olvidaste tu contraseña?</Card.Link>
+                <hr />
+            <Button variant="primary" type="submit" className="btn btn-success" disabled={btnDisable}>INGRESAR</Button>
+            </Form>
+  </Card.Body>
+  
+</Card>
             
             {login.ok === false && (
                   <div className="alert alert-danger mt-3" role="alert">
@@ -90,9 +92,10 @@ const Login = () => {
                   </div>
                 )}
 
-        </Form>
+     
         </Container>
     )
 }
 
 export default Login
+
