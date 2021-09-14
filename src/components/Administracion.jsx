@@ -4,8 +4,8 @@ import { Link } from "react-router-dom";
 import { ChevronDown, Plus, MoreVertical, Edit, Trash } from "react-feather";
 import { Modal, Button, Form } from "react-bootstrap";
 
-const URL = process.env.REACT_APP_API
-
+const URL = process.env.MONGODB_CNN2
+const token = 'Met0cO3l8eS7Gr0upoD3lpRoyec70'
 const ModalProductos = (props) => {
   const [pais, setPais] = useState('')
   const [continente, setContinente] = useState('')
@@ -26,20 +26,24 @@ const ModalProductos = (props) => {
       estado: true
     }
 
-    fetch(`${URL}/menues`, {
+    fetch(`${URL}/productos/x-token/${token}`, {
       method: 'POST',
       headers: {
-        "ContentType": "application/json"
+        "ContentType": "application/json",
+        // "Authorization": `x-token/${token}`
+
       },
       body : JSON.stringify(producto)
     })
     .then(res => res.json())
     .then(res => {
-      console.log(res)
+      console.log('respuesta', res)
     })
-
+    
   }
-
+  console.log('URL', URL)
+  console.log('tttt', token)
+  
   const paises = [
     "Argentina",
     "Peru",
@@ -160,7 +164,7 @@ const Administracion = () => {
 
   const datosProducto = [
     {
-      nombre: "Fideos con puré",
+      nombre: 'gh',
       precio: "$15",
       pais: "Amaicha del valle",
     },
@@ -178,7 +182,7 @@ const Administracion = () => {
       nombre: "Empanas",
       precio: "$50",
       pais: "Argentina",
-    },
+    }
   ];
 
   const datosUsuario = [
