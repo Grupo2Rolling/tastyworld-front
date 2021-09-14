@@ -2,12 +2,25 @@
     box-sizing: border-box;
 }
 
+@font-face {
+    font-family: 'Gotham';
+    src: url(./assets/fonts/FontsFree-Net-gotham-ultra.ttf);
+}
+.min-height {
+    min-height: 70vh;
+}
 
 @font-face {
     font-family: 'Gotham';
     src: url(./assets/fonts/FontsFree-Net-gotham-ultra.ttf);
 }
 
+
+
+/* Sección administración */
+.bg{
+    background-color: #36504f;
+}
 
 
 
@@ -18,8 +31,12 @@
     color: white;
     bottom: 0;
 
+
     width: 100%;
     position: fixed;
+
+
+    width: 100%;
 
 }
 

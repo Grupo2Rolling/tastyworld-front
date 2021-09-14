@@ -30,16 +30,16 @@ export const TastyNavbar = () => {
         <div className='navBG'>
           <nav className={`justify-content-between container navB`}>
             <div className="d-flex align-items-center">
-              {links.map(link=>(
-                    <NavLink exact to={link.ruta} className='nav-link link'>{link.nombre}</NavLink>
+              {links.map((link, index)=>(
+                    <NavLink key={index+3206} exact to={link.ruta} className='nav-link link'>{link.nombre}</NavLink>
               ))}
             </div>
           </nav>
           <nav className={`sidebar ${interruptor?'':'cerrado'}`}>
             <button onClick={()=>setInterruptor(!interruptor)} className={`btn d-flex w-100 justify-content-end ${interruptor?'toggle':'toggle-cerrado'}` }>X</button>
             <div>
-            {links.map(link=>(
-              <NavLink exact to={link.ruta} className='nav-link link'>{link.nombre}</NavLink>
+            {links.map((link, index)=>(
+              <NavLink key={index+78789} exact to={link.ruta} className='nav-link link'>{link.nombre}</NavLink>
               ))}
             </div>
           </nav>
