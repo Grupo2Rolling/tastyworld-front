@@ -1,4 +1,5 @@
 
+
 import React from 'react'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import { TastyNavbar } from './components/common/navbar/TastyNavbar'
@@ -11,9 +12,11 @@ import ComidasMundo from "./pages/ComidasMundo";
 import FinPedido from "./pages/FinPedido";
 import Administracion from './components/Administracion'
 
+
 const App = () => {
     return (
         <Router>
+
             <TastyNavbar/>
             <Switch>
        <Route exact path="/login" component={Login} />
@@ -29,6 +32,7 @@ const App = () => {
 }
 
 export default App
+
 
 
 
