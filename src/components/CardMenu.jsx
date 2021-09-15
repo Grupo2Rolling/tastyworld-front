@@ -25,7 +25,7 @@ const CardMenu = ({ menus }) => {
                 <strong>{menu.categoria}</strong>
                 <div className="precioyBot">
                   <h5>${menu.precio}</h5>
-                  <button className="btn btn-info botonAgr d-md-none" onClick={agregarACarrito(menu)} >Agregar +</button></div>
+                  <button className="btn btn-info botonAgr d-md-none" /*onClick={agregarACarrito(menu)} */>Agregar +</button></div>
                 
               </div>
               

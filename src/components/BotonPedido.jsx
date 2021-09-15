@@ -12,8 +12,8 @@ useEffect(() => {
     }
     
 }, [comanda])
-console.log(comanda);
-console.log(estadoBot);
+// console.log(comanda);
+// console.log(estadoBot);
 return (
 <section>
         <div id="botonPedStick">

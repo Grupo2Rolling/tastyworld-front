@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './index.css';
+import './slick.css';
+import './slick-theme.css';
 
 ReactDOM.render(
   <React.StrictMode>

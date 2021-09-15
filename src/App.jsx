@@ -14,11 +14,8 @@ const App = () => {
             <Switch>
         <Route exact path="/" component={Inicio} />
         <Route exact path="/ComidasMundo" component={ComidasMundo}/>
-        {/* <Route exact path="/:categoria" render={({match})=>{
-          return <Menu categoria={match.params.categoria}/>}}/> */}
-        {/* <Route exact path="/:continente" render={({match})=>{
-          return <Menu categoria={match.params.continente}/>}}/>
-         */}
+        <Route exact path="/ComidasMundo/:continente" component={ComidasMundo}/>
+        
       </Switch>
             <TastyFooter />
         </Router>
