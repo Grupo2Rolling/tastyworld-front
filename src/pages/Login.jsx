@@ -36,7 +36,7 @@ const Login = () => {
         })
     }
 
-    const handleSumit = (e) => {
+    const handleSubmit = (e) => {
         e.preventDefault()
         const {email, password} = formValue
         if (email && password){
@@ -57,10 +57,10 @@ const Login = () => {
     
     return (
         <Container>
-        <Form onSubmit={ handleSumit }>
+        <Form onSubmit={ (e) => handleSubmit(e)}>
             <Form.Group className="mb-3" controlId="formBasicEmail">
                 <Form.Label>Aquí va tu mail</Form.Label>
-                <Form.Control type="email" placeholder="Enter email" value={formValue.email}
+                <Form.Control type="email" placeholder="Enter email" name="email" value={formValue.email}
                     onChange={ handleChance }/>
                 <Form.Text className="text-muted">
                     No compartas tu información con nadie.
@@ -68,7 +68,7 @@ const Login = () => {
             </Form.Group>
             <Form.Group className="mb-3" controlId="formBasicPassword">
                 <Form.Label>Contraseña</Form.Label>
-                <Form.Control type="password" placeholder="Password" value={formValue.password}
+                <Form.Control type="password" placeholder="Password" name="password" value={formValue.password}
                     onChange={handleChance} />
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formBasicCheckbox">
