@@ -5,7 +5,6 @@ import { TastyNavbar } from './components/common/navbar/TastyNavbar'
 import "bootstrap/dist/css/bootstrap.css"
 import { TastyFooter } from './components/common/footer/TastyFooter'
 import Inicio from "./pages/Inicio";
-import Menu from "./pages/Menu";
 import Login from "./pages/Login";
 import ComidasMundo from "./pages/ComidasMundo";
 import FinPedido from "./pages/FinPedido";

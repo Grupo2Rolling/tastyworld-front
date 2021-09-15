@@ -6,10 +6,13 @@ import BotonPedido from "../components/BotonPedido";
 import CardMenu from "../components/CardMenu";
 
 
-const Menu = ({categoria}) => {
+const Bebidas= () => {
 
-  const [menus, setMenus] = useState([]);
   
+  productoGet().then((respuesta)=>{
+    //    const listaMenus= respuesta.productos
+    //    console.log(listaMenus);
+    //   })
  
   // useEffect(() => {
   //   getMenusCont().then((respuesta) => {
@@ -18,9 +21,7 @@ const Menu = ({categoria}) => {
       
   //   });
   // }, []);
- const menusF=listaMenus.filter(function(menu){
-
-  return menu.continente===categoria
+ 
 
 })
 

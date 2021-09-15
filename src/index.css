@@ -86,7 +86,7 @@
   .cardLink h5{
     font-weight: 700;
     text-decoration: none;
-    text-shadow: rgb(168, 168, 168) 0.1em 0.1em 0.2em
+    text-shadow: rgb(155, 154, 154) 0.1em 0.1em 0.2em
   }
 
   .cardCateg{
@@ -97,6 +97,7 @@
   }
   .cardCateg:hover{
     transform: scale(1.05);
+    
   }
 .contImgC{
   background: linear-gradient(to right top, var(--salmon), var(--verdeM), #fcc098, var(--verdeOsc));
