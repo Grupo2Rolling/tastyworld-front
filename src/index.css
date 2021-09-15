@@ -67,14 +67,16 @@
 }
   /*-----------Estilo cards Categorias----------------*/
   .cardLink{
-    text-decoration: none;
+    
     color: var(--verdeOsc);
     text-align: center;
+    text-decoration: none;
   
   }
 
   .cardLink h5{
     font-weight: 700;
+    text-decoration: none;
   }
 
   .cardCateg{
@@ -84,6 +86,7 @@
 .contImgC{
   background: linear-gradient(to right top, var(--salmon), var(--verdeM), #fcc098, var(--verdeOsc));
   border-radius: 5%;
+  width: 70vw;
 }
 .imgC{
   padding: 5px;
@@ -165,13 +168,56 @@
   /*----Estilo Carrusel continentes------*/
   .cardCont{
     border-radius:3%;
-    width: 70vw;
+    width: 60vw;
     height: 40vh;
     display: block;
     margin: 3%;
 
   }
+  .cardCont img{
+    width: 100%;
+    align-items: center;
+  }
   .carruselCont{
     align-items: center;
+    display: flex;
+    flex-grow: 0;
     justify-content: space-evenly;
+  }
+
+
+
+
+
+
+
+
+
+
+  /*------Media queries-------*/
+   @media (min-width: 576px) {
+    .cardCateg{
+      
+      width:30rem;
+    }
+  }
+
+  @media (min-width: 768px){
+    .cardCateg{
+     display: flex;
+     flex-direction: row;
+     flex-wrap: nowrap;
+      width:37vw;
+    
+    }
+
+    .cardContain{
+      display: flex;
+     flex-direction: row;
+    justify-content: space-around;
+    flex-shrink: 1;
+    }
+  }
+  @media (min-width: 992px){
+
   }
