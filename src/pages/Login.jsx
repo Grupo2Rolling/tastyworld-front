@@ -36,7 +36,7 @@ const Login = () => {
         })
     }
 
-    const handleSumit = (e) => {
+    const handleSubmit = (e) => {
         e.preventDefault()
         const {email, password} = formValue
         if (email && password){
@@ -56,6 +56,7 @@ const Login = () => {
     
     
     return (
+
         <Container fluid>
             <Card className="text-center">
   <Card.Header>INICIAR SESIÓN</Card.Header>
@@ -77,6 +78,7 @@ const Login = () => {
                     name="password"
                     value={formValue.password}
                     onChange={handleChange} />
+
                 </Form.Group>
                 <Card.Link href="#">¿Olvidaste tu contraseña?</Card.Link>
                 <hr />
