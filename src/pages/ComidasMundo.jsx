@@ -11,7 +11,7 @@ import { useParams } from "react-router";
 
 
 const ComidasMundo = () => {
-    let continente= useParams().toString();
+    let {continente}= useParams()
    console.log(continente);
    let listaM=[];
 //   productosGet().then((respuesta)=>{
