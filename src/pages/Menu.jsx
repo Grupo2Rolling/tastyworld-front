@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { getMenusCont } from "../helpers/menus";
+
 import  listaMenus from "../helpers/listamenus";
 import BotonPedido from "../components/BotonPedido";
 import CardMenu from "../components/CardMenu";
 
 
 const Menu = ({categoria}) => {
+
   const [menus, setMenus] = useState([]);
   
  
@@ -17,7 +19,9 @@ const Menu = ({categoria}) => {
   //   });
   // }, []);
  const menusF=listaMenus.filter(function(menu){
+
   return menu.continente===categoria
+
 })
 
 
@@ -33,6 +37,7 @@ const Menu = ({categoria}) => {
         </div>
         
         <BotonPedido/>
+
       </div>
     </>
   );

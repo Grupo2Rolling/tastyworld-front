@@ -1,8 +1,8 @@
+//VER COMO NOMRARON VARIABLES LOS CHICOS Y MODIFICAR
+const url = "http://localhost:4005"
 
-const url = "https://tasty-world-backend.herokuapp.com/";
-
-export const getCategorias = async (desde) => {
-  const resp = await fetch(`${url}?desde=${desde}`, {
+export const usuariosGet = async (desde) => {
+  const resp = await fetch(`${url}/api/usuarios?desde=${desde}`, {
     method: "GET",
 
     headers: {
@@ -14,8 +14,9 @@ export const getCategorias = async (desde) => {
   return datos;
 };
 
-export const getCategoriaId = async (id) => {
-  const resp = await fetch(`${url}/${id}`, {
+
+export const getUsuarioId = async (id) => {
+  const resp = await fetch(`${url}/api/usuarios/${id}`, {
     method: "GET",
 
     headers: {
@@ -27,8 +28,9 @@ export const getCategoriaId = async (id) => {
   return datos;
 };
 
-export const postCategoria = async (data) => {
-  const resp = await fetch(`${url}`, {
+//Para crear:
+export const usuarioPost = async (data) => {
+  const resp = await fetch(`${url}/api/usuarios`, {
     method: "POST",
     body: JSON.stringify(data),
     headers: {
@@ -41,8 +43,9 @@ export const postCategoria = async (data) => {
   return datos;
 };
 
-export const putCategoria = async (id, data) => {
-  const resp = await fetch(`${url}/${id}`, {
+// Para actulizar:
+export const usuarioPut = async (id, data) => {
+  const resp = await fetch(`${url}/api/usuarios/${id}`, {
     method: "PUT",
     body: JSON.stringify(data),
     headers: {
@@ -55,8 +58,9 @@ export const putCategoria = async (id, data) => {
   return datos;
 };
 
-export const deleteCategoria = async (id) => {
-  const resp = await fetch(`${url}/${id}`, {
+//Para desailitar o eliminar
+export const usuarioDelete = async (id) => {
+  const resp = await fetch(`${url}/api/usuarios/${id}`, {
     method: "DELETE",
 
     headers: {
@@ -68,3 +72,4 @@ export const deleteCategoria = async (id) => {
 
   return datos;
 };
+

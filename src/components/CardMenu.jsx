@@ -22,14 +22,17 @@ const CardMenu = ({ menus }) => {
               />
               <div className="card-body">
                 <h5 className="card-title">{menu.nombre}</h5>
+
                 <strong>{menu.categoria}</strong>
                 <div className="precioyBot">
                   <h5>${menu.precio}</h5>
                   <button className="btn btn-info botonAgr d-md-none" /*onClick={agregarACarrito(menu)} */>Agregar +</button></div>
+
                 
               </div>
               
             </div>
+
             <div className="card back-face">
               <img src={menu.img}
                 alt={menu.nombre} />
@@ -49,6 +52,7 @@ const CardMenu = ({ menus }) => {
           </div>
           
           
+
         ))}
       </div>
     </>

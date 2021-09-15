@@ -1,4 +1,5 @@
 import React from "react";
+
 import { Container, Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
 const CardCategoria = ({ lista }) => {
@@ -29,6 +30,7 @@ const CardCategoria = ({ lista }) => {
           </Link>
         ))}
       </Container>
+
     </>
   );
 };

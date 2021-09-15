@@ -6,16 +6,19 @@ import "bootstrap/dist/css/bootstrap.css"
 import { TastyFooter } from './components/common/footer/TastyFooter'
 import Inicio from "./pages/Inicio";
 import Menu from "./pages/Menu";
+import Login from "./pages/Login";
 import ComidasMundo from "./pages/ComidasMundo";
+import FinPedido from "./pages/FinPedido";
 const App = () => {
     return (
         <Router>
             <TastyNavbar/>
             <Switch>
+       <Route exact path="/login" component={Login} />
         <Route exact path="/" component={Inicio} />
         <Route exact path="/ComidasMundo" component={ComidasMundo}/>
         <Route exact path="/ComidasMundo/:continente" component={ComidasMundo}/>
-        
+        <Route exact path="/finalizarpedido" component={FinPedido} />
       </Switch>
             <TastyFooter />
         </Router>
@@ -23,5 +26,6 @@ const App = () => {
 }
 
 export default App
+
 
 
