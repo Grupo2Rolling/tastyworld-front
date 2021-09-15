@@ -36,7 +36,7 @@ const Inicio = () => {
      
         
           
-        <h1 className="text-center">BIENVENIDO</h1>
+        <h1 className="text-center tituloPag">BIENVENIDO</h1>
             <CardCategoria lista={listaCategorias}/>
         
         

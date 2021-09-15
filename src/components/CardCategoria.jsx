@@ -5,12 +5,12 @@ import { Link } from "react-router-dom";
 const CardCategoria = ({ lista }) => {
   return (
     <>
-      <Container className="row row-cols-1 row-cols-md-3 g-4 cardContain">
+      <Container className="cardContain">
         {lista.map((categoria) => (
           <Link className="cardLink" to={`/${categoria.nombre}`}>
               <Card className="cardCateg my-3 mx-4 d-block" >
                 
-              <Card.Body key={categoria.id}>
+              <Card.Body className="cardCatBod" key={categoria.id}>
                 
                   
                     <div className="contImgC">

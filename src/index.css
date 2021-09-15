@@ -8,7 +8,7 @@
   *{
     box-sizing: border-box;
 }
-
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
 @font-face {
     font-family: 'Gotham';
     src: url(./assets/fonts/FontsFree-Net-gotham-ultra.ttf);
@@ -47,6 +47,12 @@
     color: white;
 }
 
+.tituloPag{
+  font-family: 'Montserrat';
+  color: white;
+  font-weight: 800;
+  text-shadow: 0.05em 0.07em rgb(221, 220, 220)
+}
 
 
 
@@ -73,15 +79,24 @@
     text-decoration: none;
   
   }
+  .cardCatBod{
+    align-content: center;
+  }
 
   .cardLink h5{
     font-weight: 700;
     text-decoration: none;
+    text-shadow: rgb(168, 168, 168) 0.1em 0.1em 0.2em
   }
 
   .cardCateg{
     border-radius:5%;
     width: 80vw;
+    transition-property: transform;
+    transition-duration: 0.5s;
+  }
+  .cardCateg:hover{
+    transform: scale(1.05);
   }
 .contImgC{
   background: linear-gradient(to right top, var(--salmon), var(--verdeM), #fcc098, var(--verdeOsc));
@@ -179,13 +194,13 @@
     align-items: center;
   }
   .carruselCont{
-    align-items: center;
+    justify-content: center;
     display: flex;
     flex-grow: 0;
     justify-content: space-evenly;
   }
 
-
+ 
 
 
 
@@ -197,8 +212,22 @@
   /*------Media queries-------*/
    @media (min-width: 576px) {
     .cardCateg{
+      display: flex;
+      justify-content: center;
+      width:65vw;
+    }
+    .contImgC{
+       width: 55vw;
+      top: 1vh;
+      left: 3vw;
       
-      width:30rem;
+       }
+    .imgC{
+     object-fit: contain;
+      width: 100%;
+      padding: 5px;
+      border-radius: 6%;
+      
     }
   }
 
@@ -210,6 +239,19 @@
       width:37vw;
     
     }
+    .contImgC{
+     
+      width: 32vw;
+      top: 1vh;
+      justify-content: center;
+
+    }
+    .imgC{
+     object-fit: contain;
+      width: 100%;
+      padding: 5px;
+      border-radius: 6%;
+    }
 
     .cardContain{
       display: flex;
@@ -218,6 +260,10 @@
     flex-shrink: 1;
     }
   }
-  @media (min-width: 992px){
-
+  @media (min-width: 1200px){
+    .contImgC{
+      align-self: center;
+      margin-left: 0.7rem;
+     }
+   
   }
