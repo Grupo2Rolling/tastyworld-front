@@ -1,4 +1,5 @@
-const url = "http://localhost:4005/api/categorias";
+
+const url = "https://tasty-world-backend.herokuapp.com/";
 
 export const getCategorias = async (desde) => {
   const resp = await fetch(`${url}?desde=${desde}`, {

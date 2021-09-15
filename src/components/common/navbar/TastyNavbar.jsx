@@ -6,6 +6,8 @@ import './navbar.css'
 
 export const TastyNavbar = () => {
 
+  
+
   const [interruptor, setInterruptor] = useState(false)
   const links=[
     {
