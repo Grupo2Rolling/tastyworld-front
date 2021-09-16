@@ -32,15 +32,15 @@ const Inicio = () => {
   return (
     <>
 
-     <Parallax bgImage={Imagen2} strength={500}>
-      <Container className="inicioBackground ">
+     <Parallax className='inicioBackground' bgImage={Imagen2} strength={500}>
+     
         
           
-        
+        <h1 className="text-center tituloPag">BIENVENIDO</h1>
             <CardCategoria lista={listaCategorias}/>
         
         
-      </Container>
+     
       </Parallax>
 
     </>
