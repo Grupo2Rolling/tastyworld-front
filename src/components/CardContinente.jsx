@@ -5,7 +5,7 @@ import { Carousel,  } from "react-bootstrap";
 import Slider from "react-slick";
 import { render } from "react-dom";
 
-const CardContinente = ({ lista, menus,setMenus }) => {
+const CardContinente = ({ continentes}) => {
   
 
   // useEffect(() => {
@@ -57,7 +57,8 @@ const CardContinente = ({ lista, menus,setMenus }) => {
     <>
       
       <Slider  {...settings}>
-        {lista.map((continente) => (
+
+        {continentes.map((continente) => (
        
                
                   

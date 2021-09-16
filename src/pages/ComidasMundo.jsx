@@ -1,88 +1,71 @@
-import React, { useState, useEffect,Link } from "react";
-import{Container} from 'react-bootstrap';
-import {productosGet} from "../helpers/menus";
+import React, { useState, useEffect, Link } from "react";
+import { Container } from "react-bootstrap";
+import { getProducto, getProductos } from "../helpers/productos";
 
-import  listaContinentes from "../helpers/listaContinentes"
 import CardContinente from "../components/CardContinente";
-import  listaMenus from "../helpers/listamenus";
 import BotonPedido from "../components/BotonPedido";
 import CardMenu from "../components/CardMenu";
 import { useParams } from "react-router";
-
+import { getContinentes } from "../helpers/continentes";
 
 const ComidasMundo = () => {
-    let {continente}= useParams()
-   console.log(continente);
-   let listaM=[];
-//   productosGet().then((respuesta)=>{
-//    const listaMenus= respuesta.productos
-//    console.log(listaMenus);
-//   })
-  const [menus, setMenus] = useState(listaMenus
-    );
+  let { continente } = useParams();
+  console.log(continente);
+  const [listaM, setListaM] = useState([]);
+  const [listaContinentes, setListaContinentes] = useState([]);
+ const [menus, setMenus] =useState([])
+
+ useEffect(()=>{ 
+   getContinentes().then((respuesta) => {
+    setListaContinentes(respuesta.continente);
+    console.log(listaContinentes);
+  });
+
+  getProductos().then((respuesta) => {
+    setListaM(respuesta.producto);
+    setMenus(respuesta.producto);
+    console.log(listaM);
+  });
+
+  
+
+
+}, []);
  
-    
- useEffect(()=>{
-   console.log(listaMenus);
-  if (continente =! ""){
-    listaM=listaMenus.filter((menu)=>{
-     return menu.continente==continente})
-     setMenus(listaM) 
-    console.log(menus);
- }},[continente]);
-
-// const filtrarMenus =()=>{
-//  if (continente){
-//     let listaM=listaMenus.filter((menu)=>{
-//      return menu.continente===continente})
-//      setMenus({
-//          lista: listaM,
-//         loading: false }) 
-//     console.log(menus.lista);
-    
-//     }
-
-//   const filtrarMenus=()=>{
-//      if (continente){
-//       getMenusCont(continente).then((respuesta) => {
-//         setMenus({
-//           lista: respuesta.productos,
-//           loading: false,
-//         });
-//       });}
-   
-     
-//    }
 
 
+  useEffect(() => {
+    if (continente) {
+      let lista = listaM.filter((menu) => {
+        return menu.continente === continente;
+      });
+      setMenus(lista);
+      console.log(listaM);
+    }
+  }, [continente]);
 
  
+
+ 
+
   return (
     <>
-      
       <Container fluid className="inicioBackground">
         <h1 className="mb-3">CONTINENTES</h1>
         <div className="d-flex justify-content-center my-3">
-         {/* <Categoria categorias={categorias}/> */}
+          {/* <Categoria categorias={categorias}/> */}
         </div>
-        <Container fluid >
-                                 
-                          <CardContinente lista={listaContinentes} menus={menus} setMenus={setMenus}/>
-              
-        </Container>
-        
         <Container fluid>
-         
-            
-        <CardMenu menus={menus} />
+          <CardContinente continentes={listaContinentes} />
         </Container>
-        <BotonPedido/>
-      
+
+        <Container fluid>
+          <CardMenu menus={menus} />
         </Container>
+        <BotonPedido />
+      </Container>
     </>
   );
 };
-
-
 
 export default ComidasMundo;
