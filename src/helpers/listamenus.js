@@ -5,6 +5,9 @@ pais: "Argentina",
 continente:"Latinoamerica",
 img:"https://caraotadigital.org/wp-content/uploads/2020/08/Lo-mejor-de-dos-milanesas-de-pollo-rellenas-de-pure-de-papa-Video.jpg",
 precio:"350",
+
+descripcion:"Una milanesa que al lado tiene puré de papas, qué esperabas? empanadas?",
+
 estado:true,
     },
     {
@@ -51,6 +54,33 @@ estado:true,
                     img:"https://caraotadigital.org/wp-content/uploads/2020/08/Lo-mejor-de-dos-milanesas-de-pollo-rellenas-de-pure-de-papa-Video.jpg",
                     precio:"350",
                     estado:true,
-                        },];
+
+                        },
+                        {
+                            id:"0007",
+                            nombre: "Cerveza",
+                        pais: "Canadá",
+                        continente:"America del Norte",
+                        categoria:"Bebida",
+                        img:"https://caraotadigital.org/wp-content/uploads/2020/08/Lo-mejor-de-dos-milanesas-de-pollo-rellenas-de-pure-de-papa-Video.jpg",
+                        precio:"350",
+                        estado:true,
+                            },
+                            {
+                                id:"0008",
+                                nombre: "2 Pintas + 2 Hamburguesas Yenkee",
+                            pais: "Canadá",
+                            continente:"America del Norte",
+                            categoria:"Promo",
+                            img:"https://caraotadigital.org/wp-content/uploads/2020/08/Lo-mejor-de-dos-milanesas-de-pollo-rellenas-de-pure-de-papa-Video.jpg",
+                            precio:"850",
+                            estado:true,
+                                },
+                                
+                    
+                    ];
+                        
 
 export default listaMenus;
+
+
