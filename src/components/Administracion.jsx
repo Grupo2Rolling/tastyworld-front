@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import DataTable, { createTheme } from "react-data-table-component";
 import { Link } from "react-router-dom";
 import { ChevronDown, Plus, MoreVertical, Edit, Trash } from "react-feather";
@@ -28,7 +28,8 @@ const ModalProductos = (props) => {
       tipo,
       estado: true,
     };
-
+    
+  }
     useEffect(() => {
       productosGet().then((respuesta) => {
         setNombreProducto({
@@ -47,8 +48,8 @@ const ModalProductos = (props) => {
     const handleShow = () => setShow(true);
 
     const updateDatos = (pag) => {
-      getProductos(pag).then((respuesta) => {
-        setProductos({
+      productosGet(pag).then((respuesta) => {
+        setNombreProducto({
           datos: respuesta.productos,
           loading: false,
         });
@@ -89,8 +90,6 @@ const ModalProductos = (props) => {
     //   console.log('respuesta', res)
     // })
   };
-  console.log("URL", URL);
-  console.log("tttt", token);
 
   const paises = [
     "Argentina",
@@ -191,7 +190,7 @@ const ModalProductos = (props) => {
       </Modal.Footer>
     </Modal>
   );
-};
+
 const ModalUsuarios = (props) => {
   return (
     <Modal
@@ -364,9 +363,6 @@ const Administracion = () => {
       <div className="rounded mx-5">
         <DataTable columns={columnasUsuarios} data={datosUsuario} />
       </div>
-      {/* <Button variant="primary" onClick={() => setModalShow(true)}>
-              Launch vertically centered modal
-            </Button> */}
 
       <ModalProductos
         show={toggleProducto}
