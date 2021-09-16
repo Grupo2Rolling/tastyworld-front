@@ -2,15 +2,17 @@ import React, { useState, useEffect } from "react";
 
 import { ChevronDown, Plus, MoreVertical, Edit, Trash } from "react-feather";
 import { Modal, Button, Form } from "react-bootstrap";
-import { productosGet, deleteMenu, postMenu } from "../helpers/menus";
 
+import { postProducto,getProducto,putProducto,deleteProducto, getProductos } from "../helpers/productos";
 
 
 const ModalProductos = (props) => {
     const [pais, setPais] = useState("");
     const [continente, setContinente] = useState("");
-    const [nombre, setNombre] = useState({ datos: [], loading: true });
+    const [products, setProducts] = useState({ datos: [], loading: true });
+    const [nombre, setNombre] = useState("");
     const [tipo, setTipo] = useState("");
+    const [descripcion, setDescripcion] = useState("");
     const [img, setImagen] = useState("");
     const [precio, setPrecio] = useState(0);
     const [pagina, setPagina] = useState(0);
@@ -20,24 +22,42 @@ const ModalProductos = (props) => {
     const handleSubmit = (e) => {
       e.preventDefault();
       const producto = {
-        nombre:{nombre},
-        pais:{pais},
-        continente:{continente},
-        img:{img},
-        precio:{precio},
-        tipo:{tipo},
-        estado: true,
+        nombre,
+        tipo,
+        pais,
+        continente,
+        img,
+        precio,
+        descripcion
+        
       };
-      postMenu(producto).then((respuesta) => {
-        if (respuesta.msg) {
-          window.alert(respuesta.msg);
-        }
+      console.log(producto);
+      postProducto(producto).then((respuesta) => {
+        if (respuesta.errors) {
+            
+            return window.alert(respuesta.errors[0].msg);
+          }
+          if (respuesta.msg) {
+            window.alert(respuesta.msg);
+          }
+        //   setLoading(false);
+        //   setFormValue({
+        //     nombre: "",
+        //     precio: "",
+        //     descripcion: "",
+        //     categoria: "",
+        //     disponible: true,
+        //   });
+        //   handleClose();
 
     })}
 
+  
+
+
     useEffect(() => {
-      productosGet().then((respuesta) => {
-        setNombre({
+      getProductos().then((respuesta) => {
+        setProducts({
           datos: respuesta.productos,
           loading: false,
         });
@@ -53,15 +73,15 @@ const ModalProductos = (props) => {
     const handleShow = () => setShow(true);
   
     const updateDatos = (pag) => {
-      productosGet(pag).then((respuesta) => {
-        setNombre({
+      getProductos(pag).then((respuesta) => {
+        setProducts({
           datos: respuesta.productos,
           loading: false,
         });
       });
     };
     const deleteMenu = (uid) => {
-        let producto = nombre.datos.find((producto) => {
+        let producto = products.datos.find((producto) => {
           return producto._id === uid;
         });
     
@@ -155,7 +175,13 @@ const ModalProductos = (props) => {
                 type="text"
               />
             </Form.Group>
-    
+            <Form.Group className="mb-3">
+              <Form.Label>Descripcion del producto</Form.Label>
+              <Form.Control
+                onBlur={(e) => setDescripcion(e.target.value)}
+                type="text"
+              />
+            </Form.Group>
             <Form.Group className="mb-3">
               <Form.Label>Tipo</Form.Label>
               <Form.Control onChange={(e) => setTipo(e.target.value)} as="select">

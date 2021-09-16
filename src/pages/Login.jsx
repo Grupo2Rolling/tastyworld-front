@@ -61,7 +61,7 @@ const Login = () => {
             <Card className="text-center">
   <Card.Header>INICIAR SESIÓN</Card.Header>
   <Card.Body>
-        <Form onSubmit={ handleSumit }>
+        <Form onSubmit={ handleSubmit }>
             <Form.Group className="mb-3" controlId="formBasicEmail">
                 <Form.Label>Aquí va tu mail</Form.Label>
                 <Form.Control type="email"

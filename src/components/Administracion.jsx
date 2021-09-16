@@ -7,7 +7,7 @@ import { productosGet, deleteMenu } from "../helpers/menus";
 import ModalUsuarios from "./ModalUsuarios";
 import ModalProductos from "./ModalProductos";
 
-const URL = "https://tasty-world-backend.herokuapp.com/api/administracion";
+// const URL = "https://tasty-world-backend.herokuapp.com/api/administracion";
 
 
   // -------------------------------------
@@ -15,10 +15,15 @@ const URL = "https://tasty-world-backend.herokuapp.com/api/administracion";
   
 
 const Administracion = () => {
+ 
+
+
   const [modal, setModalShow] = useState(false);
   const [toggleProducto, setToggleProducto] = useState(false);
   const [toggleUsuarios, setToggleUsuarios] = useState(false);
 
+
+  
   const datosProducto = [
     {
       nombre: "gh",
