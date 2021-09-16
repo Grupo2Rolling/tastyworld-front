@@ -3,19 +3,22 @@ import DataTable, { createTheme } from "react-data-table-component";
 import { Link } from "react-router-dom";
 import { ChevronDown, Plus, MoreVertical, Edit, Trash } from "react-feather";
 import { Modal, Button, Form } from "react-bootstrap";
+import { productosGet, deleteMenu } from "../helpers/menus";
 
-const URL = process.env.MONGODB_CNN2
-const token = 'Met0cO3l8eS7Gr0upoD3lpRoyec70'
+const URL = "https://tasty-world-backend.herokuapp.com";
 const ModalProductos = (props) => {
-  const [pais, setPais] = useState('')
-  const [continente, setContinente] = useState('')
-  const [nombre, setNombreProducto] = useState('')
-  const [tipo, setTipo] = useState('')
-  const [img, setImagen] = useState('')
-  const [precio, setPrecio] = useState(0)
+  const [pais, setPais] = useState("");
+  const [continente, setContinente] = useState("");
+  const [nombre, setNombreProducto] = useState({ datos: [], loading: true });
+  const [tipo, setTipo] = useState("");
+  const [img, setImagen] = useState("");
+  const [precio, setPrecio] = useState(0);
+  const [pagina, setPagina] = useState(0);
+  const [show, setShow] = useState(false);
+  const [totPag, setTotpag] = useState(0);
 
-  const handleSubmit = e => {
-    e.preventDefault()
+  const handleSubmit = (e) => {
+    e.preventDefault();
     const producto = {
       nombre,
       pais,
@@ -23,27 +26,72 @@ const ModalProductos = (props) => {
       img,
       precio,
       tipo,
-      estado: true
-    }
+      estado: true,
+    };
 
-    fetch(`${URL}/productos/x-token/${token}`, {
-      method: 'POST',
-      headers: {
-        "ContentType": "application/json",
-        // "Authorization": `x-token/${token}`
+    useEffect(() => {
+      productosGet().then((respuesta) => {
+        setNombreProducto({
+          datos: respuesta.productos,
+          loading: false,
+        });
+        setTotpag(respuesta.Total);
+      });
+    }, []);
 
-      },
-      body : JSON.stringify(producto)
-    })
-    .then(res => res.json())
-    .then(res => {
-      console.log('respuesta', res)
-    })
-    
-  }
-  console.log('URL', URL)
-  console.log('tttt', token)
+    useEffect(() => {
+      updateDatos(pagina);
+    }, [pagina, show]);
+
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+
+    const updateDatos = (pag) => {
+      getProductos(pag).then((respuesta) => {
+        setProductos({
+          datos: respuesta.productos,
+          loading: false,
+        });
+      });
+    };
+
+// -------------------------------------
+
+    const borrarProducto = (uid) => {
+      let produc = productos.datos.find((producto) => {
+        return producto._id === uid;
+      });
   
+      let validar = window.confirm(
+        `Esta seguro que quiere inactivar el producto ${producto.nombre}?`
+      );
+      if (validar) {
+        deleteMenu(uid).then((respuesta) => {
+          if (respuesta.msg) {
+            window.alert(respuesta.msg);
+          }
+          updateDatos(pagina);
+        });
+      }
+    };
+
+    // fetch(`${URL}/productos/x-token/${token}`, {
+    //   method: 'POST',
+    //   headers: {
+    //     "ContentType": "application/json",
+    //     // "Authorization": `x-token/${token}`
+
+    //   },
+    //   body : JSON.stringify(producto)
+    // })
+    // .then(res => res.json())
+    // .then(res => {
+    //   console.log('respuesta', res)
+    // })
+  };
+  console.log("URL", URL);
+  console.log("tttt", token);
+
   const paises = [
     "Argentina",
     "Peru",
@@ -51,7 +99,7 @@ const ModalProductos = (props) => {
     "Brasil",
     "Venezuela",
     "Ecuador",
-  ]
+  ];
 
   const continentes = [
     "Europa",
@@ -59,14 +107,10 @@ const ModalProductos = (props) => {
     "Latinoamérica",
     "Oceanía",
     "Asia",
-    "Africa"
-  ]
+    "Africa",
+  ];
 
-  const tipos = [
-    "Plato",
-    "Bebida",
-    "Promo"
-  ]
+  const tipos = ["Plato", "Bebida", "Promo"];
   return (
     <Modal
       {...props}
@@ -79,46 +123,64 @@ const ModalProductos = (props) => {
       </Modal.Header>
       <Modal.Body>
         <h4>Agregue un producto</h4>
-        <Form onSubmit={e => handleSubmit(e)}>
+        <Form onSubmit={(e) => handleSubmit(e)}>
           <Form.Group className="mb-3">
             <Form.Label>País</Form.Label>
-            <Form.Control onChange={e => setPais(e.target.value)} as= "select">
+            <Form.Control onChange={(e) => setPais(e.target.value)} as="select">
               <option>Elige un país</option>
-              {paises.map((pais, index) => <option key={index+4567}>{pais}</option>)}
+              {paises.map((pais, index) => (
+                <option key={index + 4567}>{pais}</option>
+              ))}
             </Form.Control>
           </Form.Group>
 
           <Form.Group className="mb-3">
             <Form.Label>Continente</Form.Label>
-            <Form.Control  onChange={e => setContinente(e.target.value)} as= "select">
+            <Form.Control
+              onChange={(e) => setContinente(e.target.value)}
+              as="select"
+            >
               <option>Elige un continente</option>
-              {continentes.map((continente, index) => <option key={index+12839}>{continente}</option>)}
+              {continentes.map((continente, index) => (
+                <option key={index + 12839}>{continente}</option>
+              ))}
             </Form.Control>
           </Form.Group>
 
           <Form.Group className="mb-3">
             <Form.Label>Nombre del producto</Form.Label>
-            <Form.Control onBlur={e => setNombreProducto(e.target.value)} type="text" />
+            <Form.Control
+              onBlur={(e) => setNombreProducto(e.target.value)}
+              type="text"
+            />
           </Form.Group>
-          
+
           <Form.Group className="mb-3">
             <Form.Label>Tipo</Form.Label>
-            <Form.Control  onChange={e => setTipo(e.target.value)} as= "select">
+            <Form.Control onChange={(e) => setTipo(e.target.value)} as="select">
               <option>Elige un tipo de producto</option>
-              {tipos.map((tipo, index) => <option key={index+12679}>{tipo}</option>)}
+              {tipos.map((tipo, index) => (
+                <option key={index + 12679}>{tipo}</option>
+              ))}
             </Form.Control>
           </Form.Group>
 
           <Form.Group className="mb-3">
             <Form.Label>Imagen</Form.Label>
-            <Form.Control onBlur={e => setImagen(e.target.value)} type="text" />
+            <Form.Control
+              onBlur={(e) => setImagen(e.target.value)}
+              type="text"
+            />
           </Form.Group>
 
           <Form.Group className="mb-3">
             <Form.Label>Precio</Form.Label>
-            <Form.Control onBlur={e => setPrecio(e.target.value)} type="number" />
+            <Form.Control
+              onBlur={(e) => setPrecio(e.target.value)}
+              type="number"
+            />
           </Form.Group>
-          
+
           <Button variant="primary" type="submit">
             Agregar
           </Button>
@@ -164,7 +226,7 @@ const Administracion = () => {
 
   const datosProducto = [
     {
-      nombre: 'gh',
+      nombre: "gh",
       precio: "$15",
       pais: "Amaicha del valle",
     },
@@ -182,7 +244,7 @@ const Administracion = () => {
       nombre: "Empanas",
       precio: "$50",
       pais: "Argentina",
-    }
+    },
   ];
 
   const datosUsuario = [
