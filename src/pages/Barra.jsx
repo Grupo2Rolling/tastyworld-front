@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { getComandas } from '../helpers/comandasCocina'
 import CardCocina from '../components/CardCocina'
 
-const Cocina = () => {
+const Barra = () => {
   const [comandas, setComandas] = useState([]);
 
   useEffect(() => {
@@ -23,4 +23,4 @@ const Cocina = () => {
 };
 
 
-export default Cocina
+export default Barra

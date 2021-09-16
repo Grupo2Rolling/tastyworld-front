@@ -1,35 +1,20 @@
-
-import React from 'react'
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
-import { TastyNavbar } from './components/common/navbar/TastyNavbar'
-import 'bootstrap/dist/css/bootstrap.css'
-import { TastyFooter } from './components/common/footer/TastyFooter'
-import Inicio from "./pages/Inicio";
+import React from "react";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Login from "./pages/Login";
-import ComidasMundo from "./pages/ComidasMundo";
-import FinPedido from "./pages/FinPedido";
-import Administracion from './components/Administracion'
+import RouterDos from "./routes/RouterDos";
+import ProtectedRoute from "./routes/ProtectedRoute";
+import RouterTres from './routes/RouterTres'
 
-const App = () => {
-    return (
-        <Router>
-
-            <TastyNavbar/>
-            <Switch>
-       <Route exact path="/login" component={Login} />
-        <Route exact path="/" component={Inicio} />
-        <Route exact path="/ComidasMundo" component={ComidasMundo}/>
-        <Route exact path="/ComidasMundo/:continente" component={ComidasMundo}/>
-        <Route exact path="/finalizarpedido" component={FinPedido} />
-        <Route exact path="/Administracion" component={Administracion} />
+function App() {
+  return (
+    <Router>
+      <Switch>
+        <Route exact path="/login" component={Login} />
+        <ProtectedRoute path="/" component={RouterDos} />
+        <Route exact path="/staff/:funcion" component={RouterTres}/>
       </Switch>
-            <TastyFooter />
-        </Router>
-    )
+    </Router>
+  );
 }
 
-export default App
-
-
-
-
+export default App;

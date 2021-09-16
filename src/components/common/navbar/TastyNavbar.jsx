@@ -23,8 +23,12 @@ export const TastyNavbar = () => {
       nombre:'Pedidos'
     },
     {
-      ruta:'/cocina',
+      ruta:'/staff/cocina',
       nombre:'Cocina'
+    },
+    {
+      ruta:'/staff/barra',
+      nombre:'Barra'
     },
     {
       ruta:'/administracion',

@@ -7,8 +7,8 @@ export const getComandas = async () => {
 
     headers: {
       'Content-type': 'application/json; charset=UTF-8',
-      //'x-token': JSON.parse(localStorage.getItem('auth')).token
-      'x-token': "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2MTNlODNhMWQxNWI5ZGY5OTRhYjM3ODMiLCJpYXQiOjE2MzE4MjM1NjQsImV4cCI6MTYzMTgzMDc2NH0.YR05OI_w3Y_EwiME60RSsCEDiBgW89jS2nMhrUpLQEw"
+      'x-token': JSON.parse(localStorage.getItem('auth')).token
+      //'x-token': "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2MTNlODNhMWQxNWI5ZGY5OTRhYjM3ODMiLCJpYXQiOjE2MzE4MjM1NjQsImV4cCI6MTYzMTgzMDc2NH0.YR05OI_w3Y_EwiME60RSsCEDiBgW89jS2nMhrUpLQEw"
     },
   })
   const datos = await resp.json()
