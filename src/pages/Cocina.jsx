@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import { getComandas } from '../helpers/comandasCocina'
 import CardCocina from '../components/CardCocina'
+import { Container } from 'react-bootstrap';
 
-const Cocina = () => {//borro {data} que estaba como parametro
+const Cocina = () => {
   const [comandas, setComandas] = useState([]);
+  const [comandasCocina, setComandasCocina] =useState([])
 
   useEffect(() => {
     getComandas().then((respuesta) => {
@@ -11,14 +13,20 @@ const Cocina = () => {//borro {data} que estaba como parametro
       console.log(comandas)
     });
   }, []);
+
+  useEffect(()=>{
+    let comandaCocina = comandas.filter((comanda) => {
+      return comanda.tipo === "Plato";
+    });
+    setComandasCocina(comandaCocina);
+    console.log(comandaCocina);
+  }, []);
   
-  //let comanda = ["a", "b", "c" ,"d"]
   return (
     <>
-      <div className="container mb-3">
-        <h1 className="mb-3">Tasty Kitchen</h1>
-        <CardCocina comandas={comandas} />
-      </div>
+      <Container fluid className="mt-2">
+        <CardCocina comandas={comandasCocina} />
+      </Container>
     </>
   );
 };

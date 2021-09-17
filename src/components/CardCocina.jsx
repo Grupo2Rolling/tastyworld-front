@@ -1,40 +1,50 @@
-import React from 'react';
+import React from 'react'
+import {
+  Card,
+  Row,
+  Col,
+  ListGroup,
+  Button,
+  ButtonToolbar,
+} from 'react-bootstrap'
 
 const CardCocina = ({ comandas }) => {
   return (
-    <>
-      <div className="row row-cols-1 row-cols-md-3 g-4">
-        {comandas.map((comanda) => (
-          <div className="col" key={comanda._id}>
-            <div className="card h-100">
-              <img
-                src="../assets/images/tastyworld-logo.png"
-                className="card-img-top"
-                alt={comanda.nombre}
-              />
-              <div className="card-body">
-                <h5 className="card-title">{comanda.producto}</h5>
-                <h6>{comanda.cantidad}</h6>
-                <strong>{comanda.tipo}</strong>
-                <strong>{comanda.mesa}</strong>
-                <strong>{comanda.nombreCliente}</strong>
-                <p className="card-text">{comanda.descripcion}</p>
-              </div>
-              <div className="card-footer ">
-                {comanda.estado ? (
-                  <div className="d-flex justify-content-between align-items-center">
-                    <span className="text-disponible">En proceso</span>
-                    <button className="btn btn-success">Realizado</button>
-                  </div>
-                ) : (
-                  <span className="text-nodisponible">Realizado</span>
-                )}
-              </div>
-            </div>
-          </div>
-        ))}
-      </div>
-    </>
+    <Row xs={1} md={5} className="g-2">
+      {comandas.map((comanda) => (
+        <Col key={comanda._id}>
+          <Card>
+            <Card.Body>
+              <Card.Header>Pedido: {comanda.numeroPedido}</Card.Header>
+              <Card.Title className="m-2">{comanda.producto}</Card.Title>
+              <ListGroup>
+                <ListGroup.Item>Cantidad: {comanda.cantidad}</ListGroup.Item>
+                <ListGroup.Item>Notas: {comanda.descripcion}</ListGroup.Item>
+                <ListGroup.Item>
+                  Cliente: {comanda.nombreCliente}
+                </ListGroup.Item>
+                <ListGroup.Item>Mesa: {comanda.mesa}</ListGroup.Item>
+                <ListGroup.Item>Estado: {comanda.estado}</ListGroup.Item>
+              </ListGroup>
+            </Card.Body>
+            <Card.Footer>
+              <ButtonToolbar
+                className="justify-content-center"
+                size="xl"
+                aria-label="Basic example"
+              >
+                <Button className="me-5" variant="danger">
+                  Rechazar
+                </Button>
+                <Button className="mi-5" variant="success">
+                  Finalizada
+                </Button>
+              </ButtonToolbar>
+            </Card.Footer>
+          </Card>
+        </Col>
+      ))}
+    </Row>
   )
 }
 
