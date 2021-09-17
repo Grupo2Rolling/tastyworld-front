@@ -1,12 +1,14 @@
 //VER COMO NOMRARON VARIABLES LOS CHICOS Y MODIFICAR
 const url = "https://tasty-world-backend.herokuapp.com"
 
-export const usuariosGet = async (desde) => {
-  const resp = await fetch(`${url}/api/usuarios?desde=${desde}`, {
+
+export const usuariosGet = async () => {
+  const resp = await fetch(`${url}/api/usuarios`, {
     method: "GET",
 
     headers: {
       "Content-type": "application/json; charset=UTF-8",
+      "x-token": JSON.parse(localStorage.getItem("auth")).token,
     },
   });
   const datos = await resp.json();

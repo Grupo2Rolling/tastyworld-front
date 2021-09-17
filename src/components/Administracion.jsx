@@ -3,68 +3,76 @@ import DataTable, { createTheme } from "react-data-table-component";
 import { Link } from "react-router-dom";
 import { ChevronDown, Plus, MoreVertical, Edit, Trash } from "react-feather";
 import { Modal, Button, Form } from "react-bootstrap";
-import { productosGet, deleteMenu } from "../helpers/menus";
+import { getProductos, deleteProducto } from "../helpers/productos";
+import { usuariosGet, usuarioDelete } from "../helpers/usuarios";
 import ModalUsuarios from "./ModalUsuarios";
 import ModalProductos from "./ModalProductos";
 
-// const URL = "https://tasty-world-backend.herokuapp.com/api/administracion";
-
-
-  // -------------------------------------
-
-  
-
 const Administracion = () => {
- 
-
-
-  const [modal, setModalShow] = useState(false);
+  const [render, setRender] = useState(false);
   const [toggleProducto, setToggleProducto] = useState(false);
   const [toggleUsuarios, setToggleUsuarios] = useState(false);
+  const [products, setProducts] = useState({ datos: [], loading: true });
+  const [usuarios, setUsuarios] = useState({ datos: [], loading: true });
+  const [productEditar, setProductEditar] = useState({});
+  const [usuarioEditar, setUsuarioEditar] = useState({});
 
+  const handleDeleteProducto = (product) => {
+    deleteProducto(product._id).then((respuesta) => {
+      if (respuesta.msg) {
+        window.alert(respuesta.msg);
+        setRender(!render);
+      }
+    });
+  };
+  const handleEditProducto = (product) => {
+    setProductEditar(product);
+    setToggleProducto(true);
+  };
 
-  
-  const datosProducto = [
-    {
-      nombre: "gh",
-      precio: "$15",
-      pais: "Amaicha del valle",
-    },
-    {
-      nombre: "Arroz con pollo",
-      precio: "$100",
-      pais: "Brasil",
-    },
-    {
-      nombre: "Bife con ensalada",
-      precio: "$600",
-      pais: "Tucuman",
-    },
-    {
-      nombre: "Empanas",
-      precio: "$50",
-      pais: "Argentina",
-    },
-  ];
+  useEffect(() => {
+    getProductos().then((respuesta) => {
+      console.log("respuetsa", respuesta);
+      setProducts({
+        datos: respuesta.producto,
+        loading: false,
+      });
+    });
+    usuariosGet().then((respuesta) => {
+      console.log("usuarios", respuesta);
+      setUsuarios({
+        datos: respuesta.usuarios,
+        loading: false,
+      });
+    });
+  }, [render]);
 
-  const datosUsuario = [
-    {
-      usuario: "Pablo Giroud",
-      role: "Admin",
-    },
-    {
-      usuario: "Carina Auteri",
-      role: "Usuario",
-    },
-    {
-      usuario: "Gabriela Navarro",
-      role: "Usuario",
-    },
-    {
-      usuario: "Pablo Giroud",
-      role: "Admin",
-    },
-  ];
+  //------------------------------------------------
+
+  const handleDeleteUsuario = (usuario) => {
+    console.log(usuario)
+    usuarioDelete(usuario.uid).then((respuesta) => {
+      if (respuesta.msg) {
+        window.alert(respuesta.msg);
+        setRender(!render);
+      }
+    });
+  };
+  const handleEditUsuario = (usuario) => {
+    setUsuarioEditar(usuario);
+    setToggleUsuarios(true);
+  };
+
+  // useEffect(() => {
+  //   usuariosGet().then((respuesta) => {
+  //     console.log("usuarios", respuesta);
+  //     setUsuarios({
+  //       datos: respuesta.usuario,
+  //       loading: false,
+  //     });
+  //   });
+  // }, [render]);
+
 
   const columnasProductos = [
     {
@@ -93,11 +101,11 @@ const Administracion = () => {
       cell: (row) => {
         return (
           <div className="d-flex">
-            <Link to={``} className="dropdown-item">
-              <Edit size={15} />
-            </Link>
             <button className="dropdown-item">
-              <Trash size={15} />
+              <Edit onClick={() => handleEditProducto(row)} size={15} />
+            </button>
+            <button className="dropdown-item">
+              <Trash onClick={() => handleDeleteProducto(row)} size={15} />
             </button>
           </div>
         );
@@ -108,13 +116,19 @@ const Administracion = () => {
   const columnasUsuarios = [
     {
       name: "NOMBRE USUARIO",
-      selector: "usuario",
+      selector: "nombre",
+      sortable: true,
+      width: "29%",
+    },
+    {
+      name: "EMAIL USUARIO",
+      selector: "email",
       sortable: true,
       width: "29%",
     },
     {
       name: "ROL",
-      selector: "role",
+      selector: "rol",
       sortable: true,
       width: "29%",
     },
@@ -126,11 +140,11 @@ const Administracion = () => {
       cell: (row) => {
         return (
           <div className="d-flex">
-            <Link to={``} className="dropdown-item">
-              <Edit size={15} />
-            </Link>
+           <button className="dropdown-item">
+              <Edit onClick={() => handleEditUsuario(row)} size={15} />
+            </button>
             <button className="dropdown-item">
-              <Trash size={15} />
+              <Trash onClick={() => handleDeleteUsuario(row)} size={15} />
             </button>
           </div>
         );
@@ -143,34 +157,43 @@ const Administracion = () => {
       <div className="d-flex align-items-center">
         <h5 className="text-white p-4">PRODUCTOS</h5>
         <button
-          onClick={() => setToggleProducto(true)}
+          onClick={() => {
+            setProductEditar(null);
+            setToggleProducto(true);
+          }}
           className="btn btn-light"
         >
           +
         </button>
       </div>
       <div className="rounded mx-5">
-        <DataTable columns={columnasProductos} data={datosProducto} />
+        <DataTable columns={columnasProductos} data={products.datos} />
       </div>
       <div className="d-flex align-items-center">
         <h5 className="text-white p-4">USUARIOS</h5>
         <button
-          onClick={() => setToggleUsuarios(true)}
+          onClick={() => {
+            setUsuarioEditar(null);
+            setToggleUsuarios(true)}}
           className="btn btn-light"
         >
           +
         </button>
       </div>
       <div className="rounded mx-5">
-        <DataTable columns={columnasUsuarios} data={datosUsuario} />
+        <DataTable columns={columnasUsuarios} data={usuarios.datos} />
       </div>
 
       <ModalProductos
         show={toggleProducto}
+        productEditar={productEditar}
+        setRender={() => setRender(!render)}
         onHide={() => setToggleProducto(false)}
       />
       <ModalUsuarios
         show={toggleUsuarios}
+        usuarioEditar={usuarioEditar}
+        setRender={() => setRender(!render)}
         onHide={() => setToggleUsuarios(false)}
       />
     </div>
