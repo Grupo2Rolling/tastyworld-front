@@ -10,24 +10,7 @@ import Imagen2 from "../assets/imagen2.svg"
 
 
 const Inicio = () => {
-  // const [menus, setMenus] = useState([]);
-  // const [categorias,setCategorias]=useState([])
   
-  // useEffect(() => {
-  //   getCategorias().then((respuesta) => {
-  //     // console.log(respuesta);
-  //     setCategorias(respuesta.categorias);
-      
-  //   });
-  // }, []);
-
-  // useEffect(() => {
-  //   getMenus().then((respuesta) => {
-  //     // console.log(respuesta);
-  //     setMenus(respuesta.menus);
-      
-  //   });
-  // }, []);
 
  
   return (
@@ -42,7 +25,7 @@ const Inicio = () => {
         
         
      
-      </Parallax>
+      </Parallax> 
 
     </>
   );
