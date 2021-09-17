@@ -32,7 +32,6 @@ const CardMenu = ({ menus }) => {
 
                 
               </div>
-              
             </div>
 
             <div className="card back-face">
@@ -58,7 +57,7 @@ const CardMenu = ({ menus }) => {
         ))}
       </div>
     </>
-  );
-};
+  )
+}
 
-export default CardMenu;
+export default CardMenu
