@@ -22,7 +22,7 @@ const Barra = () => {
 
   return (
     <>
-      <Container fluid className="mt-2">
+      <Container fluid className="mt-2 min-height">
         <CardBarra comandas={comandasBarra} />
       </Container>
     </>
