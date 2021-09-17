@@ -1,7 +1,7 @@
-const url = "http://localhost:4005/api/auth/login" // LLAMAMOS AQUI TMB A NUESTRA URL 
+const url = "https://tasty-world-backend.herokuapp.com/api/auth/login" 
 
 export const postAuth = async (data) => {
-  const resp = await fetch(`url`, {
+  const resp = await fetch(url, {
     method: "POST",
     body: JSON.stringify(data),
     headers: {
