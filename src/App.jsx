@@ -7,6 +7,7 @@ import Inicio from './pages/Inicio'
 import Menu from './pages/Menu'
 import Login from './pages/Login'
 import Cocina from './pages/Cocina'
+import Barra from './pages/Barra'
 import ComidasMundo from './pages/ComidasMundo'
 import FinPedido from './pages/FinPedido'
 import Administracion from './components/Administracion'
@@ -27,6 +28,7 @@ const App = () => {
         <Route exact path="/finalizarpedido" component={FinPedido} />
         <Route exact path="/Administracion" component={Administracion} />
         <Route exact path="/cocina" component={Cocina} />
+        <Route exact path="/barra" component={Barra} />
       </Switch>
       <TastyFooter />
     </Router>
