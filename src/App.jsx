@@ -12,7 +12,7 @@ function App() {
     <Router>
       <Switch>
         <Route exact path="/login" component={Login} />
-        <ProtectedRoute path="/" component={RouterDos} />
+        <ProtectedRoute exact path="/" component={RouterDos} />
         <ProtectedRoute exact path="/staff/:funcion" component={RouterTres}/>
       </Switch>
     </Router>
