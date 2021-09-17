@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import { getComandas } from '../helpers/comandas'
-import CardCocina from '../components/CardCocina'
+import CardBarra from '../components/CardBarra'
 import { Container } from 'react-bootstrap'
 
-const Cocina = () => {
+const Barra = () => {
   const [comandas, setComandas] = useState([])
-  const [comandasCocina, setComandasCocina] = useState([])
+  const [comandasBarra, setComandasBarra] = useState([])
 
   useEffect(() => {
     getComandas().then((respuesta) => {
@@ -14,19 +14,19 @@ const Cocina = () => {
   }, [])
 
   useEffect(() => {
-    let comandaCocina = comandas.filter((comanda) => {
-      return comanda.tipo === 'Plato'
+    let comandaBarra = comandas.filter((comanda) => {
+      return comanda.tipo === "Bebida";
     })
-    setComandasCocina(comandaCocina)
+    setComandasBarra(comandaBarra)
   }, [])
 
   return (
     <>
       <Container fluid className="mt-2">
-        <CardCocina comandas={comandasCocina} />
+        <CardBarra comandas={comandasBarra} />
       </Container>
     </>
   )
 }
 
-export default Cocina
+export default Barra
