@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { getMenusCont } from "../helpers/menus";
-import  listaMenus from "../helpers/listamenus"
 
+import  listaMenus from "../helpers/listamenus";
+import BotonPedido from "../components/BotonPedido";
 import CardMenu from "../components/CardMenu";
 
 
-const Menu = ({continente}) => {
+const Menu = ({categoria}) => {
+
   const [menus, setMenus] = useState([]);
   
  
@@ -17,7 +19,9 @@ const Menu = ({continente}) => {
   //   });
   // }, []);
  const menusF=listaMenus.filter(function(menu){
-  return menu.continente==continente
+
+  return menu.continente===categoria
+
 })
 
 
@@ -26,11 +30,14 @@ const Menu = ({continente}) => {
     <>
       
       <div className="container mb-3">
-        <h1 className="mb-3">Elige tu viaje culinario</h1>
+        <h2 className="mb-3">Menús</h2>
+        <h3>Continentes</h3>
         <div className="d-flex justify-content-center my-3">
-         
-        </div>
         <CardMenu menus={menusF} />
+        </div>
+        
+        <BotonPedido/>
+
       </div>
     </>
   );
