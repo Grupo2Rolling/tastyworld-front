@@ -16,7 +16,7 @@ const App = () => {
         <Router>
 
             <TastyNavbar/>
-            <Switch>
+         <Switch>
        <Route exact path="/login" component={Login} />
         <Route exact path="/" component={Inicio} />
         <Route exact path="/ComidasMundo" component={ComidasMundo}/>

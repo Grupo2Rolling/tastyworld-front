@@ -1,13 +1,28 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, } from "react";
 
 
 
 const CardMenu = ({ menus }) => {
+
+
+//   const [pedido, setPedido]=useState(JSON.parse(localStorage.getItem('pedido'))||[])
+//   let listaP=JSON.parse(localStorage.getItem('pedido'))||[]; 
+  
+//   const agregarACarrito= (id)=>{
+//     listaP.push(id);
+    
+    
+//   }
+//   useEffect(()=>{ 
+//     setPedido(listaP)
+//     localStorage.setItem('pedido', JSON.stringify(pedido));
+   
  
-  // const agregarACarrito= (menu)=>{
-  //   comanda.push(menu);
-  //   localStorage.setItem('comanda', JSON.stringify(comanda));
-  // }
+ 
+//  }, [pedido]);
+
+
+  
  
  
   return (
@@ -28,7 +43,7 @@ const CardMenu = ({ menus }) => {
                 <strong>{menu.categoria}</strong>
                 <div className="precioyBot">
                   <h5>${menu.precio}</h5>
-                  <button className="btn btn-info botonAgr d-md-none" /*onClick={agregarACarrito(menu)} */>Agregar +</button></div>
+                  <button className="btn btn-info botonAgr d-md-none" /*onClick={agregarACarrito(menu.id)}*/ >Agregar +</button></div>
 
                 
               </div>

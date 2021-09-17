@@ -7,10 +7,10 @@ const CardCategoria = ({ lista }) => {
     <>
       <Container className="cardContainC">
         {lista.map((categoria) => (
-          <Link className="cardLink" to={`/${categoria.nombre}`}>
+          <Link className="cardLink" to={`/${categoria.nombre}`} key={categoria.id}>
               <Card className="cardCateg my-3 mx-4 d-block" >
                 
-              <Card.Body className="cardCatBod" key={categoria.id}>
+              <Card.Body className="cardCatBod" >
                 
                   
                     <div className="contImgC">

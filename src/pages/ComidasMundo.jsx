@@ -1,7 +1,6 @@
-import React, { useState, useEffect, Link } from "react";
+import React, { useState, useEffect } from "react";
 import { Container } from "react-bootstrap";
 import { getProducto, getProductos } from "../helpers/productos";
-
 import CardContinente from "../components/CardContinente";
 import BotonPedido from "../components/BotonPedido";
 import CardMenu from "../components/CardMenu";
@@ -10,29 +9,23 @@ import { getContinentes } from "../helpers/continentes";
 
 const ComidasMundo = () => {
   let { continente } = useParams();
-  console.log(continente);
+
   const [listaM, setListaM] = useState([]);
   const [listaContinentes, setListaContinentes] = useState([]);
- const [menus, setMenus] =useState([])
+  const [menus, setMenus] = useState([]);
 
- useEffect(()=>{ 
-   getContinentes().then((respuesta) => {
-    setListaContinentes(respuesta.continente);
-    console.log(listaContinentes);
-  });
+  useEffect(() => {
+    getContinentes().then((respuesta) => {
+      setListaContinentes(respuesta.continente);
+      
+    });
 
-  getProductos().then((respuesta) => {
-    setListaM(respuesta.producto);
-    setMenus(respuesta.producto);
-    console.log(listaM);
-  });
-
-  
-
-
-}, []);
- 
-
+    getProductos().then((respuesta) => {
+      setListaM(respuesta.producto);
+      setMenus(respuesta.producto);
+     
+    });
+  }, []);
 
   useEffect(() => {
     if (continente) {
@@ -40,13 +33,9 @@ const ComidasMundo = () => {
         return menu.continente === continente;
       });
       setMenus(lista);
-      console.log(listaM);
+      console.log(menus);
     }
   }, [continente]);
-
- 
-
- 
 
   return (
     <>
