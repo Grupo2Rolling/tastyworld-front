@@ -12,7 +12,7 @@ const CardBarra = ({ comandas }) => {
   return (
     <Row xs={1} md={5} className="g-2">
       {comandas.map((comanda) => (
-        <Col key={comanda._id}>
+        <Col key={comanda._id} className="mb-2">
           <Card>
             <Card.Body>
               <Card.Header>Pedido: {comanda.numeroPedido}</Card.Header>

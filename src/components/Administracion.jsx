@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import DataTable, { createTheme } from "react-data-table-component";
-import { Link } from "react-router-dom";
-import { ChevronDown, Plus, MoreVertical, Edit, Trash } from "react-feather";
-import { Modal, Button, Form } from "react-bootstrap";
+import DataTable from "react-data-table-component";//, { createTheme }
+//import { Link } from "react-router-dom";
+import { Edit, Trash } from "react-feather";//ChevronDown, Plus, MoreVertical, 
+//import { Modal, Button, Form } from "react-bootstrap";
 import { getProductos, deleteProducto } from "../helpers/productos";
 import { usuariosGet, usuarioDelete } from "../helpers/usuarios";
 import ModalUsuarios from "./ModalUsuarios";

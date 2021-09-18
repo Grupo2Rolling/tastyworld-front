@@ -3,8 +3,8 @@ import React, { useState, useEffect } from "react";
 // import { ChevronDown, Plus, MoreVertical, Edit, Trash } from "react-feather";
 import { Modal, Button, Form } from "react-bootstrap";
 
-import { postProducto, getProducto, putProducto, deleteProducto, getProductos } from "../helpers/productos";
-
+import { postProducto, putProducto, } from "../helpers/productos";
+//getProducto, deleteProducto, getProductos 
 
 const ModalProductos = (props) => {
     const [pais, setPais] = useState("");

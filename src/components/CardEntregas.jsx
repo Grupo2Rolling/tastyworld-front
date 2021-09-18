@@ -8,12 +8,12 @@ import {
   ButtonToolbar,
 } from 'react-bootstrap'
 
-const CardCocina = ({ comandas }) => {
+const CardEntregas = ({ comandas }) => {
   return (
     <Row xs={1} md={5} className="g-2">
       {comandas.map((comanda) => (
-        <Col className="mb-2">
-          <Card key={comanda._id}>
+        <Col key={comanda._id} className="mb-2">
+          <Card>
             <Card.Body>
               <Card.Header>Pedido: {comanda.numeroPedido}</Card.Header>
               <Card.Title className="m-2">{comanda.producto}</Card.Title>
@@ -48,4 +48,4 @@ const CardCocina = ({ comandas }) => {
   )
 }
 
-export default CardCocina
+export default CardEntregas
