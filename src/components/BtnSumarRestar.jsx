@@ -1,29 +1,40 @@
-import React from 'react'
+import React, { useState } from 'react'
 
-const BtnSumarRestar = () => {
-    function increaseValue() {
-        const value = parseInt(document.getElementById('number').value, 10)
-        value = isNaN(value) ? 0 : value
-        value++
-        document.getElementById('number').value = value
-      }
-      
-      
+const BtnSumarRestar = ({valor}) => {
+
+    const [counter, setCounter] = useState(valor);
+
+    //javascript
+    const incrementar = () => {
+      // counter = counter + 1;
+      setCounter(counter + 1);
+    };
+    const decrementar = () => {
+      setCounter(counter - 1);
+    };
+  
+    const reset = () => {
+      setCounter(valor);
+    };
+  
     return (
-        <div>
-            <form>
-                <div className="value-button" 
-                id="decrease" 
-                onclick={decreaseValue} 
-                value={decreaseValue}>-</div>
-                <input type="number" id="number" value="0" />
-                <div className="value-button" 
-                id="increase" 
-                onclick={increaseValue} 
-                value={increaseValue}>+</div>
-            </form>
-        </div>
-    )
-}
+      <div>
+        <h1>Counter App</h1>
+        <hr />
+        <h3>Contador: {counter}</h3>
+        <button className="btn btn-info mt-3 me-2" onClick={incrementar}>
+          +1
+        </button>
+        <button className="btn btn-info mt-3 me-2" onClick={reset}>
+          Reset
+        </button>
+  
+        <button className="btn btn-info mt-3" onClick={decrementar}>
+          -1
+        </button>
+      </div>
+    );
+  
+    }  
 
 export default BtnSumarRestar

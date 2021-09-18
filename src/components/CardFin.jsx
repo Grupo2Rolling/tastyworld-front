@@ -1,34 +1,54 @@
-import React from 'react'
-
+import React from "react";
+// import BtnSumarRestar from "./BtnSumarRestar";
+import { Row, Col, Form, Card, Button, Dropdown } from "react-bootstrap";
 
 const CardFin = () => {
-    
-
-    return (
+  return (
     <div>
-        <div className="card mb-3 max-width: 540px">
-            <div className="row g-0">
-        <div className="col-md-4">
-            <img src="..." className="img-fluid rounded-start" alt="..."/>
-    </div>
-        <div className="col-md-8">
-            <div className="card-body">
-            <h5 className="card-title">Este es tu pedido:</h5>
-            <p className="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-            <a href="#" className="card-link">Eliminar</a>
-            <a href="#" className="card-link">Another link</a>
-            
-    </div>
-    </div>
+      <Row className="justify-content-md-center">
         
-    </div>
-    {/* <div className="card text-end width: 18rem"> 
-        <a href="#" className="btn btn-primary">Go somewhere</a>
-    </div>   */}
-    </div>
-              
-    </div>
-    )
-}
+          <Col md="auto">
+            <Card style={{ width: "50rem" }}>
+              <Card.Body>
+                <Card.Title>TU TASTY PEDIDO:</Card.Title>
+                <Card.Subtitle className="mb-2 text-muted">
+                  Comida
+                </Card.Subtitle>
+                <Card.Text>
+                  $$$$
+                </Card.Text>
+                <Form>
+                  
+                    <Form.Control controlId="floatingTextarea2" label="Comments"
+                      as="textarea"
+                      placeholder="Leave a comment here"
+                      style={{ height: "100px" }}
+                    />
+                  
+                </Form>
+                <Card.Link href="Menu">Seguir comprando</Card.Link>
+                
+                <Dropdown>
+  <Dropdown.Toggle variant="success" id="dropdown-basic">
+    Cantidad
+  </Dropdown.Toggle>
 
-export default CardFin
+  <Dropdown.Menu>
+    <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
+    <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
+    <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
+  </Dropdown.Menu>
+</Dropdown>
+
+               
+              </Card.Body>
+              <Button variant="primary">IR A PAGAR</Button>
+            </Card>
+          </Col>;
+       
+      </Row>
+    </div>
+  );
+};
+
+export default CardFin;
