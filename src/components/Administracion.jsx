@@ -32,14 +32,12 @@ const Administracion = () => {
 
   useEffect(() => {
     getProductos().then((respuesta) => {
-      console.log("respuetsa", respuesta);
       setProducts({
         datos: respuesta.producto,
         loading: false,
       });
     });
     usuariosGet().then((respuesta) => {
-      console.log("usuarios", respuesta);
       setUsuarios({
         datos: respuesta.usuarios,
         loading: false,
@@ -62,16 +60,6 @@ const Administracion = () => {
     setUsuarioEditar(usuario);
     setToggleUsuarios(true);
   };
-
-  // useEffect(() => {
-  //   usuariosGet().then((respuesta) => {
-  //     console.log("usuarios", respuesta);
-  //     setUsuarios({
-  //       datos: respuesta.usuario,
-  //       loading: false,
-  //     });
-  //   });
-  // }, [render]);
 
 
   const columnasProductos = [
