@@ -1,24 +1,24 @@
 import React, { useState, useEffect } from 'react'
-import { getComandasCocina } from '../helpers/comandas'
-import CardCocina from '../components/CardCocina'
+import { getComandasEntregas } from '../helpers/comandas'
+import CardEntregas from '../components/CardEntregas'
 import { Container } from 'react-bootstrap'
 
-const Cocina = () => {
+const Entrega = () => {
   const [comandas, setComandas] = useState([])
- 
-  useEffect(() => {
-    getComandasCocina().then((respuesta) => {
-      setComandas(respuesta.comanda);
-    })
-  }, [comandas])
 
+  useEffect(() => {
+    getComandasEntregas().then((respuesta) => {
+      setComandas(respuesta.comanda);
+    });
+  }, [comandas]);
+  
   return (
     <>
       <Container fluid className="mt-2">
-        <CardCocina comandas={comandas} />
+       <CardEntregas comandas={comandas} />
       </Container>
     </>
   )
 }
 
-export default Cocina
+export default Entrega
