@@ -6,17 +6,17 @@ import {Container} from 'react-bootstrap'
 import  listaCategorias from "../helpers/listaCategorias"
 import CardCategoria from "../components/CardCategoria";
 import { Parallax } from 'react-parallax';
-import Imagen2 from "../assets/imagen2.svg"
+import Imagen2 from "../assets/imagen2.svg";
+
 
 
 const Inicio = () => {
   
-
  
   return (
     <>
 
-     <Parallax className='inicioBackground' bgImage={Imagen2} strength={500}>
+     <Parallax className='inicioBackground min-height' bgImage={Imagen2} strength={500}>
      
         
           

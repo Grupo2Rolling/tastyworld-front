@@ -58,7 +58,7 @@ const handleSubmit = (e) => {
     
     
     return (
-        <Container fluid className="login-bg py-4">
+        <Container fluid className="login-bg py-4 min-height">
           <Form
             className="col-8 col-lg-5 mx-auto login-card"
             onSubmit={handleSubmit}
