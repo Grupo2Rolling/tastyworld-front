@@ -10,7 +10,7 @@ const Entrega = () => {
     getComandasEntregas().then((respuesta) => {
       setComandas(respuesta.comanda);
     });
-  }, []);
+  }, [comandas]);
   
   return (
     <>

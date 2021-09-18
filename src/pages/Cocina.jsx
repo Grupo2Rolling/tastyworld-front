@@ -10,7 +10,7 @@ const Cocina = () => {
     getComandasCocina().then((respuesta) => {
       setComandas(respuesta.comanda);
     })
-  }, [])
+  }, [comandas])
 
   return (
     <>

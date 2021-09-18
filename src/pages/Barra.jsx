@@ -10,7 +10,7 @@ const Barra = () => {
     getComandasBarra().then((respuesta) => {
       setComandas(respuesta.comanda);
     })
-  }, [])
+  }, [comandas])
 
   return (
     <>
