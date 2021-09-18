@@ -10,7 +10,7 @@ import Cocina from './pages/Cocina'
 import Barra from './pages/Barra'
 import Entregas from './pages/Entregas'
 import ComidasMundo from './pages/ComidasMundo'
-import FinPedido from './pages/FinPedido'
+import Carrito from './pages/Carrito'
 import Administracion from './components/Administracion'
 
 const App = () => {
@@ -26,7 +26,7 @@ const App = () => {
           path="/ComidasMundo/:continente"
           component={ComidasMundo}
         />
-        <Route exact path="/finalizarpedido" component={FinPedido} />
+        <Route exact path="/carrito" component={Carrito} />
         <Route exact path="/Administracion" component={Administracion} />
         <Route exact path="/cocina" component={Cocina} />
         <Route exact path="/barra" component={Barra} />

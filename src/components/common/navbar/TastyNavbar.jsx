@@ -19,8 +19,8 @@ export const TastyNavbar = () => {
       nombre:'Inicio'
     },
     {
-      ruta:'/pedidos',
-      nombre:'Pedidos'
+      ruta:'/carrito',
+      nombre:'Carrito'
     },
     {
       ruta:'/cocina',
