@@ -1,5 +1,6 @@
 const url = "https://tasty-world-backend.herokuapp.com/api/productos";
 
+
 export const getProductos = async () => {
   const resp = await fetch(`${url}/all`, {
     method: "GET",

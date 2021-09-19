@@ -46,7 +46,7 @@ const handleSubmit = (e) => {
         if (isMounted.current){
             postAuth(formValue).then((respuesta)=>{
                 setLogin(respuesta)
-                setBtnDisable(false)
+                // setBtnDisable(false)
                 setFormValue({
                     email: "",
                     password: ""
