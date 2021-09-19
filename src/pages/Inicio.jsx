@@ -16,7 +16,7 @@ const Inicio = () => {
   return (
     <>
 
-     <Parallax className='inicioBackground' bgImage={Imagen2} strength={500}>
+     <Parallax className='inicioBackground min-height' bgImage={Imagen2} strength={500}>
      
         
           

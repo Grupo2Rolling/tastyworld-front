@@ -61,6 +61,12 @@
   height: 60px;
 }
 /* /-----------Estilo cards Categorias----------------/ */
+.cardContainC {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  flex-shrink: 1;
+}
 .cardLink {
   color: var(--verdeOsc);
   text-align: center;
@@ -190,7 +196,29 @@
   height: 40vh;
   display: block;
   margin: 3%;
+  min-height: auto;
 }
+.contImgC {
+  background-color: whitesmoke;
+  border-radius: 5%;
+  width: 70vw;
+  justify-content: center;
+}
+
+.imgC {
+  object-fit: contain;
+  width: 100%;
+  padding: 5px;
+  border-radius: 6%;
+}
+
+.cardContain {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  flex-shrink: 1;
+}
+
 .cardCont img {
   width: 100%;
   align-items: center;
@@ -201,6 +229,7 @@
   flex-grow: 0;
   justify-content: space-evenly;
 }
+
 /* /LOGIN/ */
 .login-bg {
   background-color: var(--verdeM);
@@ -256,7 +285,7 @@
   color: white;
 }
 
-/* /------Media queries-------/ */
+/*------Media queries-------*/
 @media (min-width: 576px) {
   .cardCateg {
     display: flex;
@@ -289,6 +318,14 @@
     border-radius: 5%;
     width: 70vw;
   }
+}
+@media (min-width: 768px) {
+  .cardCateg {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    width: 37vw;
+  }
   .contImgC {
     width: 32vw;
     top: 1vh;
@@ -301,7 +338,7 @@
     border-radius: 6%;
   }
 
-  .cardContain {
+  .cardContainC {
     display: flex;
     flex-direction: row;
     justify-content: space-around;

@@ -1,4 +1,5 @@
-const url = "http://localhost:4005";
+// const url = "http://localhost:4005";
+const url = "https://tasty-world-backend.herokuapp.com";
 
 export const mesasGet = async () => {
   const resp = await fetch(`${url}/api/mesas`, {
