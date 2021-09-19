@@ -61,45 +61,6 @@ const Administracion = () => {
     setToggleUsuarios(true);
   };
 
-  const columnasProductos = [
-    {
-      name: "NOMBRE",
-      selector: "nombre",
-      sortable: true,
-      width: "29%",
-    },
-    {
-      name: "PRECIO",
-      selector: "precio",
-      sortable: true,
-      width: "29%",
-    },
-    {
-      name: "PAIS",
-      selector: "pais",
-      sortable: true,
-      width: "29%",
-    },
-    {
-      name: "ACCIONES",
-      allowOverflow: true,
-      center: true,
-      width: "10%",
-      cell: (row) => {
-        return (
-          <div className="d-flex">
-            <Link to={``} className="dropdown-item">
-              <Edit size={15} />
-            </Link>
-            <button className="dropdown-item">
-              <Trash size={15} />
-            </button>
-          </div>
-        );
-      },
-    },
-  ];
-
 
   const columnasProductos = [
     {
