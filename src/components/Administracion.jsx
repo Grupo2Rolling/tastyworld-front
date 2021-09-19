@@ -67,9 +67,13 @@ const Administracion = () => {
 
   useEffect(() => {
     getComandas().then((respuesta) => {
+      let todas = respuesta.comanda;
+      let activas = todas.filter((comanda) => {
+        return comanda.estado !== "Entregado" || "Anulado"
+      });
       setComandas({
-        datos: respuesta.comanda,
-        loading: false,
+        datos: activas,
+        loading: false
       });
     });
   }, [render]);
@@ -135,25 +139,31 @@ const Administracion = () => {
       name: "NUMERO",
       selector: "numeroPedido",
       sortable: true,
-      width: "20%",
+      width: "10%",
+    },
+    {
+      name: "ESTADO",
+      selector: "estado",
+      sortable: true,
+      width: "20%"
     },
     {
       name: "USUARIO",
       selector: "nombreCliente",
       sortable: true,
-      width: "29%",
+      width: "25%",
     },
     {
       name: "PRODUCTO",
       selector: "producto",
       sortable: true,
-      width: "38%",
+      width: "30%",
     },
     {
       name: "ACCIONES",
       allowOverflow: true,
       center: true,
-      width: "10%",
+      width: "15%",
       cell: (row) => {
         return (
           <div className="d-flex">
