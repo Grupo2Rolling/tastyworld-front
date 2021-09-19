@@ -11,7 +11,7 @@ import {
 const CardCocina = ({ comandas }) => {
   return (
     <Row xs={1} md={5} className="g-2">
-      {comandas.map((comanda) => (
+      {comandas && comandas.map((comanda) => (
         <Col className="mb-2">
           <Card key={comanda._id}>
             <Card.Body>
