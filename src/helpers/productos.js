@@ -1,12 +1,12 @@
 const url = "https://tasty-world-backend.herokuapp.com/api/productos";
-
+const token = JSON.parse(localStorage.getItem("auth")) && JSON.parse(localStorage.getItem("auth")).token
 export const getProductos = async () => {
   const resp = await fetch(`${url}/all`, {
     method: "GET",
 
     headers: {
       "Content-type": "application/json; charset=UTF-8",
-      "x-token": JSON.parse(localStorage.getItem("auth")).token,
+      "x-token": token,
     },
   });
   const datos = await resp.json();
@@ -33,7 +33,7 @@ export const postProducto = async (data) => {
     body: JSON.stringify(data),
     headers: {
       "Content-type": "application/json; charset=UTF-8",
-      "x-token": JSON.parse(localStorage.getItem("auth")).token,
+      "x-token": token,
     },
   });
   const datos = await resp.json();
@@ -47,7 +47,7 @@ export const putProducto = async (id, data) => {
     body: JSON.stringify(data),
     headers: {
       "Content-type": "application/json; charset=UTF-8",
-      "x-token": JSON.parse(localStorage.getItem("auth")).token,
+      "x-token": token,
     },
   });
   const datos = await resp.json();
@@ -61,7 +61,7 @@ export const deleteProducto = async (id) => {
 
     headers: {
       "Content-type": "application/json; charset=UTF-8",
-      "x-token": JSON.parse(localStorage.getItem("auth")).token,
+      "x-token": token,
     },
   });
   const datos = await resp.json();

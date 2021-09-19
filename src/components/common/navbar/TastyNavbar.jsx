@@ -1,39 +1,62 @@
-import { React, useState } from "react";
-import { NavLink } from "react-router-dom";
+import { React, useEffect, useState } from "react";
+import { NavLink, useHistory, useLocation } from "react-router-dom";
 import logo from "../../../assets/images/logo-blanco.png";
 import "./navbar.css";
 
 export const TastyNavbar = () => {
   const [interruptor, setInterruptor] = useState(false);
+  const [render, setRender] = useState(true);
+  const history = useHistory();
+  const location = useLocation();
+  const user = JSON.parse(localStorage.getItem('auth')) && JSON.parse(localStorage.getItem('auth')).usuario
+
+  const handleLogOut= () => {
+    setRender(false)
+    localStorage.removeItem('auth')
+    history.push('/login')
+  }
+
+  useEffect(() => {
+    setRender(true)
+  }, [location.pathname])
+
+
   const links = [
     {
       ruta: "/login",
+      nombre: "Cerrar sesión",
+      show: !user ? false : true,
+      function: () => handleLogOut()
+    },
+    {
+      ruta: "/login",
       nombre: "Login",
+      show: user ? false : true
     },
     {
       ruta: "/",
       nombre: "Inicio",
+      show: !user ? false : true,
     },
     {
-      ruta: "/pedidos",
-      nombre: "Pedidos",
-    },
-    {
-
       ruta:'/cocina',
-      nombre:'Cocina'
+      nombre:'Cocina',
+      show: !user ? false : (user.rol === 'ADMIN_ROLE' || user.rol === 'CHEF_ROLE') ? true : false
     },
     {
       ruta:'/barra',
-      nombre:'Barra'
+      nombre:'Barra',
+      show: !user ? false : (user.rol === 'ADMIN_ROLE' || user.rol === 'WAITER_ROLE') ? true : false
     },
     {
       ruta:'/entregas',
-      nombre: 'Entregas'
+      nombre: 'Entregas',
+      show: !user ? false : (user.rol === 'ADMIN_ROLE' || user.rol === 'WAITER_ROLE') ? true : false
     },
     {
       ruta:'/administracion',
-      nombre:'Administración'
+      nombre:'Administración',
+      show: !user ? false : (user.rol === 'ADMIN_ROLE') ? true : false
     }
   ]
 
@@ -41,12 +64,13 @@ export const TastyNavbar = () => {
     <div className="navBG">
       <nav className={`justify-content-between container navB`}>
         <div className="d-flex align-items-center">
-          {links.map((link, index) => (
+          {render && links.map((link, index) => (
             <NavLink
+              onClick={link.function && link.function}
               key={index + 3206}
               exact
               to={link.ruta}
-              className="nav-link link"
+              className={`nav-link link ${!link.show && 'd-none'}`}
             >
               {link.nombre}
             </NavLink>
