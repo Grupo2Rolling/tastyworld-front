@@ -1,26 +1,35 @@
-import { React, useState } from 'react'
-import { NavLink } from 'react-router-dom'
-import logo from '../../../assets/images/logo-blanco.png'
-import './navbar.css'
-
+import { React, useState } from "react";
+import { NavLink } from "react-router-dom";
+import logo from "../../../assets/images/logo-blanco.png";
+import "./navbar.css";
 
 export const TastyNavbar = () => {
-
-  
-
-  const [interruptor, setInterruptor] = useState(false)
-  const links=[
+  const [interruptor, setInterruptor] = useState(false);
+  const links = [
     {
-      ruta:'/login',
-      nombre:'Login'
+      ruta: "/login",
+      nombre: "Login",
     },
     {
-      ruta:'/',
-      nombre:'Inicio'
+      ruta: "/",
+      nombre: "Inicio",
     },
     {
-      ruta:'/pedidos',
-      nombre:'Pedidos'
+      ruta: "/pedidos",
+      nombre: "Pedidos",
+    },
+    {
+
+      ruta:'/cocina',
+      nombre:'Cocina'
+    },
+    {
+      ruta:'/barra',
+      nombre:'Barra'
+    },
+    {
+      ruta:'/entregas',
+      nombre: 'Entregas'
     },
     {
       ruta:'/administracion',
@@ -28,24 +37,47 @@ export const TastyNavbar = () => {
     }
   ]
 
-    return(
-        <div className='navBG'>
-          <nav className={`justify-content-between container navB`}>
-            <div className="d-flex align-items-center">
-              {links.map((link, index)=>(
-                    <NavLink key={index+3206} exact to={link.ruta} className='nav-link link'>{link.nombre}</NavLink>
-              ))}
-            </div>
-          </nav>
-          <nav className={`sidebar ${interruptor?'':'cerrado'}`}>
-            <button onClick={()=>setInterruptor(!interruptor)} className={`btn d-flex w-100 justify-content-end ${interruptor?'toggle':'toggle-cerrado'}` }>X</button>
-            <div>
-            {links.map((link, index)=>(
-              <NavLink key={index+78789} exact to={link.ruta} className='nav-link link'>{link.nombre}</NavLink>
-              ))}
-            </div>
-          </nav>
-          <NavLink exact to='/' className='marca'><img src={logo} alt="" className="w-100" /></NavLink>
+  return (
+    <div className="navBG">
+      <nav className={`justify-content-between container navB`}>
+        <div className="d-flex align-items-center">
+          {links.map((link, index) => (
+            <NavLink
+              key={index + 3206}
+              exact
+              to={link.ruta}
+              className="nav-link link"
+            >
+              {link.nombre}
+            </NavLink>
+          ))}
         </div>
-    )
-}
+      </nav>
+      <nav className={`sidebar ${interruptor ? "" : "cerrado"}`}>
+        <button
+          onClick={() => setInterruptor(!interruptor)}
+          className={`btn d-flex w-100 justify-content-end ${
+            interruptor ? "toggle" : "toggle-cerrado"
+          }`}
+        >
+          X
+        </button>
+        <div>
+          {links.map((link, index) => (
+            <NavLink
+              key={index + 78789}
+              exact
+              to={link.ruta}
+              className="nav-link link"
+            >
+              {link.nombre}
+            </NavLink>
+          ))}
+        </div>
+      </nav>
+      <NavLink exact to="/" className="marca-nav">
+        <img src={logo} alt="" className="w-100" />
+      </NavLink>
+    </div>
+  );
+};

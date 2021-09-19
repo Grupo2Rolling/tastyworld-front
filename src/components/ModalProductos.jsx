@@ -1,24 +1,21 @@
 import React, { useState, useEffect } from "react";
 
-import { ChevronDown, Plus, MoreVertical, Edit, Trash } from "react-feather";
+// import { ChevronDown, Plus, MoreVertical, Edit, Trash } from "react-feather";
 import { Modal, Button, Form } from "react-bootstrap";
 
-import { postProducto,getProducto,putProducto,deleteProducto, getProductos } from "../helpers/productos";
-
+import { postProducto, putProducto, } from "../helpers/productos";
+//getProducto, deleteProducto, getProductos 
 
 const ModalProductos = (props) => {
     const [pais, setPais] = useState("");
     const [continente, setContinente] = useState("");
-    const [products, setProducts] = useState({ datos: [], loading: true });
     const [nombre, setNombre] = useState("");
     const [tipo, setTipo] = useState("");
     const [descripcion, setDescripcion] = useState("");
     const [img, setImagen] = useState("");
     const [precio, setPrecio] = useState(0);
-    const [pagina, setPagina] = useState(0);
-    const [show, setShow] = useState(false);
-    const [totPag, setTotpag] = useState(0);
-  
+    
+
     const handleSubmit = (e) => {
       e.preventDefault();
       const producto = {
@@ -31,87 +28,45 @@ const ModalProductos = (props) => {
         descripcion
         
       };
-      console.log(producto);
-      postProducto(producto).then((respuesta) => {
-        if (respuesta.errors) {
-            
+      if (props.productEditar){
+        putProducto(props.productEditar._id, producto).then((respuesta) => {
+          if (respuesta.errors) {
             return window.alert(respuesta.errors[0].msg);
           }
           if (respuesta.msg) {
-            window.alert(respuesta.msg);
-          }
-        //   setLoading(false);
-        //   setFormValue({
-        //     nombre: "",
-        //     precio: "",
-        //     descripcion: "",
-        //     categoria: "",
-        //     disponible: true,
-        //   });
-        //   handleClose();
-
-    })}
-
-  
-
-
-    useEffect(() => {
-      getProductos().then((respuesta) => {
-        setProducts({
-          datos: respuesta.productos,
-          loading: false,
-        });
-        setTotpag(respuesta.Total);
-      });
-    }, []);
-  
-    useEffect(() => {
-      updateDatos(pagina);
-    }, [pagina, show]);
-  
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
-  
-    const updateDatos = (pag) => {
-      getProductos(pag).then((respuesta) => {
-        setProducts({
-          datos: respuesta.productos,
-          loading: false,
-        });
-      });
-    };
-    const deleteMenu = (uid) => {
-        let producto = products.datos.find((producto) => {
-          return producto._id === uid;
-        });
-    
-        let validar = window.confirm(
-          `Esta seguro que quiere inactivar el producto ${producto.nombre}?`
-        );
-        if (validar) {
-          deleteMenu(uid).then((respuesta) => {
-            if (respuesta.msg) {
+              props.onHide()
+              props.setRender()
               window.alert(respuesta.msg);
             }
-            updateDatos(pagina);
-          });
-        }
-      };
-    
-      // fetch(`${URL}/productos/x-token/${token}`, {
-      //   method: 'POST',
-      //   headers: {
-      //     "ContentType": "application/json",
-      //     // "Authorization": `x-token/${token}`
-    
-      //   },
-      //   body : JSON.stringify(producto)
-      // })
-      // .then(res => res.json())
-      // .then(res => {
-      //   console.log('respuesta', res)
-      // })
-    
+          })
+        } else {
+          postProducto(producto).then((respuesta) => {
+            if (respuesta.errors) {
+              return window.alert(respuesta.errors[0].msg);
+            }
+            if (respuesta.msg) {
+              props.onHide()
+              props.setRender()
+              window.alert(respuesta.msg);
+          }
+        })
+      }
+ }
+
+  
+
+
+    useEffect(() => {
+      const obj = props.productEditar
+        setPais(obj ? obj.pais : '')
+        setContinente(obj ? obj.continente : '')
+        setNombre(obj ? obj.nombre : '')
+        setTipo(obj ? obj.tipo : '')
+        setDescripcion(obj ? obj.descripcion : '')
+        setImagen(obj ? obj.img : '')
+        setPrecio(obj ? obj.precio : '')
+    }, [props.productEditar]);
+
     
     const paises = [
       "Argentina",
@@ -120,6 +75,8 @@ const ModalProductos = (props) => {
       "Brasil",
       "Venezuela",
       "Ecuador",
+      "España",
+      "Japón"
     ];
     
     const continentes = [
@@ -147,7 +104,7 @@ const ModalProductos = (props) => {
           <Form onSubmit={(e) => handleSubmit(e)}>
             <Form.Group className="mb-3">
               <Form.Label>País</Form.Label>
-              <Form.Control onChange={(e) => setPais(e.target.value)} as="select">
+              <Form.Control  value={pais} onChange={(e) => setPais(e.target.value)} as="select">
                 <option>Elige un país</option>
                 {paises.map((pais, index) => (
                   <option key={index + 4567}>{pais}</option>
@@ -159,6 +116,7 @@ const ModalProductos = (props) => {
               <Form.Label>Continente</Form.Label>
               <Form.Control
                 onChange={(e) => setContinente(e.target.value)}
+                value={continente}
                 as="select"
               >
                 <option>Elige un continente</option>
@@ -171,20 +129,22 @@ const ModalProductos = (props) => {
             <Form.Group className="mb-3">
               <Form.Label>Nombre del producto</Form.Label>
               <Form.Control
-                onBlur={(e) => setNombre(e.target.value)}
+                onChange={(e) => setNombre(e.target.value)}
+                value={nombre}
                 type="text"
               />
             </Form.Group>
             <Form.Group className="mb-3">
-              <Form.Label>Descripcion del producto</Form.Label>
+              <Form.Label>Descripción del producto</Form.Label>
               <Form.Control
-                onBlur={(e) => setDescripcion(e.target.value)}
+                value={descripcion}
+                onChange={(e) => setDescripcion(e.target.value)}
                 type="text"
               />
             </Form.Group>
             <Form.Group className="mb-3">
               <Form.Label>Tipo</Form.Label>
-              <Form.Control onChange={(e) => setTipo(e.target.value)} as="select">
+              <Form.Control value={tipo} onChange={(e) => setTipo(e.target.value)} as="select">
                 <option>Elige un tipo de producto</option>
                 {tipos.map((tipo, index) => (
                   <option key={index + 12679}>{tipo}</option>
@@ -194,25 +154,23 @@ const ModalProductos = (props) => {
     
             <Form.Group className="mb-3">
               <Form.Label>Imagen</Form.Label>
-              <Form.Control onBlur={(e) => setImagen(e.target.value)} type="text" />
+              <Form.Control value={img} onChange={(e) => setImagen(e.target.value)} type="text" />
             </Form.Group>
     
             <Form.Group className="mb-3">
               <Form.Label>Precio</Form.Label>
               <Form.Control
-                onBlur={(e) => setPrecio(e.target.value)}
+                value={precio}
+                onChange={(e) => setPrecio(e.target.value)}
                 type="number"
               />
             </Form.Group>
     
             <Button variant="primary" type="submit" >
-              Agregar
+              {props.productEditar ? 'Editar' : 'Agregar'}
             </Button>
           </Form>
         </Modal.Body>
-        <Modal.Footer>
-          <Button onClick={props.onHide}>Close</Button>
-        </Modal.Footer>
       </Modal>
     );
  }
