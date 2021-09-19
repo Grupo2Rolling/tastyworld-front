@@ -13,14 +13,20 @@ const Login = () => {
   const [btnDisable, setBtnDisable] = useState(false);
   const [login, setLogin] = useState({});
 
+  const user = JSON.parse(localStorage.getItem('auth')) && JSON.parse(localStorage.getItem('auth')).usuario
+
   useEffect(() => {
     if (login.token) {
       localStorage.setItem("auth", JSON.stringify(login));
-      setTimeout(() => {
-        history.push("/");
-      }, 1000);
+      history.push("/");
     }
   }, [login, history]);
+
+  useEffect(() => {
+    const ruta = user && ((user.rol === 'ADMIN_ROLE' ) ? '/administracion' : (user.rol === 'CHEF_ROLE') ? '/cocina' : (user.rol === 'WAITER_ROLE') ? '/entregas' : '/')
+    const redireccion = () => user && history.push(ruta)
+    redireccion()
+  }, []);
 
   useEffect(() => {
     return () => {
@@ -42,6 +48,7 @@ const Login = () => {
       setBtnDisable(true);
       if (isMounted.current) {
         postAuth(formValue).then((respuesta) => {
+          console.log(respuesta)
           setLogin(respuesta);
           setBtnDisable(false);
           setFormValue({
