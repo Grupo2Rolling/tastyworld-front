@@ -2,13 +2,18 @@ import React from "react";
 import { useState, useEffect } from "react";
 
 import { mesasGet, mesasTodasGet } from "../helpers/mesas";
+import { getComandasEntregas } from "../helpers/comandas";
 import { Container, Row } from "react-bootstrap";
 import TablaMesas from "../components/TablaMesas";
 import TablaComandas from "../components/TablaMesasOcup";
+import TablaPedidos from "../components/TablaPedidos";
 
 const Mozo = () => {
   const [mesas, setMesas] = useState([]);
   const [mesasOcup, setMesasOcup] = useState([]);
+  //pedidos
+  const [pedidos, setPedidos] = useState([]);
+  const [eco, setEco] = useState(false);
   const [state, setState] = useState({ rol: "" });
 
   useEffect(() => {
@@ -32,6 +37,12 @@ const Mozo = () => {
     });
   }, [mesasOcup]);
 
+  useEffect(() => {
+    getComandasEntregas().then((respuesta) => {
+      setPedidos(respuesta.comanda);
+    });
+  }, [eco]);
+
   if (state.rol !== "WAITER_ROLE" && state.rol !== "ADMIN_ROLE") {
     return (
       <div className="alert alert-danger text-center py-5 my-5" role="alert">
@@ -50,6 +61,10 @@ const Mozo = () => {
         <h1 className="iniciaSesion text-center my-3">Mesas Ocupadas</h1>
         <Row className="mb-5 text-center">
           <TablaComandas mesasOcup={mesasOcup} />
+        </Row>
+        <h1 className="iniciaSesion text-center my-3">Pedidos</h1>
+        <Row className="mb-5 text-center">
+          <TablaPedidos pedidos={pedidos} eco={eco} setEco={setEco} />
         </Row>
       </Container>
     </>
