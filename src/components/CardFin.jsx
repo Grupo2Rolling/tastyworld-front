@@ -1,12 +1,20 @@
-import React from "react";
+import React, {useEffect} from "react";
 // import BtnSumarRestar from "./BtnSumarRestar";
-import { Form, Card, Dropdown, Container } from "react-bootstrap";
+import { Form, Card, Dropdown, Container, Button} from "react-bootstrap";
 
-const CardFin = ({pedidos}) => {
+const CardFin = ({pedidos, actualizar, setActualizar}) => {
+  
+  useEffect(() => {
+    setActualizar(false)
+    console.log(pedidos);
+    setActualizar(true)
+    
+  }, [pedidos])
+  
 
-  // const [actualizar, setActualizar] = useState("");
+  
 
-//   ------------------
+
 // const [comanda, setComanda] = useState({
 //     producto: "",
 //     cantidad: 1,
@@ -98,7 +106,7 @@ const CardFin = ({pedidos}) => {
         </Card>
       ))}
      
-     {/* <Button variant="primary">CONFIRMAR PEDIDO</Button> */}
+     <Button variant="primary">CONFIRMAR PEDIDO</Button>
 
     </Container>
 
