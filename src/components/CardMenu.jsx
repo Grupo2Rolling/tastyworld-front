@@ -1,11 +1,20 @@
-import React from "react";
-let lista = [];
+import React,{ useState} from "react";
+
+
 
 const CardMenu = ({ menus }) => {
+  let carrito = JSON.parse(localStorage.getItem("carrito"))||[];
+  const usuario = JSON.parse(localStorage.getItem("auth")).usuario;
+
   const agregarACarrito = (id) => {
-    lista.push(id);
-    console.log(lista);
-    localStorage.setItem("carrito", JSON.stringify(lista));
+   let pedir= {
+      usuario:usuario.nombre,
+      idProducto:id
+    }
+    
+    console.log(pedir);
+    carrito.push(pedir);
+    localStorage.setItem("carrito", JSON.stringify(carrito));
   };
 
   return (

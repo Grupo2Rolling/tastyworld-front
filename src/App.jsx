@@ -6,8 +6,8 @@ import { TastyFooter } from './components/common/footer/TastyFooter';
 import Inicio from "./pages/Inicio";
 import Login from "./pages/Login";
 import ComidasMundo from "./pages/ComidasMundo";
-import Barra from './pages/Barra'
-import Entregas from './pages/Entregas'
+// import Barra from './pages/Barra'
+// import Entregas from './pages/Entregas'
 import Carrito from './pages/Carrito'
 // import FinPedido from "./pages/FinPedido";
 import Administracion from './components/Administracion'
@@ -24,9 +24,9 @@ const App = () => {
         <Route exact path="/ComidasMundo/:continente" component={ComidasMundo}/>
         {/* <Route exact path="/finalizarpedido" component={FinPedido} /> */}
         <Route exact path="/Administracion" component={Administracion} />
-        <Route exact path="/cocina" component={Cocina} />
-        <Route exact path="/barra" component={Barra} />
-        <Route exact path="/Entregas" component={Entregas} />
+        {/* <Route exact path="/cocina" component={Cocina} /> */}
+        {/* <Route exact path="/barra" component={Barra} /> */}
+        {/* <Route exact path="/Entregas" component={Entregas} /> */}
         <Route exact path="/carrito" component={Carrito} />
       </Switch>
       <TastyFooter />

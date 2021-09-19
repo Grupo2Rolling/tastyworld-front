@@ -5,30 +5,28 @@ import { getProducto } from "../helpers/productos";
 
 
 const Carrito = () => {
+  let carrito = JSON.parse(localStorage.getItem("carrito"))||[];
   const [pedidos, setPedidos] = useState([]);
+  const [eco, setEco] = useState(true);
   // const [productos, setProductos] = useState ([])
-   const [actualizar, setActualizar] = useState(true)
-
-    const [carrito, setCarrito] = useState([
-      "61427df9178b6ad91f7ad4b7",
-      "6143dafe7c6042373d8a1e7d",
-      "614533d6d1cbc58471a648ec",
-    ])
+   
+  
     // JSON.parse(localStorage.getItem("carrito"));
-    let pedido = []
+    
   
   useEffect(() => {
-        
+    let pedido=[]
     carrito.map((producto) => {
-      getProducto(producto).then((respuesta) => {
-         pedido.push(respuesta.producto);
+      getProducto(producto.idProducto).then((respuesta) => {
+       pedido.push(respuesta.producto);
+       setPedidos(pedido) 
       });
-    
+      
     });
     // console.log(pedido);
-    setPedidos(pedido) 
+    
   
-  }, [actualizar] );
+  }, [eco] );
 
   // useEffect(()=>{
   //   getProducto(pedidos).then((respuesta)=>{
@@ -40,7 +38,7 @@ const Carrito = () => {
   return (
    <Container>
       <h1>TU TASTY PEDIDO:</h1>
-      <CardFin pedidos={pedidos} actualizar={actualizar} setActualizar={setActualizar} />
+      <CardFin pedidos={pedidos} eco={eco} setEco={setEco} />
       </Container>
   );
 };

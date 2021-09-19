@@ -3,24 +3,20 @@ import { Link } from "react-router-dom";
 import botonPed from "../assets/botonPed.svg";
 
 const BotonPedido = () => {
-  const comanda = JSON.parse(localStorage.getItem("comanda")) || [];
-  const [estadoBot, setEstadoBot] = useState(false);
+  
+  
 
-  useEffect(() => {
-    if (comanda != []) {
-      setEstadoBot(true);
-    }
-  }, [comanda]);
+  
   // console.log(comanda);
   // console.log(estadoBot);
   return (
     <section>
       <div id="botonPedStick">
-        <Link to="/confirmar">
+        <Link to="/carrito">
           <img
             src={botonPed}
             alt="boton Confirmar"
-            className={{ estadoBot } ? "visible" : "invisible"}
+            className="btnCarrito"
           />
         </Link>
       </div>

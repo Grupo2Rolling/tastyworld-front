@@ -65,7 +65,7 @@ const CardContinente = ({ continentes }) => {
             <Card className="cardConti">
               <Link
                 to={`/comidasmundo/${continente.nombre}`}
-                key={continente.id}
+                key={continente._id}
               >
                 <Card.Body className="cardCont">
                   <Card.Img

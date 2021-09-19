@@ -2,20 +2,17 @@ import React, {useEffect} from "react";
 // import BtnSumarRestar from "./BtnSumarRestar";
 import { Form, Card, Dropdown, Container, Button} from "react-bootstrap";
 
-const CardFin = ({pedidos, actualizar, setActualizar}) => {
+const CardFin = ({pedidos, eco, setEco}) => {
   
   useEffect(() => {
-    setActualizar(false)
-    console.log(pedidos);
-    setActualizar(true)
-    
-  }, [pedidos])
+      
+    setEco(true)
+    console.log(pedidos)
+    setEco(false)
+  }, [])
   
 
-  
-
-
-// const [comanda, setComanda] = useState({
+//   const [comanda, setComanda] = useState({
 //     producto: "",
 //     cantidad: 1,
 //     tipo: "",
