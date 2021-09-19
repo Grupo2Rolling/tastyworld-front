@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Container } from "react-bootstrap";
-import { getProducto, getProductos } from "../helpers/productos";
+import {getProductos } from "../helpers/productos";
 import CardContinente from "../components/CardContinente";
 import BotonPedido from "../components/BotonPedido";
 import CardMenu from "../components/CardMenu";
@@ -40,10 +40,8 @@ const ComidasMundo = () => {
   return (
     <>
       <Container fluid className="inicioBackground">
-        <h1 className="mb-3">CONTINENTES</h1>
-        <div className="d-flex justify-content-center my-3">
-          {/* <Categoria categorias={categorias}/> */}
-        </div>
+        <h2 className="mb-3 tituloPag text-center">CONTINENTES</h2>
+       
         <Container fluid>
           <CardContinente continentes={listaContinentes} />
         </Container>

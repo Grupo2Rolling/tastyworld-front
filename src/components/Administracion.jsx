@@ -3,7 +3,7 @@ import DataTable, { createTheme } from "react-data-table-component";
 import { Link } from "react-router-dom";
 import { ChevronDown, Plus, MoreVertical, Edit, Trash } from "react-feather";
 import { Modal, Button, Form } from "react-bootstrap";
-import { productosGet, deleteMenu } from "../helpers/menus";
+
 import ModalUsuarios from "./ModalUsuarios";
 import ModalProductos from "./ModalProductos";
 

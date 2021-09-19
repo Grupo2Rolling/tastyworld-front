@@ -6,7 +6,7 @@ import { TastyFooter } from './components/common/footer/TastyFooter';
 import Inicio from "./pages/Inicio";
 import Login from "./pages/Login";
 import ComidasMundo from "./pages/ComidasMundo";
-import FinPedido from "./pages/FinPedido";
+// import FinPedido from "./pages/FinPedido";
 import Administracion from './components/Administracion'
 
 
@@ -21,7 +21,7 @@ const App = () => {
         <Route exact path="/" component={Inicio} />
         <Route exact path="/ComidasMundo" component={ComidasMundo}/>
         <Route exact path="/ComidasMundo/:continente" component={ComidasMundo}/>
-        <Route exact path="/finalizarpedido" component={FinPedido} />
+        {/* <Route exact path="/finalizarpedido" component={FinPedido} /> */}
         <Route exact path="/Administracion" component={Administracion} />
       </Switch>
             <TastyFooter />
