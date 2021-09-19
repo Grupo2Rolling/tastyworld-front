@@ -12,6 +12,11 @@ const Mozo = () => {
   const [state, setState] = useState({ rol: "" });
 
   useEffect(() => {
+    const datos = JSON.parse(localStorage.getItem("auth"));
+    setState(datos.usuario);
+  }, [state.rol]);
+
+  useEffect(() => {
     mesasGet().then((respuesta) => {
       setMesas(respuesta.mesa);
     });
@@ -25,17 +30,12 @@ const Mozo = () => {
       });
       setMesasOcup(ocupadas);
     });
-  }, [mesas, mesasOcup]);
-
-  useEffect(() => {
-    const datos = JSON.parse(localStorage.getItem("auth"));
-    setState(datos.usuario);
-  }, [state.rol]);
+  }, [mesasOcup]);
 
   if (state.rol !== "WAITER_ROLE" && state.rol !== "ADMIN_ROLE") {
     return (
-      <div className="alert alert-danger text-center" role="alert">
-        🚫No autorizado🚫
+      <div className="alert alert-danger text-center py-5 my-5" role="alert">
+        🚫Ingreso no autorizado🚫
       </div>
     );
   }
