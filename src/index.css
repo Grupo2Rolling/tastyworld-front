@@ -1,4 +1,3 @@
-
 :root {
   --verdeOsc: #36504f;
   --verdeM: #5e8886;
@@ -83,6 +82,7 @@ flex-shrink: 1;
   text-shadow: rgb(168, 168, 168) 0.1em 0.1em 0.2em;
 }
 
+
 .cardCateg{
     border-radius:5%;
     width: 80vw;
@@ -94,7 +94,7 @@ flex-shrink: 1;
     transform: scale(1.05);
   }
 
-.imgC{
+.imgC {
   padding: 5px;
   border-radius: 6%;
 }
@@ -181,6 +181,15 @@ flex-shrink: 1;
   font-size: 18px;
   font-weight: 500;
 }
+/*tabla scroll*/
+.my-custom-scrollbar {
+  position: relative;
+  height: 200px;
+  overflow: auto;
+}
+.table-wrapper-scroll-y {
+  display: block;
+}
 
 /* /----Estilo Carrusel continentes------/ */
 .cardCont{
@@ -226,16 +235,16 @@ flex-shrink: 1;
 
 /* /LOGIN/ */
 .login-bg {
-  background-color: #5e8886;
+  background-color: var(--verdeM);
 }
 .login-card {
-  background-color: #36504f;
+  background-color: var(--verdeOsc);
   border-radius: 10px;
   padding: 5px 30px;
   font-family: "Montserrat";
 }
 .iniciaSesion {
-  text-shadow: 0.05em 0.07em #5e8886;
+  text-shadow: 0.05em 0.07em var(--verdeM);
   font-size: 1.4rem;
   color: white;
   font-family: "Gotham" !important;
@@ -249,14 +258,34 @@ flex-shrink: 1;
   color: var(--verdeM);
 }
 .login-btn {
-  background-color: #5e8886;
+  background-color: var(--verdeM);
   border: none;
 }
 .login-btn:hover {
   background-color: rgb(167, 211, 164);
   color: #273837;
   border: none;
-  text-shadow: 0.05em 0.07em #5e8886;
+  text-shadow: 0.05em 0.07em var(--verdeM);
+}
+/*ERROR page*/
+.body {
+  background: linear-gradient(
+      to bottom,
+      rgba(230, 224, 224, 0.8) 0%,
+      rgba(92, 68, 52, 0.8) 100%
+    ),
+    url(https://images.pexels.com/photos/1092730/pexels-photo-1092730.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+.btnHome {
+  background-color: var(--verdeOsc);
+  color: white;
 }
 
 
@@ -282,9 +311,6 @@ flex-shrink: 1;
     
   }
 }
-
-
-
 @media (min-width: 768px){
   .cardCateg{
    display: flex;
@@ -295,6 +321,7 @@ flex-shrink: 1;
   }
   .contImgC{
    
+
     width: 32vw;
     top: 1vh;
     justify-content: center;
@@ -320,4 +347,5 @@ flex-shrink: 1;
     margin-left: 0.7rem;
    }
  
+
 }

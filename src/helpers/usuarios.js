@@ -1,5 +1,5 @@
 //VER COMO NOMRARON VARIABLES LOS CHICOS Y MODIFICAR
-const url = "https://tasty-world-backend.herokuapp.com"
+const url = "https://tasty-world-backend.herokuapp.com";
 
 
 export const usuariosGet = async () => {
@@ -15,7 +15,6 @@ export const usuariosGet = async () => {
 
   return datos;
 };
-
 
 export const getUsuarioId = async (id) => {
   const resp = await fetch(`${url}/api/usuarios/${id}`, {
@@ -74,4 +73,3 @@ export const usuarioDelete = async (id) => {
 
   return datos;
 };
-
