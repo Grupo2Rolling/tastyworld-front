@@ -12,6 +12,7 @@ import Entregas from './pages/Entregas'
 import ComidasMundo from './pages/ComidasMundo'
 import Carrito from './pages/Carrito'
 import Administracion from './components/Administracion'
+import Registro from './pages/Registro'
 
 const App = () => {
   return (
@@ -19,6 +20,7 @@ const App = () => {
       <TastyNavbar />
       <Switch>
         <Route exact path="/login" component={Login} />
+        <Route exact path="/registro" component={Registro} />
         <Route exact path="/" component={Inicio} />
         <Route exact path="/ComidasMundo" component={ComidasMundo} />
         <Route
