@@ -1,10 +1,10 @@
-const url = "https://tasty-world-backend.herokuapp.com/api/productos";
+// const url = "http://localhost:4005";
+const url = "https://tasty-world-backend.herokuapp.com";
 
-//Traer todos los menus
-export const productosGet = async (desde) => {
-  const resp = await fetch(`${url}?desde=${desde}`, {
+export const mesasGet = async () => {
+  const resp = await fetch(`${url}/api/mesas`, {
     method: "GET",
-
+    //?limite=${limite}&desde=${desde}
     headers: {
       "Content-type": "application/json; charset=UTF-8",
     },
@@ -14,12 +14,13 @@ export const productosGet = async (desde) => {
   return datos;
 };
 
-export const getMenusCont = async (continente) => {
-  const resp = await fetch(`${url}?continente=${continente}`, {
+export const mesasTodasGet = async () => {
+  const resp = await fetch(`${url}/api/mesas/todas`, {
     method: "GET",
-
+    // ?limite=${limite}&desde=${desde}
     headers: {
       "Content-type": "application/json; charset=UTF-8",
+      "x-token": JSON.parse(localStorage.getItem("auth")).token,
     },
   });
   const datos = await resp.json();
@@ -27,23 +28,8 @@ export const getMenusCont = async (continente) => {
   return datos;
 };
 
-//Traer menu por Id
-export const getMenu = async (id) => {
-  const resp = await fetch(`${url}/${id}`, {
-    method: "GET",
-
-    headers: {
-      "Content-type": "application/json; charset=UTF-8",
-    },
-  });
-  const datos = await resp.json();
-
-  return datos;
-};
-
-//Agregar menu
-export const postMenu = async (data) => {
-  const resp = await fetch(`${url}`, {
+export const mesasPost = async (data) => {
+  const resp = await fetch(`${url}/api/mesas`, {
     method: "POST",
     body: JSON.stringify(data),
     headers: {
@@ -56,9 +42,8 @@ export const postMenu = async (data) => {
   return datos;
 };
 
-//Actualizar menu
-export const putMenu = async (id, data) => {
-  const resp = await fetch(`${url}/${id}`, {
+export const mesasPut = async (id, data) => {
+  const resp = await fetch(`${url}/api/mesas/${id}`, {
     method: "PUT",
     body: JSON.stringify(data),
     headers: {
@@ -71,9 +56,8 @@ export const putMenu = async (id, data) => {
   return datos;
 };
 
-//Borrar menu
-export const deleteMenu = async (id) => {
-  const resp = await fetch(`${url}/${id}`, {
+export const mesasDelete = async (id) => {
+  const resp = await fetch(`${url}/api/mesas/${id}`, {
     method: "DELETE",
 
     headers: {

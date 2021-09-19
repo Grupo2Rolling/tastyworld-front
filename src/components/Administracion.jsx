@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import DataTable from "react-data-table-component";//, { createTheme }
+import DataTable from "react-data-table-component"; //, { createTheme }
 //import { Link } from "react-router-dom";
-import { Edit, Trash } from "react-feather";//ChevronDown, Plus, MoreVertical, 
+import { Edit, Trash } from "react-feather"; //ChevronDown, Plus, MoreVertical,
 //import { Modal, Button, Form } from "react-bootstrap";
 import { getProductos, deleteProducto } from "../helpers/productos";
 import { usuariosGet, usuarioDelete } from "../helpers/usuarios";
@@ -48,7 +48,7 @@ const Administracion = () => {
   //------------------------------------------------
 
   const handleDeleteUsuario = (usuario) => {
-    console.log(usuario)
+    console.log(usuario);
     usuarioDelete(usuario.uid).then((respuesta) => {
       if (respuesta.msg) {
         window.alert(respuesta.msg);
@@ -60,7 +60,6 @@ const Administracion = () => {
     setUsuarioEditar(usuario);
     setToggleUsuarios(true);
   };
-
 
   const columnasProductos = [
     {
@@ -128,7 +127,7 @@ const Administracion = () => {
       cell: (row) => {
         return (
           <div className="d-flex">
-           <button className="dropdown-item">
+            <button className="dropdown-item">
               <Edit onClick={() => handleEditUsuario(row)} size={15} />
             </button>
             <button className="dropdown-item">
@@ -162,7 +161,8 @@ const Administracion = () => {
         <button
           onClick={() => {
             setUsuarioEditar(null);
-            setToggleUsuarios(true)}}
+            setToggleUsuarios(true);
+          }}
           className="btn btn-light"
         >
           +

@@ -1,4 +1,5 @@
-const url = "https://tasty-world-backend.herokuapp.com/api" 
+// const url = "http://localhost:4005/api";
+const url = "https://tasty-world-backend.herokuapp.com/api";
 
 export const postAuth = async (data) => {
   const resp = await fetch(`${url}/auth/login`, {
