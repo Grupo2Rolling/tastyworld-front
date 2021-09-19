@@ -17,9 +17,8 @@ const TablaMesas = ({ mesas }) => {
   };
 
   return (
-    <div className="col-11 col-lg-5 mx-auto login-card table-wrapper-scroll-y my-custom-scrollbar">
-      <div className="col-12">
-        <h5 className="iniciaSesion">MESAS LIBRES</h5>
+    <div className="col-10 col-md-8 col-lg-5 mx-auto login-card ">
+      <div className="row">
         <table className="table">
           <thead>
             <tr className="text-white mt-2">

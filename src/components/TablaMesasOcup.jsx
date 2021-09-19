@@ -1,9 +1,7 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { mesasDelete, mesasPut } from "../helpers/mesas";
 
 const TablaComandas = ({ mesasOcup }) => {
-  const pedidoEntregado = (id) => {};
-
   const liberarMesa = (id) => {
     let mesa = { estado: true };
     mesasPut(id, mesa).then((respuesta) => {
@@ -18,9 +16,8 @@ const TablaComandas = ({ mesasOcup }) => {
   };
 
   return (
-    <div className="col-11 col-lg-5 mx-auto login-card table-wrapper-scroll-y my-custom-scrollbar">
-      <div className="col-12">
-        <h5 className="iniciaSesion">MESAS OCUPADAS</h5>
+    <div className="col-10 col-md-8 col-lg-5 mx-auto login-card ">
+      <div className="row">
         <table className="table">
           <thead>
             <tr className="text-white mt-2">
@@ -34,20 +31,19 @@ const TablaComandas = ({ mesasOcup }) => {
               <tr className="text-white" key={mesa.id}>
                 <td>{mesa.numero}</td>
                 <td>
-                  {/* <button
-                    disabled={btnDisable}
-                    className="btn btn-warning"
-                    onClick={() => pedidoEntregado(mesa.id)}
-                  >
-                    {botoncito}
-                  </button> */}
+                  <button className="btn btn-warning">
+                    <input
+                      type="checkbox"
+                      aria-label="Checkbox for following text input"
+                    ></input>
+                  </button>
                 </td>
                 <td>
                   <button
                     className="btn btn-success"
                     onClick={() => liberarMesa(mesa.id)}
                   >
-                    Liberar
+                    Desocup
                   </button>
                   <button
                     className="btn btn-danger"
