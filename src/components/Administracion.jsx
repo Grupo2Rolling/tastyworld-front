@@ -4,20 +4,25 @@ import DataTable from "react-data-table-component"; //, { createTheme }
 import { Edit, Trash } from "react-feather"; //ChevronDown, Plus, MoreVertical,
 //import { Modal, Button, Form } from "react-bootstrap";
 import { getProductos, deleteProducto } from "../helpers/productos";
+import { getComandas, putComanda, delComanda } from "../helpers/comandas";
 import { usuariosGet, usuarioDelete } from "../helpers/usuarios";
 import ModalUsuarios from "./ModalUsuarios";
 import ModalProductos from "./ModalProductos";
+import ModalComandas from "./ModalComanda"
 
 const Administracion = () => {
   const [render, setRender] = useState(false);
   const [toggleProducto, setToggleProducto] = useState(false);
+  const [toggleComanda, setToggleComandas] = useState(false);
   const [toggleUsuarios, setToggleUsuarios] = useState(false);
   const [products, setProducts] = useState({ datos: [], loading: true });
+  const [comanda, setComandas] = useState({ datos: [], loading: true });
   const [usuarios, setUsuarios] = useState({ datos: [], loading: true });
   const [productEditar, setProductEditar] = useState({});
+  const [comandaEditar, setComandaEditar] = useState({});
   const [usuarioEditar, setUsuarioEditar] = useState({});
 
-  const handleDeleteProducto = (product) => {
+   const handleDeleteProducto = (product) => {
     deleteProducto(product._id).then((respuesta) => {
       if (respuesta.msg) {
         window.alert(respuesta.msg);
@@ -40,6 +45,30 @@ const Administracion = () => {
     usuariosGet().then((respuesta) => {
       setUsuarios({
         datos: respuesta.usuarios,
+        loading: false,
+      });
+    });
+  }, [render]);
+
+  //------------------------------------------------
+  
+  const handleDeleteComanda = (comanda) => {
+    delComanda(comanda._id).then((respuesta) => {
+      if (respuesta.msg) {
+        window.alert(respuesta.msg);
+        setRender(!render);
+      }
+    });
+  };
+  const handleEditComanda = (comanda) => {
+    setComandaEditar(comanda);
+    setToggleComandas(true);
+  };
+
+  useEffect(() => {
+    getComandas().then((respuesta) => {
+      setComandas({
+        datos: respuesta.comanda,
         loading: false,
       });
     });
@@ -100,6 +129,48 @@ const Administracion = () => {
     },
   ];
 
+  //----------------------------------------
+  const columnasComandas = [
+    {
+      name: "NUMERO",
+      selector: "numeroPedido",
+      sortable: true,
+      width: "20%",
+    },
+    {
+      name: "USUARIO",
+      selector: "nombreCliente",
+      sortable: true,
+      width: "29%",
+    },
+    {
+      name: "PRODUCTO",
+      selector: "producto",
+      sortable: true,
+      width: "38%",
+    },
+    {
+      name: "ACCIONES",
+      allowOverflow: true,
+      center: true,
+      width: "10%",
+      cell: (row) => {
+        return (
+          <div className="d-flex">
+            <button className="dropdown-item">
+              <Edit onClick={() => handleEditComanda(row)} size={15} />
+            </button>
+            <button className="dropdown-item">
+              <Trash onClick={() => handleDeleteComanda(row)} size={15} />
+            </button>
+          </div>
+        );
+      },
+    },
+  ];
+
+  //-------------------------------------------------------
+
   const columnasUsuarios = [
     {
       name: "NOMBRE USUARIO",
@@ -157,6 +228,22 @@ const Administracion = () => {
         <DataTable columns={columnasProductos} data={products.datos} />
       </div>
       <div className="d-flex align-items-center">
+        <h5 className="text-white p-4">COMANDAS</h5>
+        <button
+          onClick={() => {
+            setComandaEditar(null);
+            setToggleComandas(true);
+          }}
+          className="btn btn-light"
+        >
+          +
+        </button>
+      </div>
+      <div className="rounded mx-5">
+        <DataTable columns={columnasComandas} data={comanda.datos} />
+      </div>
+      
+      <div className="d-flex align-items-center">
         <h5 className="text-white p-4">USUARIOS</h5>
         <button
           onClick={() => {
@@ -177,6 +264,12 @@ const Administracion = () => {
         productEditar={productEditar}
         setRender={() => setRender(!render)}
         onHide={() => setToggleProducto(false)}
+      />
+      <ModalComandas
+        show={toggleComanda}
+        comandaEditar={comandaEditar}
+        setRender={() => setRender(!render)}
+        onHide={() => setToggleComandas(false)}
       />
       <ModalUsuarios
         show={toggleUsuarios}
