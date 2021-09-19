@@ -22,30 +22,7 @@ const Administracion = () => {
   const [comandaEditar, setComandaEditar] = useState({});
   const [usuarioEditar, setUsuarioEditar] = useState({});
 
-  const handleDeleteComanda = (comanda) => {
-    delComanda(comanda._id).then((respuesta) => {
-      if (respuesta.msg) {
-        window.alert(respuesta.msg);
-        setRender(!render);
-      }
-    });
-  };
-  const handleEditComanda = (comanda) => {
-    setComandaEditar(comanda);
-    setToggleComandas(true);
-  };
-
-  useEffect(() => {
-    getComandas().then((respuesta) => {
-      setComandas({
-        datos: respuesta.comanda,
-        loading: false,
-      });
-    });
-  }, [render]);
-
-  //------------------------------------------------
-  const handleDeleteProducto = (product) => {
+   const handleDeleteProducto = (product) => {
     deleteProducto(product._id).then((respuesta) => {
       if (respuesta.msg) {
         window.alert(respuesta.msg);
@@ -68,6 +45,30 @@ const Administracion = () => {
     usuariosGet().then((respuesta) => {
       setUsuarios({
         datos: respuesta.usuarios,
+        loading: false,
+      });
+    });
+  }, [render]);
+
+  //------------------------------------------------
+  
+  const handleDeleteComanda = (comanda) => {
+    delComanda(comanda._id).then((respuesta) => {
+      if (respuesta.msg) {
+        window.alert(respuesta.msg);
+        setRender(!render);
+      }
+    });
+  };
+  const handleEditComanda = (comanda) => {
+    setComandaEditar(comanda);
+    setToggleComandas(true);
+  };
+
+  useEffect(() => {
+    getComandas().then((respuesta) => {
+      setComandas({
+        datos: respuesta.comanda,
         loading: false,
       });
     });
