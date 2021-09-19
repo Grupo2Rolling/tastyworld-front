@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 const CardCategoria = ({ lista }) => {
   return (
     <>
-      <Container className="cardContain">
+      <Container className="cardContainC">
         {lista.map((categoria) => (
           <Link className="cardLink" to={`/${categoria.nombre}`}>
               <Card className="cardCateg my-3 mx-4 d-block" >

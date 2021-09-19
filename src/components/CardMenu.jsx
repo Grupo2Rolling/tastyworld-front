@@ -1,11 +1,13 @@
 import React, { useState } from "react";
-const comanda =JSON.parse(localStorage.getItem('comanda'))||[]
+
+
+
 const CardMenu = ({ menus }) => {
  
-  const agregarACarrito= (menu)=>{
-    comanda.push(menu);
-    localStorage.setItem('comanda', JSON.stringify(comanda));
-  }
+  // const agregarACarrito= (menu)=>{
+  //   comanda.push(menu);
+  //   localStorage.setItem('comanda', JSON.stringify(comanda));
+  // }
  
  
   return (
@@ -30,7 +32,6 @@ const CardMenu = ({ menus }) => {
 
                 
               </div>
-              
             </div>
 
             <div className="card back-face">
@@ -44,7 +45,7 @@ const CardMenu = ({ menus }) => {
              </div>
              <div className="precioyBot">
                   <h5>${menu.precio}</h5>
-                  <button className="btn btn-info botonAgrBa d-md-none" onClick={agregarACarrito} >Agregar +</button></div>
+                  <button className="btn btn-info botonAgrBa d-md-none" /*onClick={agregarACarrito} */>Agregar +</button></div>
                 
               </div>
 
@@ -56,7 +57,7 @@ const CardMenu = ({ menus }) => {
         ))}
       </div>
     </>
-  );
-};
+  )
+}
 
-export default CardMenu;
+export default CardMenu

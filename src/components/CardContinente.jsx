@@ -5,7 +5,7 @@ import { Carousel,  } from "react-bootstrap";
 import Slider from "react-slick";
 import { render } from "react-dom";
 
-const CardContinente = ({ lista, menus,setMenus }) => {
+const CardContinente = ({ continentes}) => {
   
 
   // useEffect(() => {
@@ -57,25 +57,28 @@ const CardContinente = ({ lista, menus,setMenus }) => {
     <>
       
       <Slider  {...settings}>
-        {lista.map((continente) => (
+
+        {continentes.map((continente) => (
        
                
                   
-                      <Card className="cardCont my-3 mx-3">
+                      <Card className="cardCont">
                         <Link to={`/comidasmundo/${continente.nombre}`}>
-                          <Card.Body key={continente.id} >
-                                <div className="contImgC">
+                        <div className="contImgC">
                                   <Card.Img
                                     src={continente.img}
-                                    className="card-img-top imgC"
+                                    className="imgC"
+                                    variant="top"
                                     alt={continente.nombre}
                                   />
                                 </div>
-                                <div className="card-body">
+                                <Card.Body className="cardCont" key={continente.id} >
+                                
+                               
                           
                                     <h5 className="card-title text-center" >{continente.nombre}</h5>
                           
-                                </div>
+                                
                           </Card.Body>
                         </Link>
                         </Card>

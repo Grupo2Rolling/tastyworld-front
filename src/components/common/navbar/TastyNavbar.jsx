@@ -19,10 +19,23 @@ export const TastyNavbar = () => {
       nombre: "Pedidos",
     },
     {
-      ruta: "/administracion",
-      nombre: "Administración",
+
+      ruta:'/cocina',
+      nombre:'Cocina'
     },
-  ];
+    {
+      ruta:'/barra',
+      nombre:'Barra'
+    },
+    {
+      ruta:'/entregas',
+      nombre: 'Entregas'
+    },
+    {
+      ruta:'/administracion',
+      nombre:'Administración'
+    }
+  ]
 
   return (
     <div className="navBG">
