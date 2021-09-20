@@ -6,7 +6,7 @@ const CardCategoria = ({ lista }) => {
   return (
     <>
       <Container className="cardContainC">
-        {lista.map((categoria) => (
+        {lista && lista.map((categoria) => (
           <Link className="cardLink" to={`/${categoria.nombre}`}>
               <Card className="cardCateg my-3 mx-4 d-block" >
                 

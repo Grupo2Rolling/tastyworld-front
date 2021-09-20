@@ -1,29 +1,56 @@
 import React, { useState, useEffect } from "react";
-import DataTable from "react-data-table-component";//, { createTheme }
-//import { Link } from "react-router-dom";
-import { Edit, Trash } from "react-feather";//ChevronDown, Plus, MoreVertical, 
+import DataTable from "react-data-table-component"; //, { createTheme }
+import { useHistory } from "react-router-dom";
+import { Edit, Trash } from "react-feather"; //ChevronDown, Plus, MoreVertical,
 //import { Modal, Button, Form } from "react-bootstrap";
 import { getProductos, deleteProducto } from "../helpers/productos";
+import { getComandas, putComanda, delComanda } from "../helpers/comandas";
 import { usuariosGet, usuarioDelete } from "../helpers/usuarios";
 import ModalUsuarios from "./ModalUsuarios";
 import ModalProductos from "./ModalProductos";
-
+import ModalComandas from "./ModalComanda"
+import Swal from "sweetalert2";
 const Administracion = () => {
   const [render, setRender] = useState(false);
   const [toggleProducto, setToggleProducto] = useState(false);
+  const [toggleComanda, setToggleComandas] = useState(false);
   const [toggleUsuarios, setToggleUsuarios] = useState(false);
   const [products, setProducts] = useState({ datos: [], loading: true });
+  const [comanda, setComandas] = useState({ datos: [], loading: true });
   const [usuarios, setUsuarios] = useState({ datos: [], loading: true });
   const [productEditar, setProductEditar] = useState({});
+  const [comandaEditar, setComandaEditar] = useState({});
   const [usuarioEditar, setUsuarioEditar] = useState({});
 
+  const user = JSON.parse(localStorage.getItem('auth')) && JSON.parse(localStorage.getItem('auth')).usuario
+  const token = JSON.parse(localStorage.getItem("auth")) && JSON.parse(localStorage.getItem("auth")).token
+  const history = useHistory();
+
   const handleDeleteProducto = (product) => {
-    deleteProducto(product._id).then((respuesta) => {
-      if (respuesta.msg) {
-        window.alert(respuesta.msg);
-        setRender(!render);
-      }
-    });
+    Swal.fire({
+      title: "¿Seguro que quieres eliminar el producto?",
+      text: "No puedes revertir esta acción",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes",
+      cancelButtonText: "No",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        deleteProducto(product._id, token).then((respuesta) => {
+          if (respuesta.msg) {
+            Swal.fire(
+              {
+                title: respuesta.msg,
+                text: "Operacion exitosa",
+                icon: "success",
+                confirmButtonColor: "#3085d6",
+              });
+            setRender(!render);
+          }
+        });
+      }})
   };
   const handleEditProducto = (product) => {
     setProductEditar(product);
@@ -31,7 +58,7 @@ const Administracion = () => {
   };
 
   useEffect(() => {
-    getProductos().then((respuesta) => {
+    getProductos(token).then((respuesta) => {
       setProducts({
         datos: respuesta.producto,
         loading: false,
@@ -45,10 +72,42 @@ const Administracion = () => {
     });
   }, [render]);
 
+  useEffect(() => {
+    const redireccion = () => (user && ( user.rol === 'ADMIN_ROLE')) || history.push('/login')
+    redireccion()
+  }, []);
+  //------------------------------------------------
+  
+  const handleDeleteComanda = (comanda) => {
+    delComanda(comanda._id).then((respuesta) => {
+      if (respuesta.msg) {
+        window.alert(respuesta.msg);
+        setRender(!render);
+      }
+    });
+  };
+  const handleEditComanda = (comanda) => {
+    setComandaEditar(comanda);
+    setToggleComandas(true);
+  };
+
+  useEffect(() => {
+    getComandas(token).then((respuesta) => {
+      let todas = respuesta.comanda;
+      let activas = todas && todas.filter((comanda) => {
+        return comanda.estado !== "Entregado" || "Anulado"
+      });
+      setComandas({
+        datos: activas,
+        loading: false
+      });
+    });
+  }, [render]);
+
   //------------------------------------------------
 
   const handleDeleteUsuario = (usuario) => {
-    console.log(usuario)
+    console.log(usuario);
     usuarioDelete(usuario.uid).then((respuesta) => {
       if (respuesta.msg) {
         window.alert(respuesta.msg);
@@ -60,7 +119,6 @@ const Administracion = () => {
     setUsuarioEditar(usuario);
     setToggleUsuarios(true);
   };
-
 
   const columnasProductos = [
     {
@@ -101,6 +159,54 @@ const Administracion = () => {
     },
   ];
 
+  //----------------------------------------
+  const columnasComandas = [
+    {
+      name: "NUMERO",
+      selector: "numeroPedido",
+      sortable: true,
+      width: "10%",
+    },
+    {
+      name: "ESTADO",
+      selector: "estado",
+      sortable: true,
+      width: "20%"
+    },
+    {
+      name: "USUARIO",
+      selector: "nombreCliente",
+      sortable: true,
+      width: "25%",
+    },
+    {
+      name: "PRODUCTO",
+      selector: "producto",
+      sortable: true,
+      width: "30%",
+    },
+    {
+      name: "ACCIONES",
+      allowOverflow: true,
+      center: true,
+      width: "15%",
+      cell: (row) => {
+        return (
+          <div className="d-flex">
+            <button className="dropdown-item">
+              <Edit onClick={() => handleEditComanda(row)} size={15} />
+            </button>
+            <button className="dropdown-item">
+              <Trash onClick={() => handleDeleteComanda(row)} size={15} />
+            </button>
+          </div>
+        );
+      },
+    },
+  ];
+
+  //-------------------------------------------------------
+
   const columnasUsuarios = [
     {
       name: "NOMBRE USUARIO",
@@ -128,7 +234,7 @@ const Administracion = () => {
       cell: (row) => {
         return (
           <div className="d-flex">
-           <button className="dropdown-item">
+            <button className="dropdown-item">
               <Edit onClick={() => handleEditUsuario(row)} size={15} />
             </button>
             <button className="dropdown-item">
@@ -141,7 +247,7 @@ const Administracion = () => {
   ];
 
   return (
-    <div className="bg">
+    <div className="bg mt-5 pt-3">
       <div className="d-flex align-items-center">
         <h5 className="text-white p-4">PRODUCTOS</h5>
         <button
@@ -158,11 +264,28 @@ const Administracion = () => {
         <DataTable columns={columnasProductos} data={products.datos} />
       </div>
       <div className="d-flex align-items-center">
+        <h5 className="text-white p-4">COMANDAS</h5>
+        <button
+          onClick={() => {
+            setComandaEditar(null);
+            setToggleComandas(true);
+          }}
+          className="btn btn-light"
+        >
+          +
+        </button>
+      </div>
+      <div className="rounded mx-5">
+        <DataTable columns={columnasComandas} data={comanda.datos} />
+      </div>
+      
+      <div className="d-flex align-items-center">
         <h5 className="text-white p-4">USUARIOS</h5>
         <button
           onClick={() => {
             setUsuarioEditar(null);
-            setToggleUsuarios(true)}}
+            setToggleUsuarios(true);
+          }}
           className="btn btn-light"
         >
           +
@@ -174,9 +297,16 @@ const Administracion = () => {
 
       <ModalProductos
         show={toggleProducto}
+        token={token}
         productEditar={productEditar}
         setRender={() => setRender(!render)}
         onHide={() => setToggleProducto(false)}
+      />
+      <ModalComandas
+        show={toggleComanda}
+        comandaEditar={comandaEditar}
+        setRender={() => setRender(!render)}
+        onHide={() => setToggleComandas(false)}
       />
       <ModalUsuarios
         show={toggleUsuarios}

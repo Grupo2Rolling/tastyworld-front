@@ -1,8 +1,6 @@
 const url = "https://tasty-world-backend.herokuapp.com/api/continentes" 
 
-export const getContinentes = async () => {
-
-
+export const getContinentes = async (token) => {
     const resp = await fetch(`${url}`, {
       method: "GET",
   

@@ -13,7 +13,7 @@ const CardMenu = ({ menus }) => {
   return (
     <>
        <div className="row row-cols-1 row-cols-md-3 g-4">
-        {menus.map((menu) => (
+        {menus && menus.map((menu) => (
           <div className="col d-flex justify-content-center" key={menu.id}>
              <div className="wrapper">
                <div className="card front-face">
