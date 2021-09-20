@@ -58,7 +58,7 @@ const CardContinente = ({ continentes}) => {
       
       <Slider  {...settings}>
 
-        {continentes.map((continente) => (
+        {continentes && continentes.map((continente) => (
        
                
                   

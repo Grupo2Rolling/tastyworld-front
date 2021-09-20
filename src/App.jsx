@@ -14,6 +14,7 @@ import FinPedido from "./pages/FinPedido";
 import Administracion from "./components/Administracion";
 import Mozo from "./pages/Mozo";
 import Error from "./pages/Error404";
+import Nosotros from "./pages/Nosotros";
 
 const App = () => {
   return (
@@ -35,6 +36,7 @@ const App = () => {
         <Route exact path="/Entregas" component={Entregas} />
         <Route exact path="/mozo" component={Mozo} />
         <Route exact path="/error" component={Error} />
+        <Route exact path="/nosotros" component={Nosotros} />
       </Switch>
       <TastyFooter />
     </Router>

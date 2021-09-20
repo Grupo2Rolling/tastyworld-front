@@ -26,7 +26,7 @@ const TablaComandas = ({ mesasOcup }) => {
             </tr>
           </thead>
           <tbody>
-            {mesasOcup.map((mesa) => (
+            {mesasOcup && mesasOcup.map((mesa) => (
               <tr className="text-white" key={mesa.id}>
                 <td>{mesa.numero}</td>
                 <td>

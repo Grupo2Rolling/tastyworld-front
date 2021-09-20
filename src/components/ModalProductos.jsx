@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 // import { ChevronDown, Plus, MoreVertical, Edit, Trash } from "react-feather";
 import { Modal, Button, Form } from "react-bootstrap";
 
+import Swal from "sweetalert2";
 import { postProducto, putProducto, } from "../helpers/productos";
 //getProducto, deleteProducto, getProductos 
 
@@ -14,7 +15,13 @@ const ModalProductos = (props) => {
     const [descripcion, setDescripcion] = useState("");
     const [img, setImagen] = useState("");
     const [precio, setPrecio] = useState(0);
+    const [paises, setPaises] = useState([]);
     
+    useEffect(() => {
+      fetch('https://restcountries.eu/rest/v2/all')
+      .then(response => response.json())
+      .then(data => setPaises(data));
+    }, [])
 
     const handleSubmit = (e) => {
       e.preventDefault();
@@ -29,7 +36,7 @@ const ModalProductos = (props) => {
         
       };
       if (props.productEditar){
-        putProducto(props.productEditar._id, producto).then((respuesta) => {
+        putProducto(props.productEditar._id, producto, props.token).then((respuesta) => {
           if (respuesta.errors) {
             return window.alert(respuesta.errors[0].msg);
           }
@@ -40,14 +47,26 @@ const ModalProductos = (props) => {
             }
           })
         } else {
-          postProducto(producto).then((respuesta) => {
+          postProducto(producto, props.token).then((respuesta) => {
             if (respuesta.errors) {
-              return window.alert(respuesta.errors[0].msg);
+              return Swal.fire(
+                {
+                  title: respuesta.errors[0].msg,
+                  text: "Opps!",
+                  icon: "error",
+                  confirmButtonColor: "#3085d6",
+                });
             }
             if (respuesta.msg) {
               props.onHide()
               props.setRender()
-              window.alert(respuesta.msg);
+              Swal.fire(
+                {
+                  title: respuesta.msg,
+                  text: "Operacion exitosa",
+                  icon: "success",
+                  confirmButtonColor: "#3085d6",
+                });
           }
         })
       }
@@ -68,16 +87,16 @@ const ModalProductos = (props) => {
     }, [props.productEditar]);
 
     
-    const paises = [
-      "Argentina",
-      "Peru",
-      "Colombia",
-      "Brasil",
-      "Venezuela",
-      "Ecuador",
-      "España",
-      "Japón"
-    ];
+    // const paises = [
+    //   "Argentina",
+    //   "Peru",
+    //   "Colombia",
+    //   "Brasil",
+    //   "Venezuela",
+    //   "Ecuador",
+    //   "España",
+    //   "Japón"
+    // ];
     
     const continentes = [
       "Europa",
@@ -107,7 +126,7 @@ const ModalProductos = (props) => {
               <Form.Control  value={pais} onChange={(e) => setPais(e.target.value)} as="select">
                 <option>Elige un país</option>
                 {paises.map((pais, index) => (
-                  <option key={index + 4567}>{pais}</option>
+                  <option key={index + 4567}>{pais.name}</option>
                 ))}
               </Form.Control>
             </Form.Group>

@@ -9,7 +9,6 @@ export const TastyNavbar = () => {
   const history = useHistory();
   const location = useLocation();
   const user = JSON.parse(localStorage.getItem('auth')) && JSON.parse(localStorage.getItem('auth')).usuario
-
   const handleLogOut= () => {
     setRender(false)
     localStorage.removeItem('auth')
@@ -33,6 +32,7 @@ export const TastyNavbar = () => {
       nombre: "Login",
       show: user ? false : true
     },
+
     {
       ruta: "/",
       nombre: "Inicio",
@@ -46,6 +46,10 @@ export const TastyNavbar = () => {
     {
       ruta:'/barra',
       nombre:'Barra',
+      show: !user ? false : (user.rol === 'ADMIN_ROLE' || user.rol === 'WAITER_ROLE') ? true : false
+    },    {
+      ruta: "/mozo",
+      nombre: "Mozo",
       show: !user ? false : (user.rol === 'ADMIN_ROLE' || user.rol === 'WAITER_ROLE') ? true : false
     },
     {
@@ -61,38 +65,21 @@ export const TastyNavbar = () => {
   ]
 
   return (
-    <div className="navBG">
-      <nav className={`justify-content-between container navB`}>
-        <div className="d-flex align-items-center">
-          {render && links.map((link, index) => (
-            <NavLink
-              onClick={link.function && link.function}
-              key={index + 3206}
-              exact
-              to={link.ruta}
-              className={`nav-link link ${!link.show && 'd-none'}`}
-            >
-              {link.nombre}
-            </NavLink>
-          ))}
-        </div>
-      </nav>
-      <nav className={`sidebar ${interruptor ? "" : "cerrado"}`}>
-        <button
-          onClick={() => setInterruptor(!interruptor)}
-          className={`btn d-flex w-100 justify-content-end ${
-            interruptor ? "toggle" : "toggle-cerrado"
-          }`}
-        >
-          X
-        </button>
-        <div>
+    <div className="navBG fixed-top">     
+      <nav onBlur={() => setInterruptor(false)} className={`sidebar ${interruptor ? "" : "cerrado"}`}>
+      <button onClick={() => setInterruptor(!interruptor)} class={`hamburger hamburger--slider ${interruptor ? 'is-active toggle' : '  toggle-cerrado'}`} type="button">
+        <span class="hamburger-box">
+          <span class="hamburger-inner"></span>
+        </span>
+      </button> 
+        <div className='py-3'>
           {links.map((link, index) => (
             <NavLink
               key={index + 78789}
               exact
               to={link.ruta}
-              className="nav-link link"
+              onClick={link.function && link.function}
+              className={`nav-link link ${!link.show && 'd-none'}`}
             >
               {link.nombre}
             </NavLink>

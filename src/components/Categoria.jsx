@@ -4,7 +4,7 @@ const Categoria = ({categorias }) => {
   return (
     <>
       <div className="row row-cols-1 row-cols-md-3 g-4">
-        {categorias.map((categoria) => (
+        {categorias && categorias.map((categoria) => (
           <div className="col" key={categoria._id}>
             <div className="card h-100">
               <img

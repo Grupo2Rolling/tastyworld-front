@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import DataTable from "react-data-table-component"; //, { createTheme }
-//import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { Edit, Trash } from "react-feather"; //ChevronDown, Plus, MoreVertical,
 //import { Modal, Button, Form } from "react-bootstrap";
 import { getProductos, deleteProducto } from "../helpers/productos";
@@ -9,7 +9,7 @@ import { usuariosGet, usuarioDelete } from "../helpers/usuarios";
 import ModalUsuarios from "./ModalUsuarios";
 import ModalProductos from "./ModalProductos";
 import ModalComandas from "./ModalComanda"
-
+import Swal from "sweetalert2";
 const Administracion = () => {
   const [render, setRender] = useState(false);
   const [toggleProducto, setToggleProducto] = useState(false);
@@ -22,13 +22,35 @@ const Administracion = () => {
   const [comandaEditar, setComandaEditar] = useState({});
   const [usuarioEditar, setUsuarioEditar] = useState({});
 
-   const handleDeleteProducto = (product) => {
-    deleteProducto(product._id).then((respuesta) => {
-      if (respuesta.msg) {
-        window.alert(respuesta.msg);
-        setRender(!render);
-      }
-    });
+  const user = JSON.parse(localStorage.getItem('auth')) && JSON.parse(localStorage.getItem('auth')).usuario
+  const token = JSON.parse(localStorage.getItem("auth")) && JSON.parse(localStorage.getItem("auth")).token
+  const history = useHistory();
+
+  const handleDeleteProducto = (product) => {
+    Swal.fire({
+      title: "¿Seguro que quieres eliminar el producto?",
+      text: "No puedes revertir esta acción",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes",
+      cancelButtonText: "No",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        deleteProducto(product._id, token).then((respuesta) => {
+          if (respuesta.msg) {
+            Swal.fire(
+              {
+                title: respuesta.msg,
+                text: "Operacion exitosa",
+                icon: "success",
+                confirmButtonColor: "#3085d6",
+              });
+            setRender(!render);
+          }
+        });
+      }})
   };
   const handleEditProducto = (product) => {
     setProductEditar(product);
@@ -36,7 +58,7 @@ const Administracion = () => {
   };
 
   useEffect(() => {
-    getProductos().then((respuesta) => {
+    getProductos(token).then((respuesta) => {
       setProducts({
         datos: respuesta.producto,
         loading: false,
@@ -50,6 +72,10 @@ const Administracion = () => {
     });
   }, [render]);
 
+  useEffect(() => {
+    const redireccion = () => (user && ( user.rol === 'ADMIN_ROLE')) || history.push('/login')
+    redireccion()
+  }, []);
   //------------------------------------------------
   
   const handleDeleteComanda = (comanda) => {
@@ -66,9 +92,9 @@ const Administracion = () => {
   };
 
   useEffect(() => {
-    getComandas().then((respuesta) => {
+    getComandas(token).then((respuesta) => {
       let todas = respuesta.comanda;
-      let activas = todas.filter((comanda) => {
+      let activas = todas && todas.filter((comanda) => {
         return comanda.estado !== "Entregado" || "Anulado"
       });
       setComandas({
@@ -221,7 +247,7 @@ const Administracion = () => {
   ];
 
   return (
-    <div className="bg">
+    <div className="bg mt-5 pt-3">
       <div className="d-flex align-items-center">
         <h5 className="text-white p-4">PRODUCTOS</h5>
         <button
@@ -271,6 +297,7 @@ const Administracion = () => {
 
       <ModalProductos
         show={toggleProducto}
+        token={token}
         productEditar={productEditar}
         setRender={() => setRender(!render)}
         onHide={() => setToggleProducto(false)}

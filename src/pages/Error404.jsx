@@ -2,7 +2,7 @@ import React from "react";
 
 const Error = () => {
   return (
-    <div className="body">
+    <div className="body min-height">
       <div className="container">
         <div className="row">
           <div className="col mt-5 mb-1 iniciaSesion">

@@ -13,7 +13,7 @@
   src: url(./assets/fonts/FontsFree-Net-gotham-ultra.ttf);
 }
 .min-height {
-  min-height: 70vh;
+  min-height: 80vh;
 }
 
 @font-face {
@@ -283,6 +283,29 @@
 .btnHome {
   background-color: var(--verdeOsc);
   color: white;
+}
+/*------------------------ About us style ------------------------*/
+
+.iniciaSesion2 {
+  text-shadow: 0.05em 0.07em var(--verdeM);
+  font-size: 2rem;
+  color: black;
+  font-family: "Gotham" !important;
+}
+
+.about-hr {
+  height: 2px;
+  width: 30%;
+  background-color: black;
+  border: none;
+}
+
+.img-avatar {
+  object-fit: cover;
+  width: 100px;
+  height: 100px;
+  border-radius: 100%;
+  border: 3px solid #5e8886;
 }
 
 /*------Media queries-------*/
