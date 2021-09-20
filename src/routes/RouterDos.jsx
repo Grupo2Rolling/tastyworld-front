@@ -12,7 +12,8 @@ import ComidasMundo from "../pages/ComidasMundo";
 import Carrito from "../pages/Carrito";
 import Administracion from "../components/Administracion";
 import Mozo from "../pages/Mozo";
-
+import Error404 from "../pages/Error404";
+import Nosotros from "../pages/Nosotros";
 import Bebidas from "../pages/Bebidas.jsx";
 
 const RouterDos = () => {

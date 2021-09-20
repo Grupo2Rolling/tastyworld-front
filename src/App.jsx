@@ -8,8 +8,7 @@ import { TastyFooter } from "./components/common/footer/TastyFooter";
 import Registro from "./pages/Registro";
 import Error404 from "./pages/Error404";
 import Nosotros from "./pages/Nosotros";
-
-function App() {
+const App = () => {
   return (
     <Router>
       <TastyNavbar />
@@ -23,6 +22,6 @@ function App() {
       <TastyFooter />
     </Router>
   );
-}
+};
 
 export default App;
