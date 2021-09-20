@@ -7,12 +7,24 @@ import {
   Button,
   ButtonToolbar,
 } from 'react-bootstrap'
+import TimerComandas from "./TimerComandas"
+import { putComanda } from '../helpers/comandas';
+
+const pedidoRealizado = (id) => {
+  let comanda = { estado: "Realizado" };
+  putComanda(id, comanda)
+};
+
+const pedidoAnulado = (id) => {
+  let comanda = { estado: "Anulado" };
+  putComanda(id, comanda)
+};
 
 const CardBarra = ({ comandas }) => {
   return (
-    <Row xs={1} md={5} className="g-2">
+    <Row xs={1} md={5} className="mt-5 g-2">
       {comandas && comandas.map((comanda) => (
-        <Col key={comanda._id} className="mb-2">
+        <Col key={comanda._id} className="mt-4 mb-2">
           <Card>
             <Card.Body>
               <Card.Header>Pedido: {comanda.numeroPedido}</Card.Header>
@@ -25,7 +37,9 @@ const CardBarra = ({ comandas }) => {
                 </ListGroup.Item>
                 <ListGroup.Item>Mesa: {comanda.mesa}</ListGroup.Item>
                 <ListGroup.Item>Estado: {comanda.estado}</ListGroup.Item>
+                <ListGroup.Item>{new Date().toLocaleTimeString()}</ListGroup.Item>
               </ListGroup>
+              <TimerComandas />
             </Card.Body>
             <Card.Footer>
               <ButtonToolbar
@@ -33,11 +47,11 @@ const CardBarra = ({ comandas }) => {
                 size="xl"
                 aria-label="Basic example"
               >
-                <Button className="me-5" variant="danger">
+                <Button className="me-5" variant="danger" onClick={() => pedidoAnulado(comanda._id)}>
                   Rechazar
                 </Button>
-                <Button className="mi-5" variant="success">
-                  Finalizada
+                <Button className="mi-5" variant="success"onClick={() => pedidoRealizado(comanda._id)}>
+                  Realizado
                 </Button>
               </ButtonToolbar>
             </Card.Footer>
