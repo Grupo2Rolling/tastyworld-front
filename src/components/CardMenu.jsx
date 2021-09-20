@@ -1,4 +1,5 @@
 import React from "react";
+import Swal from "sweetalert2";
 let lista = [];
 
 const CardMenu = ({ menus }) => {
@@ -6,6 +7,14 @@ const CardMenu = ({ menus }) => {
     lista.push(id);
     console.log(lista);
     localStorage.setItem("carrito", JSON.stringify(lista));
+    Swal.fire(
+      {
+        title: "Producto agregado",
+       
+        icon: "success",
+        confirmButtonColor: "#3085d6",
+      });
+    
   };
 
   return (

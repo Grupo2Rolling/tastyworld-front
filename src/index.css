@@ -58,8 +58,8 @@
   right: 20px;
 }
 #botonPedStick img {
-  width: 60px;
-  height: 60px;
+  width: 70px;
+  height: 70px;
 }
 
 /* /-----------Estilo cards Categorias----------------/ */
@@ -395,6 +395,10 @@ overflow: hidden;
   .cardConti {
     width: 250px;
     height: 250px;
+  }
+  #botonPedStick img{
+    width: 120px;
+    height: 120px;
   }
 }
 @media (min-width: 768px) {

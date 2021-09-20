@@ -9,6 +9,9 @@ import ModalUsuarios from "./ModalUsuarios";
 import ModalProductos from "./ModalProductos";
 import ModalComandas from "./ModalComanda"
 import Swal from "sweetalert2";
+import DataTable from "react-data-table-component";
+
+
 const Administracion = () => {
   const [render, setRender] = useState(false);
   const [toggleProducto, setToggleProducto] = useState(false);
