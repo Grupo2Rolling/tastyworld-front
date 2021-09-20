@@ -1,12 +1,13 @@
 import React from 'react'
+//import React from 'react'
 import {
   Card,
   Row,
   Col,
   ListGroup,
-  Button,
-  ButtonToolbar,
 } from 'react-bootstrap'
+
+import TimerComandas from "./TimerComandas"
 
 const CardEntregas = ({ comandas }) => {
   return (
@@ -26,21 +27,10 @@ const CardEntregas = ({ comandas }) => {
                 <ListGroup.Item>Mesa: {comanda.mesa}</ListGroup.Item>
                 <ListGroup.Item>Estado: {comanda.estado}</ListGroup.Item>
               </ListGroup>
+              <Card.Footer>
+                <TimerComandas />
+              </Card.Footer>
             </Card.Body>
-            <Card.Footer>
-              <ButtonToolbar
-                className="justify-content-center"
-                size="xl"
-                aria-label="Basic example"
-              >
-                <Button className="me-5" variant="danger">
-                  Rechazar
-                </Button>
-                <Button className="mi-5" variant="success">
-                  Finalizada
-                </Button>
-              </ButtonToolbar>
-            </Card.Footer>
           </Card>
         </Col>
       ))}

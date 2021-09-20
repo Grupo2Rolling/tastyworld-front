@@ -7,6 +7,18 @@ import {
   Button,
   ButtonToolbar,
 } from 'react-bootstrap'
+import TimerComandas from "./TimerComandas"
+import { putComanda } from '../helpers/comandas';
+
+const pedidoRealizado = (id) => {
+  let comanda = { estado: "Realizado" };
+  putComanda(id, comanda)
+};
+
+const pedidoAnulado = (id) => {
+  let comanda = { estado: "Anulado" };
+  putComanda(id, comanda)
+};
 
 const CardBarra = ({ comandas }) => {
   return (
@@ -25,6 +37,7 @@ const CardBarra = ({ comandas }) => {
                 </ListGroup.Item>
                 <ListGroup.Item>Mesa: {comanda.mesa}</ListGroup.Item>
                 <ListGroup.Item>Estado: {comanda.estado}</ListGroup.Item>
+                <ListGroup.Item>{new Date().toLocaleTimeString()}</ListGroup.Item>
               </ListGroup>
             </Card.Body>
             <Card.Footer>
@@ -33,11 +46,12 @@ const CardBarra = ({ comandas }) => {
                 size="xl"
                 aria-label="Basic example"
               >
-                <Button className="me-5" variant="danger">
+                <TimerComandas />
+                <Button className="me-5" variant="danger" onClick={() => pedidoAnulado(comanda._id)}>
                   Rechazar
                 </Button>
-                <Button className="mi-5" variant="success">
-                  Finalizada
+                <Button className="mi-5" variant="success"onClick={() => pedidoRealizado(comanda._id)}>
+                  Realizado
                 </Button>
               </ButtonToolbar>
             </Card.Footer>
