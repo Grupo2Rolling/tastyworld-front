@@ -1,107 +1,107 @@
-import React from "react";
-// import BtnSumarRestar from "./BtnSumarRestar";
-import { Form, Card, Dropdown, Container } from "react-bootstrap";
+import React, { useEffect, useState } from "react";
+import Swal from "sweetalert2";
+import { Form, Card, Dropdown, Container, Button } from "react-bootstrap";
+import { postComandaAdmin } from "../helpers/comandas";
 
-const CardFin = ({pedidos}) => {
+const token =
+  JSON.parse(localStorage.getItem("auth")) &&
+  JSON.parse(localStorage.getItem("auth")).token;
 
-  // const [actualizar, setActualizar] = useState("");
+const CardFin = ({ pedidos, setEco }) => {
+  const usuario = JSON.parse(localStorage.getItem("auth")).usuario;
+  // const [descripcion, setDescripcion] = useState("");
 
-//   ------------------
-// const [comanda, setComanda] = useState({
-//     producto: "",
-//     cantidad: 1,
-//     tipo: "",
-//     cliente: "",
-//     nombreCliente: "",
-//     mesa: "",
-//     estado: Pendiente,
-//     descripcion:""
-//  })
+  // const [mesa, setMesa] = useState([]);
 
+  useEffect(() => {
+    setEco(true);
 
+    setEco(false);
+  }, []);
 
-// const handleChange=({id, target})=>{
-//   let descripcion= target.value
-//   pedidos.map((prod)=>{
-//       if (prod.id==id){
-//           prod.descripcion=descripcion
-//   }})
-//       console.log(pedidos)
-// }
+  const getRandomNumberBetween = (min, max) => {
+    return Math.floor(Math.random() * (max - min + 1) + min);
+  };
 
+  // const ocuparMesa = (id) => {
+  //   let mesita = { estado: false };
+  //   mesasPut(id, mesita);
+  //   console.log(id);
+  // };
+  //  const agregarDescripcion=(id)=>{
+  //   pedidos.map((prod)=>{
+  //     if (prod.id==id){
+  //         prod.descripcion=descripcion
+  // }})
+  //  }
+  const confirmarPedido = () => {
+    pedidos.map((pedido) => {
+      let product = {
+        producto: pedido.nombre,
+        prodId: pedido.id,
+        cantidad: 1,
+        tipo: pedido.tipo,
+        nombreCliente: usuario.nombre,
+        mesa: "1",
+        estado: "Pendiente",
+        numeroPedido: getRandomNumberBetween(1, 100000),
+        descripcion: pedido.descripcion,
+      };
+      console.log(product);
+      postComandaAdmin(product,token).then((respuesta) => {
+        console.log(respuesta.msg);
+        if (respuesta.errors) {
+          return window.alert(respuesta.errors[0].msg);
+        }else{
+          Swal.fire(
+            {
+              title: "Pedido confirmado",
+             
+              icon: "success",
+              confirmButtonColor: "#3085d6",
+            });
+        }
+      });
 
-// const confirmarPedido= (pedido)=>{
-//   let comanda = []  
-//   comanda.push(pedido);
-//     localStorage.setItem('comanda', JSON.stringify(comanda));
-//   
-// function calcularTotal (){
-
-
-//  const calcularTotal= () =>{
-//       total = 0
-//       carrito.forEach((id) => {
-//       const precioPedido = productos.precios((precio) => {
-//           return precio.id === parseInt(precio)
-//         });
-//         total = total + precioPedido[0].precio
-//     })
-//   }
-
-//   const vaciarCarrito=()=> {
+    });
     
-//     carrito = []
-    
-//     renderizarCarrito()
-//     calcularTotal()
-// }
-  
+  };
+
+
+ 
+
   return (
-    <Container>
-      {pedidos && pedidos.map((pedido) => (
-        <Card style={{ width: "50rem" }} key={pedido._id}>
+    <Container className="text-center">
+      {pedidos.map((pedido) => (
+        <Card
+         
+          key={getRandomNumberBetween(1, 1000000)}
+          className="  mb-3 mi-4 login-card cardcarrito justify-center"
+        >
           <Card.Body>
-            <Card.Subtitle className="mb-2 text-muted">
-              {pedido.nombre}
-            </Card.Subtitle>
-            <Card.Text>{pedido.precio}</Card.Text>
+            <Card.Title className="mb-2 ">{pedido.nombre}</Card.Title>
+            <Card.Text>$ {pedido.precio}</Card.Text>
             <Form>
               <Form.Control
-              // onChange= {handleChange (pedido._id)}
+                // onChange={()=>agregarDescripcion(pedido.id)}
                 label="Comments"
                 as="textarea"
                 placeholder="¿Nos queres aclarar algo sobre tu Tastypedido?"
                 style={{ height: "100px" }}
               />
             </Form>
-            <Card.Link href="Menu">Seguir comprando</Card.Link>
-
-            {/* <Dropdown>
-              <Dropdown.Toggle variant="success" id="dropdown-basic">
-                Cantidad
-              </Dropdown.Toggle>
-
-          
-
-              <Dropdown.Menu>
-                <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
-                <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
-                <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
-              </Dropdown.Menu>
-            </Dropdown> */}
-            {/* <ListGroup variant="flush">
-           <ListGroup.Item>TOTAL: calcularTotal() </ListGroup.Item>
-           </ListGroup> */}
-
-
           </Card.Body>
         </Card>
       ))}
-     
-     {/* <Button variant="primary">CONFIRMAR PEDIDO</Button> */}
 
+      <Button
+        className="mb-4 pull-right"
+        variant="light"
+        onClick={() => confirmarPedido()}
+      >
+        CONFIRMAR PEDIDO
+      </Button>
     </Container>
-
   );
 };
 

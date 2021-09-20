@@ -14,12 +14,13 @@ export const getProductos = async (token) => {
   return datos;
 };
 
-export const getProducto = async (id, token) => {
+export const getProducto = async (id,token) => {
   const resp = await fetch(`${url}/${id}`, {
     method: "GET",
 
     headers: {
       "Content-type": "application/json; charset=UTF-8",
+      "x-token": token,
     },
   });
   const datos = await resp.json();

@@ -16,7 +16,7 @@ const BotonPedido = () => {
   return (
     <section>
       <div id="botonPedStick">
-        <Link to="/confirmar">
+        <Link to="/carrito">
           <img
             src={botonPed}
             alt="boton Confirmar"

@@ -373,6 +373,10 @@ overflow: hidden;
   border: 3px solid #5e8886;
 }
 
+.cardcarrito{
+  max-width: 90vw;
+  color: aliceblue !important;
+}
 /*------Media queries-------*/
 @media (min-width: 576px) {
   .cardCateg {

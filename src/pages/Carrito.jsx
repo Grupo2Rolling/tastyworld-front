@@ -1,34 +1,31 @@
-import { useState, useEffect } from "react";
-import CardFin from "../components/CardFin";
-import { getProducto } from "../helpers/productos";
+import { useState, useEffect } from 'react'
+import { Container } from 'react-bootstrap'
+import CardFin from '../components/CardFin'
+import { getProducto } from '../helpers/productos'
 
 
 const Carrito = () => {
-  const [pedidos, setPedidos] = useState([]);
-  // const [productos, setProductos] = useState ([])
-
-  let pedido = []
-    const carrito = [
-      "61427df9178b6ad91f7ad4b7",
-      "6143dafe7c6042373d8a1e7d",
-      "614533d6d1cbc58471a648ec",
-    ]
-    // JSON.parse(localStorage.getItem("carrito"));
+  let carrito = JSON.parse(localStorage.getItem('carrito')) || []
+  const [pedidos, setPedidos] = useState([])
+  const [eco, setEco] = useState(true)
+  
+ 
 
   
+const token =
+JSON.parse(localStorage.getItem("auth")) &&
+JSON.parse(localStorage.getItem("auth")).token;
+
   useEffect(() => {
-        
+    let pedido = []
     carrito.map((producto) => {
-      getProducto(producto).then((respuesta) => {
-        // let producto = respuesta.producto;
-        pedido.push(respuesta.producto);
-      });
-    
-    });
+      getProducto(producto,token).then((respuesta) => {
+        pedido.push(respuesta.producto)
+        setPedidos(pedido)
+      })
+    })
     // console.log(pedido);
-    setPedidos(pedido) 
-    console.log (pedidos)
-  }, [] );
+  }, [eco])
 
   // useEffect(()=>{
   //   getProducto(pedidos).then((respuesta)=>{
@@ -38,11 +35,12 @@ const Carrito = () => {
   // }, [])
 
   return (
-    <div className="min-height">
+    <Container className="tituloPag inicioBackground text-center min-height mt-5 pt-5">
       <h1>TU TASTY PEDIDO:</h1>
-      <CardFin pedidos={pedidos} />
-    </div>
-  );
-};
+      
+      <CardFin pedidos={pedidos} eco={eco} setEco={setEco} />
+    </Container>
+  )
+}
 
-export default Carrito;
+export default Carrito

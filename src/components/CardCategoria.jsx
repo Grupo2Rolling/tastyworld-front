@@ -9,7 +9,7 @@ const CardCategoria = ({ lista }) => {
         {lista.map((categoria) => (
           <Link  style={{ textDecoration: 'none' }}
             className="cardLink"
-            to={`/${categoria.nombre}`}
+            to={`/${categoria.link}`}
             key={categoria._id}
           >
             <Card className="cardCateg my-3 mx-4 d-block">
