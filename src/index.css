@@ -338,6 +338,13 @@ overflow: hidden;
   font-size: 20px;
 }
 
+/*admin*/
+
+.scrollAdmin{
+  max-height: 25vh;
+  overflow-y: scroll;
+}
+
 
 /*------------------------ About us style ------------------------*/
 
