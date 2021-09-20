@@ -1,6 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
-
+import { useHistory } from "react-router-dom";
 import { mesasGet, mesasTodasGet } from "../helpers/mesas";
 import { Container, Row } from "react-bootstrap";
 import TablaMesas from "../components/TablaMesas";
@@ -11,10 +11,18 @@ const Mozo = () => {
   const [mesasOcup, setMesasOcup] = useState([]);
   const [state, setState] = useState({ rol: "" });
 
+  const history = useHistory();
+  const user = JSON.parse(localStorage.getItem('auth')) && JSON.parse(localStorage.getItem('auth')).usuario
+
   useEffect(() => {
-    const datos = JSON.parse(localStorage.getItem("auth"));
-    setState(datos.usuario);
-  }, [state.rol]);
+    const redireccion = () => (user && (user.rol === 'WAITER_ROLE' || user.rol === 'ADMIN_ROLE')) || history.push('/login')
+    redireccion()
+  }, []);
+
+  // useEffect(() => {
+  //   const datos = JSON.parse(localStorage.getItem("auth"));
+  //   setState(datos.usuario);
+  // }, [state.rol]);
 
   useEffect(() => {
     mesasGet().then((respuesta) => {
@@ -25,20 +33,20 @@ const Mozo = () => {
   useEffect(() => {
     mesasTodasGet().then((respuesta) => {
       let todas = respuesta.mesa;
-      let ocupadas = todas.filter((mesa) => {
+      let ocupadas = todas && todas.filter((mesa) => {
         return mesa.estado === false;
       });
       setMesasOcup(ocupadas);
     });
   }, [mesasOcup]);
 
-  if (state.rol !== "WAITER_ROLE" && state.rol !== "ADMIN_ROLE") {
-    return (
-      <div className="alert alert-danger text-center py-5 my-5" role="alert">
-        🚫Ingreso no autorizado🚫
-      </div>
-    );
-  }
+  // if (state.rol !== "WAITER_ROLE" && state.rol !== "ADMIN_ROLE") {
+  //   return (
+  //     <div className="alert alert-danger text-center py-5 my-5" role="alert">
+  //       🚫Ingreso no autorizado🚫
+  //     </div>
+  //   );
+  // }
   return (
     <>
       <Container fluid className="login-bg py-4">

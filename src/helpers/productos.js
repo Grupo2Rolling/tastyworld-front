@@ -1,6 +1,6 @@
 const url = "https://tasty-world-backend.herokuapp.com/api/productos";
-const token = JSON.parse(localStorage.getItem("auth")) && JSON.parse(localStorage.getItem("auth")).token
-export const getProductos = async () => {
+
+export const getProductos = async (token) => {
   const resp = await fetch(`${url}/all`, {
     method: "GET",
 
@@ -14,7 +14,7 @@ export const getProductos = async () => {
   return datos;
 };
 
-export const getProducto = async (id) => {
+export const getProducto = async (id, token) => {
   const resp = await fetch(`${url}/${id}`, {
     method: "GET",
 
@@ -27,7 +27,7 @@ export const getProducto = async (id) => {
   return datos;
 };
 
-export const postProducto = async (data) => {
+export const postProducto = async (data, token) => {
   const resp = await fetch(`${url}`, {
     method: "POST",
     body: JSON.stringify(data),
@@ -41,7 +41,7 @@ export const postProducto = async (data) => {
   return datos;
 };
 
-export const putProducto = async (id, data) => {
+export const putProducto = async (id, data, token) => {
   const resp = await fetch(`${url}/${id}`, {
     method: "PUT",
     body: JSON.stringify(data),
@@ -55,7 +55,7 @@ export const putProducto = async (id, data) => {
   return datos;
 };
 
-export const deleteProducto = async (id) => {
+export const deleteProducto = async (id, token) => {
   const resp = await fetch(`${url}/${id}`, {
     method: "DELETE",
 

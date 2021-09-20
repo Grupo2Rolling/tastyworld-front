@@ -27,7 +27,7 @@ const TablaMesas = ({ mesas }) => {
             </tr>
           </thead>
           <tbody>
-            {mesas.map((mesa) => (
+            {mesas && mesas.map((mesa) => (
               <tr className="text-white" key={mesa.id}>
                 <td>{mesa.numero}</td>
                 <td>

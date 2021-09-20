@@ -4,7 +4,7 @@ import CardFin from '../components/CardFin'
 const FinPedido = () => {
     return (
         <div>
-      <CardFin/>
+          <CardFin/>
         
 
             

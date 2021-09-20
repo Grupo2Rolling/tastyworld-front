@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import DataTable from "react-data-table-component"; //, { createTheme }
-//import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { Edit, Trash } from "react-feather"; //ChevronDown, Plus, MoreVertical,
 //import { Modal, Button, Form } from "react-bootstrap";
 import { getProductos, deleteProducto } from "../helpers/productos";
@@ -17,8 +17,12 @@ const Administracion = () => {
   const [productEditar, setProductEditar] = useState({});
   const [usuarioEditar, setUsuarioEditar] = useState({});
 
+  const user = JSON.parse(localStorage.getItem('auth')) && JSON.parse(localStorage.getItem('auth')).usuario
+  const token = JSON.parse(localStorage.getItem("auth")) && JSON.parse(localStorage.getItem("auth")).token
+  const history = useHistory();
+
   const handleDeleteProducto = (product) => {
-    deleteProducto(product._id).then((respuesta) => {
+    deleteProducto(product._id, token).then((respuesta) => {
       if (respuesta.msg) {
         window.alert(respuesta.msg);
         setRender(!render);
@@ -31,7 +35,7 @@ const Administracion = () => {
   };
 
   useEffect(() => {
-    getProductos().then((respuesta) => {
+    getProductos(token).then((respuesta) => {
       setProducts({
         datos: respuesta.producto,
         loading: false,
@@ -45,6 +49,10 @@ const Administracion = () => {
     });
   }, [render]);
 
+  useEffect(() => {
+    const redireccion = () => (user && ( user.rol === 'ADMIN_ROLE')) || history.push('/login')
+    redireccion()
+  }, []);
   //------------------------------------------------
 
   const handleDeleteUsuario = (usuario) => {
@@ -174,6 +182,7 @@ const Administracion = () => {
 
       <ModalProductos
         show={toggleProducto}
+        token={token}
         productEditar={productEditar}
         setRender={() => setRender(!render)}
         onHide={() => setToggleProducto(false)}

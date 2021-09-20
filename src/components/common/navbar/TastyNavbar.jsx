@@ -33,6 +33,7 @@ export const TastyNavbar = () => {
       nombre: "Login",
       show: user ? false : true
     },
+
     {
       ruta: "/",
       nombre: "Inicio",
@@ -46,6 +47,10 @@ export const TastyNavbar = () => {
     {
       ruta:'/barra',
       nombre:'Barra',
+      show: !user ? false : (user.rol === 'ADMIN_ROLE' || user.rol === 'WAITER_ROLE') ? true : false
+    },    {
+      ruta: "/mozo",
+      nombre: "Mozo",
       show: !user ? false : (user.rol === 'ADMIN_ROLE' || user.rol === 'WAITER_ROLE') ? true : false
     },
     {
@@ -92,7 +97,8 @@ export const TastyNavbar = () => {
               key={index + 78789}
               exact
               to={link.ruta}
-              className="nav-link link"
+              onClick={link.function && link.function}
+              className={`nav-link link ${!link.show && 'd-none'}`}
             >
               {link.nombre}
             </NavLink>

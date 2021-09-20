@@ -29,7 +29,7 @@ const ModalProductos = (props) => {
         
       };
       if (props.productEditar){
-        putProducto(props.productEditar._id, producto).then((respuesta) => {
+        putProducto(props.productEditar._id, producto, props.token).then((respuesta) => {
           if (respuesta.errors) {
             return window.alert(respuesta.errors[0].msg);
           }
@@ -40,7 +40,7 @@ const ModalProductos = (props) => {
             }
           })
         } else {
-          postProducto(producto).then((respuesta) => {
+          postProducto(producto, props.token).then((respuesta) => {
             if (respuesta.errors) {
               return window.alert(respuesta.errors[0].msg);
             }
