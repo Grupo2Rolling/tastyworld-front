@@ -2,7 +2,7 @@ import React from "react";
 
 const Nosotros = () => {
   return (
-    <body className="body  container-fluid">
+    <body className="body container-fluid min-height mt-5 pt-5">
       <div className="container">
         <div className="row">
           <div className="col-12 col-md-8 offset-md-2 my-4">
