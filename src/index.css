@@ -170,7 +170,7 @@ background-color: #5e8886a2;
   border-radius: 5%;
 }
 .wrapper .back-face {
-  overflow-y: scroll;
+  overflow-y: hidden;
   display: flex;
   font-size: 12px;
   align-items: center;
