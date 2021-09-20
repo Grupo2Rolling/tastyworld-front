@@ -24,7 +24,7 @@ const CardContinente = ({ continentes }) => {
         breakpoint: 1920,
         settings: {
           slidesToShow: 4,
-          slidesToScroll: 1,
+          slidesToScroll: 3,
           initialSlide: 2,
           infinite: true,
           dots: true,
@@ -36,9 +36,9 @@ const CardContinente = ({ continentes }) => {
         settings: {
           slidesToShow: 3,
           slidesToScroll: 4,
-          initialSlide: 2,
+          initialSlide: 4,
           infinite: false,
-          dots: true,
+          dots:false,
         },
       },
       {

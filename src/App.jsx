@@ -8,7 +8,7 @@ import Login from "./pages/Login";
 import ComidasMundo from "./pages/ComidasMundo";
 // import FinPedido from "./pages/FinPedido";
 import Administracion from './components/Administracion'
-
+import Bebidas from './pages/Bebidas'
 
 
 const App = () => {
@@ -19,6 +19,7 @@ const App = () => {
          <Switch>
        <Route exact path="/login" component={Login} />
         <Route exact path="/" component={Inicio} />
+        <Route exact path="/Bebidas" component={Bebidas}/>
         <Route exact path="/ComidasMundo" component={ComidasMundo}/>
         <Route exact path="/ComidasMundo/:continente" component={ComidasMundo}/>
         {/* <Route exact path="/finalizarpedido" component={FinPedido} /> */}

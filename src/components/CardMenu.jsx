@@ -10,7 +10,7 @@ const CardMenu = ({ menus }) => {
 
   return (
     <>
-      <div className="row  row-cols-md-3 g-4">
+      <div className="row  row-cols-md-3 row-cols-lg-4 g-4">
         {menus.map((menu) => (
           <div className="col mt-2 mb-4 d-flex justify-content-center " key={menu._id}>
             <div className=" wrapper">
@@ -21,11 +21,11 @@ const CardMenu = ({ menus }) => {
                   alt={menu.nombre}
                 />
                 <div className="card-body">
-                  <h5 className="card-title">{menu.nombre}</h5>
+                  <h5 className="card-title nombrePlato">{menu.nombre}</h5>
 
                   <strong>{menu.categoria}</strong>
                   <div className="precioyBot">
-                    <h5>${menu.precio}</h5>
+                    <h5 className="precioPlato text-center">${menu.precio}</h5>
                     <button
                       className="btn btn-info botonAgr"
                       onClick={() => agregarACarrito(menu._id)}
