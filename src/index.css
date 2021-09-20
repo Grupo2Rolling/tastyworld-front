@@ -276,7 +276,37 @@ overflow: hidden;
   border: none;
   text-shadow: 0.05em 0.07em #5e8886;
 }
+/* Estilo carrito */
+.cardcarrito{
+  max-width: 90vw;
+  color: aliceblue !important;
+}
 
+/*ERROR page*/
+.body {
+  background: linear-gradient(
+      to bottom,
+      rgba(230, 224, 224, 0.8) 0%,
+      rgba(92, 68, 52, 0.8) 100%
+    ),
+    url(https://images.pexels.com/photos/1092730/pexels-photo-1092730.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+.btnHome {
+  background-color: var(--verdeOsc);
+  color: white;
+  height: 45px;
+}
+.errorP{
+  font-weight: bold;
+  font-size: 20px;
+}
 
 /*------Media queries-------*/
 @media (min-width: 576px) {

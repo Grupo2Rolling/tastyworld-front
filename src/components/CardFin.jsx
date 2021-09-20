@@ -121,14 +121,13 @@ const CardFin = ({ pedidos, eco, setEco }) => {
 
   return (
     <Container>
-     
       {pedidos.map((pedido) => (
-        <Card style={{ width: "50rem" }} key={getRandomNumberBetween(1, 1000000)}>
+        <Card style={{ width: "50rem" }} key={getRandomNumberBetween(1, 1000000)} className="col-10 col-md-8 col-lg-5 mb-3 login-card cardcarrito">
           <Card.Body>
-            <Card.Subtitle className="mb-2 text-muted">
+            <Card.Title className="mb-2 ">
               {pedido.nombre}
-            </Card.Subtitle>
-            <Card.Text>{pedido.precio}</Card.Text>
+            </Card.Title>
+            <Card.Text>$ {pedido.precio}</Card.Text>
             <Form>
               <Form.Control
                 // onChange={()=>agregarDescripcion(pedido.id)}
@@ -142,7 +141,7 @@ const CardFin = ({ pedidos, eco, setEco }) => {
         </Card>
       ))}
 
-      <Button variant="primary" onClick={()=>confirmarPedido()} >
+      <Button className="mb-4 pull-right" variant="light" onClick={()=>confirmarPedido()} >
         CONFIRMAR PEDIDO
       </Button>
     </Container>
