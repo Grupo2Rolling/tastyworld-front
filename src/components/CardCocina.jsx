@@ -10,15 +10,16 @@ import {
 import TimerComandas from "./TimerComandas"
 import { putComanda } from '../helpers/comandas';
 
-
+const token = JSON.parse(localStorage.getItem("auth")) && JSON.parse(localStorage.getItem("auth")).token
 const pedidoRealizado = (id) => {
+  
   let comanda = { estado: "Realizado" };
-  putComanda(id, comanda)
+  putComanda(id, comanda, token)
 };
 
 const pedidoAnulado = (id) => {
   let comanda = { estado: "Anulado" };
-  putComanda(id, comanda)
+  putComanda(id, comanda, token)
 };
 
 const CardCocina = ({ comandas }) => {

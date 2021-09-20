@@ -3,6 +3,8 @@ import { Modal, Button, Form } from 'react-bootstrap'
 import { postComanda, putComanda } from '../helpers/comandas'
 //import { postProducto, putProducto, } from "../helpers/productos";
 
+const token = JSON.parse(localStorage.getItem("auth")) && JSON.parse(localStorage.getItem("auth")).token
+
 const ModalComanda = (props) => {
   const [producto, setProducto] = useState('')
   const [prodId, setProdId] = useState('')
@@ -26,7 +28,7 @@ const ModalComanda = (props) => {
       descripcion,
     }
     if (props.comandaEditar) {
-      putComanda(props.comandaEditar._id, product).then((respuesta) => {
+      putComanda(props.comandaEditar._id, product, token).then((respuesta) => {
         if (respuesta.errors) {
           return window.alert(respuesta.errors[0].msg)
         }
