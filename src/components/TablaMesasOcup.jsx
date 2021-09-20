@@ -22,7 +22,6 @@ const TablaComandas = ({ mesasOcup }) => {
           <thead>
             <tr className="text-white mt-2">
               <th scope="col">N° mesa</th>
-              <th scope="col">Pedido</th>
               <th scope="col">Estado</th>
             </tr>
           </thead>
@@ -30,14 +29,6 @@ const TablaComandas = ({ mesasOcup }) => {
             {mesasOcup && mesasOcup.map((mesa) => (
               <tr className="text-white" key={mesa.id}>
                 <td>{mesa.numero}</td>
-                <td>
-                  <button className="btn btn-warning">
-                    <input
-                      type="checkbox"
-                      aria-label="Checkbox for following text input"
-                    ></input>
-                  </button>
-                </td>
                 <td>
                   <button
                     className="btn btn-success"
