@@ -49,7 +49,7 @@
 }
 
 .inicioBackground {
-  width: 100vw;
+  max-width: 100vw;
   background-color: #36504f98;
 }
 #botonPedStick {
