@@ -21,12 +21,14 @@ const Inicio = () => {
   return (
     <>
 
-     <Parallax className='inicioBackground min-height' bgImage={Imagen2} strength={500}>
+     <Parallax className='inicioBackground min-height d-flex flex-column justify-content-center' bgImage={Imagen2} strength={500}>
      
         
-          
+          <div>
         <h1 className="text-center tituloPag">BIENVENIDO</h1>
-            <CardCategoria lista={listaCategorias}/>
+        <CardCategoria lista={listaCategorias}/>
+
+          </div>
         
         
      

@@ -60,7 +60,7 @@ const Mozo = () => {
   // }
   return (
     <>
-      <Container fluid className="login-bg py-4">
+      <Container fluid className="login-bg py-4 mt-5">
         <h1 className="text-white text-center">{state.nombre}</h1>
         <h1 className="iniciaSesion text-center my-3">Mesas Libres</h1>
         <Row className="text-center">

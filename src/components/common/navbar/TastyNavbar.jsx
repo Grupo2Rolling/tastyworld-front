@@ -9,7 +9,6 @@ export const TastyNavbar = () => {
   const history = useHistory();
   const location = useLocation();
   const user = JSON.parse(localStorage.getItem('auth')) && JSON.parse(localStorage.getItem('auth')).usuario
-
   const handleLogOut= () => {
     setRender(false)
     localStorage.removeItem('auth')
@@ -66,7 +65,7 @@ export const TastyNavbar = () => {
   ]
 
   return (
-    <div className="navBG">     
+    <div className="navBG fixed-top">     
       <nav onBlur={() => setInterruptor(false)} className={`sidebar ${interruptor ? "" : "cerrado"}`}>
       <button onClick={() => setInterruptor(!interruptor)} class={`hamburger hamburger--slider ${interruptor ? 'is-active toggle' : '  toggle-cerrado'}`} type="button">
         <span class="hamburger-box">

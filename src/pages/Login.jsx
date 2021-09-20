@@ -61,9 +61,9 @@ const Login = () => {
   };
 
   return (
-    <Container fluid className="login-bg py-4 min-height">
+    <Container fluid className="login-bg min-height d-flex flex-column justify-content-center">
       <Form
-        className="col-8 col-lg-5 mx-auto login-card"
+        className="col-8 col-lg-5 mx-auto login-card py-4"
         onSubmit={handleSubmit}
       >
         <Form.Label className="iniciaSesion d-flex justify-content-center mt-2">
@@ -101,9 +101,9 @@ const Login = () => {
         >
           Ingresar
         </Button>
-        <Form.Text className="text-left text-white mb-4">
+        <Form.Text className="text-left text-white mb-4 mx-4">
           ¿Aún no tienes una cuenta?
-          <Link className="login-regis" to="/">
+          <Link className="login-regis mx-2" to="/">
             Registrate
           </Link>
         </Form.Text>

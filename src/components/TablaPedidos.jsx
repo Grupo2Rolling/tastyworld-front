@@ -25,7 +25,7 @@ const TablaPedidos = ({ pedidos, setEco }) => {
             </tr>
           </thead>
           <tbody>
-            {pedidos.map((pedido) => (
+            {pedidos && pedidos.map((pedido) => (
               <tr className="text-white" key={pedido._id}>
                 <td>{pedido.mesa}</td>
                 <td>{pedido.numeroPedido}</td>

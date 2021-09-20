@@ -11,7 +11,6 @@ export const getComandas = async (token) => {
     },
   })
   const datos = await resp.json()
-  console.log(datos)
   return datos
 }
 export const getComandasCocina = async (token) => {
@@ -26,7 +25,6 @@ export const getComandasCocina = async (token) => {
     },
   })
   const datos = await resp.json()
-  console.log(datos)
   return datos
 }
 
@@ -42,7 +40,6 @@ export const getComandasBarra = async (token) => {
     },
   })
   const datos = await resp.json()
-  console.log(datos)
   return datos
 }
 
@@ -58,7 +55,6 @@ export const getComandasEntregas = async (token) => {
     },
   })
   const datos = await resp.json()
-  console.log(datos)
   return datos
 }
 

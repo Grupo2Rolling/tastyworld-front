@@ -23,7 +23,7 @@ const Entrega = () => {
   
   return (
     <>
-      <Container fluid className="mt-2 min-height">
+      <Container fluid className="mt-2 min-height mt-5 pt-3">
        <CardEntregas comandas={comandas} />
       </Container>
     </>
