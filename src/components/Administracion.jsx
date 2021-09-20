@@ -159,7 +159,7 @@ const Administracion = () => {
     },
   ];
 
-  //----------------------------------------
+ 
   const columnasComandas = [
     {
       name: "NUMERO",
