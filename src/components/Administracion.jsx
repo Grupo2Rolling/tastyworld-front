@@ -1,70 +1,124 @@
 import React, { useState, useEffect } from "react";
-import DataTable, { createTheme } from "react-data-table-component";
-import { Link } from "react-router-dom";
-import { ChevronDown, Plus, MoreVertical, Edit, Trash } from "react-feather";
-import { Modal, Button, Form } from "react-bootstrap";
-
+import DataTable from "react-data-table-component"; //, { createTheme }
+import { useHistory } from "react-router-dom";
+import { Edit, Trash } from "react-feather"; //ChevronDown, Plus, MoreVertical,
+//import { Modal, Button, Form } from "react-bootstrap";
+import { getProductos, deleteProducto } from "../helpers/productos";
+import { getComandas, delComanda } from "../helpers/comandas";
+import { usuariosGet, usuarioDelete } from "../helpers/usuarios";
 import ModalUsuarios from "./ModalUsuarios";
 import ModalProductos from "./ModalProductos";
-
-// const URL = "https://tasty-world-backend.herokuapp.com/api/administracion";
-
-
-  // -------------------------------------
-
-  
-
+import ModalComandas from "./ModalComanda"
+import Swal from "sweetalert2";
 const Administracion = () => {
- 
-
-
-  const [modal, setModalShow] = useState(false);
+  const [render, setRender] = useState(false);
   const [toggleProducto, setToggleProducto] = useState(false);
+  const [toggleComanda, setToggleComandas] = useState(false);
   const [toggleUsuarios, setToggleUsuarios] = useState(false);
+  const [products, setProducts] = useState({ datos: [], loading: true });
+  const [comanda, setComandas] = useState({ datos: [], loading: true });
+  const [usuarios, setUsuarios] = useState({ datos: [], loading: true });
+  const [productEditar, setProductEditar] = useState({});
+  const [comandaEditar, setComandaEditar] = useState({});
+  const [usuarioEditar, setUsuarioEditar] = useState({});
 
+  const user = JSON.parse(localStorage.getItem('auth')) && JSON.parse(localStorage.getItem('auth')).usuario
+  const token = JSON.parse(localStorage.getItem("auth")) && JSON.parse(localStorage.getItem("auth")).token
+  const history = useHistory();
 
+  const handleDeleteProducto = (product) => {
+    Swal.fire({
+      title: "¿Seguro que quieres eliminar el producto?",
+      text: "No puedes revertir esta acción",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes",
+      cancelButtonText: "No",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        deleteProducto(product._id, token).then((respuesta) => {
+          if (respuesta.msg) {
+            Swal.fire(
+              {
+                title: respuesta.msg,
+                text: "Operacion exitosa",
+                icon: "success",
+                confirmButtonColor: "#3085d6",
+              });
+            setRender(!render);
+          }
+        });
+      }})
+  };
+  const handleEditProducto = (product) => {
+    setProductEditar(product);
+    setToggleProducto(true);
+  };
+
+  useEffect(() => {
+    getProductos(token).then((respuesta) => {
+      setProducts({
+        datos: respuesta.producto,
+        loading: false,
+      });
+    });
+    usuariosGet().then((respuesta) => {
+      setUsuarios({
+        datos: respuesta.usuarios,
+        loading: false,
+      });
+    });
+  }, [render]);
+
+  useEffect(() => {
+    const redireccion = () => (user && ( user.rol === 'ADMIN_ROLE')) || history.push('/login')
+    redireccion()
+  }, []);
+  //------------------------------------------------
   
-  const datosProducto = [
-    {
-      nombre: "gh",
-      precio: "$15",
-      pais: "Amaicha del valle",
-    },
-    {
-      nombre: "Arroz con pollo",
-      precio: "$100",
-      pais: "Brasil",
-    },
-    {
-      nombre: "Bife con ensalada",
-      precio: "$600",
-      pais: "Tucuman",
-    },
-    {
-      nombre: "Empanas",
-      precio: "$50",
-      pais: "Argentina",
-    },
-  ];
+  const handleDeleteComanda = (comanda) => {
+    delComanda(comanda._id).then((respuesta) => {
+      if (respuesta.msg) {
+        window.alert(respuesta.msg);
+        setRender(!render);
+      }
+    });
+  };
+  const handleEditComanda = (comanda) => {
+    setComandaEditar(comanda);
+    setToggleComandas(true);
+  };
 
-  const datosUsuario = [
-    {
-      usuario: "Pablo Giroud",
-      role: "Admin",
-    },
-    {
-      usuario: "Carina Auteri",
-      role: "Usuario",
-    },
-    {
-      usuario: "Gabriela Navarro",
-      role: "Usuario",
-    },
-    {
-      usuario: "Pablo Giroud",
-      role: "Admin",
-    },
-  ];
+  useEffect(() => {
+    getComandas(token).then((respuesta) => {
+      let todas = respuesta.comanda;
+      let activas = todas && todas.filter((comanda) => {
+        return comanda.estado !== "Entregado" || "Anulado"
+      });
+      setComandas({
+        datos: activas,
+        loading: false
+      });
+    });
+  }, [render]);
+
+  //------------------------------------------------
+
+  const handleDeleteUsuario = (usuario) => {
+    console.log(usuario);
+    usuarioDelete(usuario.uid).then((respuesta) => {
+      if (respuesta.msg) {
+        window.alert(respuesta.msg);
+        setRender(!render);
+      }
+    });
+  };
+  const handleEditUsuario = (usuario) => {
+    setUsuarioEditar(usuario);
+    setToggleUsuarios(true);
+  };
 
   const columnasProductos = [
     {
@@ -93,11 +147,11 @@ const Administracion = () => {
       cell: (row) => {
         return (
           <div className="d-flex">
-            <Link to={``} className="dropdown-item">
-              <Edit size={15} />
-            </Link>
             <button className="dropdown-item">
-              <Trash size={15} />
+              <Edit onClick={() => handleEditProducto(row)} size={15} />
+            </button>
+            <button className="dropdown-item">
+              <Trash onClick={() => handleDeleteProducto(row)} size={15} />
             </button>
           </div>
         );
@@ -105,16 +159,70 @@ const Administracion = () => {
     },
   ];
 
+ 
+  const columnasComandas = [
+    {
+      name: "NUMERO",
+      selector: "numeroPedido",
+      sortable: true,
+      width: "10%",
+    },
+    {
+      name: "ESTADO",
+      selector: "estado",
+      sortable: true,
+      width: "20%"
+    },
+    {
+      name: "USUARIO",
+      selector: "nombreCliente",
+      sortable: true,
+      width: "25%",
+    },
+    {
+      name: "PRODUCTO",
+      selector: "producto",
+      sortable: true,
+      width: "30%",
+    },
+    {
+      name: "ACCIONES",
+      allowOverflow: true,
+      center: true,
+      width: "15%",
+      cell: (row) => {
+        return (
+          <div className="d-flex">
+            <button className="dropdown-item">
+              <Edit onClick={() => handleEditComanda(row)} size={15} />
+            </button>
+            <button className="dropdown-item">
+              <Trash onClick={() => handleDeleteComanda(row)} size={15} />
+            </button>
+          </div>
+        );
+      },
+    },
+  ];
+
+  //-------------------------------------------------------
+
   const columnasUsuarios = [
     {
       name: "NOMBRE USUARIO",
-      selector: "usuario",
+      selector: "nombre",
+      sortable: true,
+      width: "29%",
+    },
+    {
+      name: "EMAIL USUARIO",
+      selector: "email",
       sortable: true,
       width: "29%",
     },
     {
       name: "ROL",
-      selector: "role",
+      selector: "rol",
       sortable: true,
       width: "29%",
     },
@@ -126,11 +234,11 @@ const Administracion = () => {
       cell: (row) => {
         return (
           <div className="d-flex">
-            <Link to={``} className="dropdown-item">
-              <Edit size={15} />
-            </Link>
             <button className="dropdown-item">
-              <Trash size={15} />
+              <Edit onClick={() => handleEditUsuario(row)} size={15} />
+            </button>
+            <button className="dropdown-item">
+              <Trash onClick={() => handleDeleteUsuario(row)} size={15} />
             </button>
           </div>
         );
@@ -139,38 +247,71 @@ const Administracion = () => {
   ];
 
   return (
-    <div className="bg">
+    <div className="bg mt-5 pt-3">
       <div className="d-flex align-items-center">
         <h5 className="text-white p-4">PRODUCTOS</h5>
         <button
-          onClick={() => setToggleProducto(true)}
+          onClick={() => {
+            setProductEditar(null);
+            setToggleProducto(true);
+          }}
           className="btn btn-light"
         >
           +
         </button>
       </div>
       <div className="rounded mx-5">
-        <DataTable columns={columnasProductos} data={datosProducto} />
+        <DataTable columns={columnasProductos} data={products.datos} />
       </div>
+      <div className="d-flex align-items-center">
+        <h5 className="text-white p-4">COMANDAS</h5>
+        <button
+          onClick={() => {
+            setComandaEditar(null);
+            setToggleComandas(true);
+          }}
+          className="btn btn-light"
+        >
+          +
+        </button>
+      </div>
+      <div className="rounded mx-5">
+        <DataTable columns={columnasComandas} data={comanda.datos} />
+      </div>
+      
       <div className="d-flex align-items-center">
         <h5 className="text-white p-4">USUARIOS</h5>
         <button
-          onClick={() => setToggleUsuarios(true)}
+          onClick={() => {
+            setUsuarioEditar(null);
+            setToggleUsuarios(true);
+          }}
           className="btn btn-light"
         >
           +
         </button>
       </div>
       <div className="rounded mx-5">
-        <DataTable columns={columnasUsuarios} data={datosUsuario} />
+        <DataTable columns={columnasUsuarios} data={usuarios.datos} />
       </div>
 
       <ModalProductos
         show={toggleProducto}
+        token={token}
+        productEditar={productEditar}
+        setRender={() => setRender(!render)}
         onHide={() => setToggleProducto(false)}
+      />
+      <ModalComandas
+        show={toggleComanda}
+        comandaEditar={comandaEditar}
+        setRender={() => setRender(!render)}
+        onHide={() => setToggleComandas(false)}
       />
       <ModalUsuarios
         show={toggleUsuarios}
+        usuarioEditar={usuarioEditar}
+        setRender={() => setRender(!render)}
         onHide={() => setToggleUsuarios(false)}
       />
     </div>

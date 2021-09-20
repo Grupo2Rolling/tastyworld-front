@@ -4,7 +4,7 @@ import {getProductos } from "../helpers/productos";
 import CardContinente from "../components/CardContinente";
 import BotonPedido from "../components/BotonPedido";
 import CardMenu from "../components/CardMenu";
-import { useParams } from "react-router";
+import { useParams, useHistory } from "react-router";
 import { getContinentes } from "../helpers/continentes";
 
 const ComidasMundo = () => {
@@ -13,14 +13,14 @@ const ComidasMundo = () => {
   const [listaM, setListaM] = useState([]);
   const [listaContinentes, setListaContinentes] = useState([]);
   const [menus, setMenus] = useState([]);
-
+  const token = JSON.parse(localStorage.getItem("auth")) && JSON.parse(localStorage.getItem("auth")).token
   useEffect(() => {
-    getContinentes().then((respuesta) => {
+    getContinentes(token).then((respuesta) => {
       setListaContinentes(respuesta.continente);
       
     });
 
-    getProductos().then((respuesta) => {
+    getProductos(token).then((respuesta) => {
       let platos=respuesta.producto.filter((plato)=>{
           return  plato.tipo=="Plato"
       })
@@ -30,9 +30,16 @@ const ComidasMundo = () => {
     });
   }, []);
 
+  const history = useHistory();
+  const user = JSON.parse(localStorage.getItem('auth')) && JSON.parse(localStorage.getItem('auth')).usuario
+  useEffect(() => {
+    const redireccion = () => user || history.push('/login')
+    redireccion()
+  }, []);
+ 
   useEffect(() => {
     if (continente) {
-      let lista = listaM.filter((menu) => {
+      let lista = listaM && listaM.filter((menu) => {
         return menu.continente === continente;
       });
       setMenus(lista);

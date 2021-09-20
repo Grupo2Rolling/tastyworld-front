@@ -59,7 +59,7 @@ const CardMenu = ({ menus }) => {
         ))}
       </div>
     </>
-  );
-};
+  )
+}
 
-export default CardMenu;
+export default CardMenu
