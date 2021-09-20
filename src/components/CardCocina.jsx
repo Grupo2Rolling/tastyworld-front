@@ -11,8 +11,8 @@ import TimerComandas from "./TimerComandas"
 import { putComanda } from '../helpers/comandas';
 
 const token = JSON.parse(localStorage.getItem("auth")) && JSON.parse(localStorage.getItem("auth")).token
+
 const pedidoRealizado = (id) => {
-  
   let comanda = { estado: "Realizado" };
   putComanda(id, comanda, token)
 };
@@ -23,6 +23,7 @@ const pedidoAnulado = (id) => {
 };
 
 const CardCocina = ({ comandas }) => {
+  
   return (
     <Row xs={1} md={5} className="mt-5 g-2">
       {comandas && comandas.map((comanda) => (

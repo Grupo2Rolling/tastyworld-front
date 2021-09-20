@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Modal, Button, Form } from 'react-bootstrap'
-import { postComanda, putComanda } from '../helpers/comandas'
+import { postComandaAdmin, putComanda } from '../helpers/comandas'
 //import { postProducto, putProducto, } from "../helpers/productos";
 
 const token = JSON.parse(localStorage.getItem("auth")) && JSON.parse(localStorage.getItem("auth")).token
@@ -8,6 +8,7 @@ const token = JSON.parse(localStorage.getItem("auth")) && JSON.parse(localStorag
 const ModalComanda = (props) => {
   const [producto, setProducto] = useState('')
   const [prodId, setProdId] = useState('')
+  const [cantidad, setCantidad] = useState('')
   const [nombreCliente, setNombreCliente] = useState('')
   const [estado, setEstado] = useState('')
   const [tipo, setTipo] = useState('')
@@ -20,13 +21,15 @@ const ModalComanda = (props) => {
     const product = {
       producto,
       prodId,
-      nombreCliente,
-      estado,
+      cantidad,
       tipo,
+      nombreCliente,
       mesa,
+      estado,
       numeroPedido,
       descripcion,
     }
+    console.log(product)
     if (props.comandaEditar) {
       putComanda(props.comandaEditar._id, product, token).then((respuesta) => {
         if (respuesta.errors) {
@@ -39,7 +42,7 @@ const ModalComanda = (props) => {
         }
       })
     } else {
-      postComanda(product.prodId, product).then((respuesta) => {
+      postComandaAdmin(product, token).then((respuesta) => {
         if (respuesta.errors) {
           return window.alert(respuesta.errors[0].msg)
         }
@@ -56,13 +59,14 @@ const ModalComanda = (props) => {
     const obj = props.comandaEditar
     setProducto(obj ? obj.producto : '')
     setProdId(obj ? obj.prodId : '')
+    setCantidad(obj ? obj.cantidad : '')
+    setTipo(obj ? obj.tipo : '')
     setNombreCliente(obj ? obj.nombreCliente : '')
-    setEstado(obj ? obj.estado : '')
     setMesa(obj ? obj.mesa : '')
+    setEstado(obj ? obj.estado : '')
     setNumeroPedido(obj ? obj.numeroPedido : '')
     setDescripcion(obj ? obj.descripcion : '')
   }, [props.comandaEditar])
-
   
   const estados = [
     "Pendiente",
@@ -72,7 +76,6 @@ const ModalComanda = (props) => {
     "Anulado"
   ]
  
-
   const tipos = ['Plato', 'Bebida', 'Promo']
 
   return (
@@ -108,6 +111,15 @@ const ModalComanda = (props) => {
           </Form.Group>
 
           <Form.Group className="mb-3">
+            <Form.Label>Cantidad</Form.Label>
+            <Form.Control
+              value={cantidad}
+              onChange={(e) => setCantidad(e.target.value)}
+              type="number" min="1"
+            />
+          </Form.Group>
+
+          <Form.Group className="mb-3">
             <Form.Label>Tipo</Form.Label>
             <Form.Control
               value={tipo}
@@ -133,7 +145,7 @@ const ModalComanda = (props) => {
             <Form.Control
               value={mesa}
               onChange={(e) => setMesa(e.target.value)}
-              type="text"
+              type="number" min="1"
             />
           </Form.Group>
           <Form.Group className="mb-3">

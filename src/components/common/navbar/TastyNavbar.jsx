@@ -71,9 +71,9 @@ export const TastyNavbar = () => {
   return (
     <div className="navBG fixed-top">     
       <nav onBlur={() => setInterruptor(false)} className={`sidebar ${!interruptor && "cerrado"}`}>
-      <button onClick={() => setInterruptor(!interruptor)} class={`hamburger hamburger--slider ${interruptor ? 'is-active toggle' : 'toggle-cerrado'}`} type="button">
-        <span class="hamburger-box">
-          <span class="hamburger-inner"></span>
+      <button onClick={() => setInterruptor(!interruptor)} className={`hamburger hamburger--slider ${interruptor ? 'is-active toggle' : 'toggle-cerrado'}`} type="button">
+        <span className="hamburger-box">
+          <span className="hamburger-inner"></span>
         </span>
       </button> 
         <div className='py-3'>
