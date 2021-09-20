@@ -20,10 +20,10 @@ import Bebidas from '../pages/Bebidas.jsx';
 const RouterDos = () => {
   return (
     <Router>
-      <TastyNavbar />
+     
       <Switch>
         <Route exact path="/login" component={Login} />
-        <Route exact path="/registro" component={Registro} />
+        
         <Route exact path="/" component={Inicio} />
         <Route exact path="/ComidasMundo" component={ComidasMundo} />
         <Route
@@ -41,7 +41,7 @@ const RouterDos = () => {
         <Route exact path="/nosotros" component={Nosotros} />
         <Route exact path="/bebidas" component={Bebidas} />
       </Switch>
-      <TastyFooter />
+     
     </Router>
   );
 };

@@ -5,6 +5,7 @@ import RouterDos from "./routes/RouterDos";
 import ProtectedRoute from "./routes/ProtectedRoute";
 import  {TastyNavbar}  from "./components/common/navbar/TastyNavbar";
 import {TastyFooter} from "./components/common/footer/TastyFooter";
+import Registro from "./pages/Registro";
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
        <TastyNavbar />
       <Switch>
         <Route exact path="/login" component={Login} />
+        <Route exact path="/registro" component={Registro} />
         <ProtectedRoute path="/" component={RouterDos} />
       </Switch>
       <TastyFooter />
