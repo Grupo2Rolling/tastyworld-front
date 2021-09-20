@@ -74,9 +74,9 @@ const Administracion = () => {
   };
 
   useEffect(() => {
-    getComandas().then((respuesta) => {
+    getComandas(token).then((respuesta) => {
       let todas = respuesta.comanda;
-      let activas = todas.filter((comanda) => {
+      let activas = todas && todas.filter((comanda) => {
         return comanda.estado !== "Entregado" || "Anulado"
       });
       setComandas({

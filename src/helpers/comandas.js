@@ -1,4 +1,19 @@
 const url = 'https://tasty-world-backend.herokuapp.com/api/comandas'
+export const getComandas = async (token) => {
+  const resp = await fetch(`${url}`, {
+    method: 'GET',
+
+    headers: {
+      'Content-type': 'application/json; charset=UTF-8',
+      'x-token': token
+      //'x-token': "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2MTNlODNhMWQxNWI5ZGY5OTRhYjM3ODMiLCJpYXQiOjE2MzE4NDY0ODUsImV4cCI6MTYzMTg1MzY4NX0._ui1P1jpw-hCD5cfsy0AN8yth0hKIyZq_oA7B1wg_JU"
+      // en caso de no funcionar login, harcodear el token o agregar en el local storage del browser
+    },
+  })
+  const datos = await resp.json()
+  console.log(datos)
+  return datos
+}
 export const getComandasCocina = async (token) => {
   const resp = await fetch(`${url}/cocina`, {
     method: 'GET',

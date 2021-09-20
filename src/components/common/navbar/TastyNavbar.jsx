@@ -67,7 +67,7 @@ export const TastyNavbar = () => {
 
   return (
     <div className="navBG">
-      <nav className={`justify-content-between container navB`}>
+      {/* <nav className={`justify-content-between container navB`}>
         <div className="d-flex align-items-center">
           {render && links.map((link, index) => (
             <NavLink
@@ -81,17 +81,23 @@ export const TastyNavbar = () => {
             </NavLink>
           ))}
         </div>
-      </nav>
-      <nav className={`sidebar ${interruptor ? "" : "cerrado"}`}>
-        <button
+      </nav> */}
+     
+      <nav onBlur={() => setInterruptor(false)} className={`sidebar ${interruptor ? "" : "cerrado"}`}>
+        {/* <button
           onClick={() => setInterruptor(!interruptor)}
           className={`btn d-flex w-100 justify-content-end ${
             interruptor ? "toggle" : "toggle-cerrado"
           }`}
         >
           X
-        </button>
-        <div>
+        </button> */}
+      <button onClick={() => setInterruptor(!interruptor)} class={`hamburger hamburger--slider ${interruptor ? 'is-active toggle' : '  toggle-cerrado'}`} type="button">
+        <span class="hamburger-box">
+          <span class="hamburger-inner"></span>
+        </span>
+      </button> 
+        <div className='py-3'>
           {links.map((link, index) => (
             <NavLink
               key={index + 78789}
