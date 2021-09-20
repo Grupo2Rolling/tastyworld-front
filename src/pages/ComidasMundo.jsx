@@ -49,7 +49,7 @@ const ComidasMundo = () => {
 
   return (
     <>
-      <Container fluid className="inicioBackground min-height continentBackground">
+      <Container fluid className="inicioBackground min-height continentBackground pt-5 mt-5">
         <h2 className="mb-3 tituloPag text-center">CONTINENTES</h2>
        
         <Container fluid>

@@ -1,6 +1,6 @@
 import React from "react";
 
-const Error = () => {
+const Error404 = () => {
   return (
     <div className="body min-height d-flex justify-content-center align-items-center">
       <div className="container">
@@ -34,4 +34,4 @@ const Error = () => {
   );
 };
 
-export default Error;
+export default Error404;

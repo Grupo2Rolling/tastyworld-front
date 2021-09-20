@@ -32,13 +32,7 @@ export const TastyNavbar = () => {
       nombre: "Login",
       show: user ? false : true
     },
-
-    {
-      ruta:'/carrito',
-      nombre:'Carrito',
-      show: !user ? false : true,
-    },
-     { ruta: "/",
+    { ruta: "/",
       nombre: "Inicio",
       show: !user ? false : true,
     },
