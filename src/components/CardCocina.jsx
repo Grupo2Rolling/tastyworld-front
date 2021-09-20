@@ -23,9 +23,9 @@ const pedidoAnulado = (id) => {
 
 const CardCocina = ({ comandas }) => {
   return (
-    <Row xs={1} md={5} className="g-2">
+    <Row xs={1} md={5} className="mt-5 g-2">
       {comandas && comandas.map((comanda) => (
-        <Col className="mb-2">
+        <Col className="mt-4 mb-2">
           <Card key={comanda._id}>
             <Card.Body>
               <Card.Header>Pedido: {comanda.numeroPedido}</Card.Header>
@@ -40,13 +40,13 @@ const CardCocina = ({ comandas }) => {
                 <ListGroup.Item>Estado: {comanda.estado}</ListGroup.Item>
               </ListGroup>
             </Card.Body>
+            <TimerComandas />
             <Card.Footer>
               <ButtonToolbar
                 className="justify-content-center"
                 size="xl"
                 aria-label="Basic example"
               >
-              <TimerComandas />
                 <Button className="me-5" variant="danger" onClick={()=> pedidoAnulado(comanda._id)}>
                   Rechazar
                 </Button>

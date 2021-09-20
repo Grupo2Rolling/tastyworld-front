@@ -11,9 +11,9 @@ import TimerComandas from "./TimerComandas"
 
 const CardEntregas = ({ comandas }) => {
   return (
-    <Row xs={1} md={5} className="g-2">
+    <Row xs={1} md={5} className="mt-5 g-2">
       {comandas && comandas.map((comanda) => (
-        <Col key={comanda._id} className="mb-2">
+        <Col key={comanda._id} className="mt-4 mb-2">
           <Card>
             <Card.Body>
               <Card.Header>Pedido: {comanda.numeroPedido}</Card.Header>
