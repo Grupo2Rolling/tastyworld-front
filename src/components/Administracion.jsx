@@ -4,7 +4,7 @@ import { useHistory } from "react-router-dom";
 import { Edit, Trash } from "react-feather"; //ChevronDown, Plus, MoreVertical,
 //import { Modal, Button, Form } from "react-bootstrap";
 import { getProductos, deleteProducto } from "../helpers/productos";
-import { getComandas, putComanda, delComanda } from "../helpers/comandas";
+import { getComandas, delComanda } from "../helpers/comandas";
 import { usuariosGet, usuarioDelete } from "../helpers/usuarios";
 import ModalUsuarios from "./ModalUsuarios";
 import ModalProductos from "./ModalProductos";

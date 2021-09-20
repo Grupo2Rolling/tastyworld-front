@@ -1,18 +1,19 @@
 import React from 'react'
+//import React from 'react'
 import {
   Card,
   Row,
   Col,
   ListGroup,
-  Button,
-  ButtonToolbar,
 } from 'react-bootstrap'
+
+import TimerComandas from "./TimerComandas"
 
 const CardEntregas = ({ comandas }) => {
   return (
-    <Row xs={1} md={5} className="g-2">
+    <Row xs={1} md={5} className="mt-5 g-2">
       {comandas && comandas.map((comanda) => (
-        <Col key={comanda._id} className="mb-2">
+        <Col key={comanda._id} className="mt-4 mb-2">
           <Card>
             <Card.Body>
               <Card.Header>Pedido: {comanda.numeroPedido}</Card.Header>
@@ -26,21 +27,10 @@ const CardEntregas = ({ comandas }) => {
                 <ListGroup.Item>Mesa: {comanda.mesa}</ListGroup.Item>
                 <ListGroup.Item>Estado: {comanda.estado}</ListGroup.Item>
               </ListGroup>
+              <Card.Footer>
+                <TimerComandas />
+              </Card.Footer>
             </Card.Body>
-            <Card.Footer>
-              <ButtonToolbar
-                className="justify-content-center"
-                size="xl"
-                aria-label="Basic example"
-              >
-                <Button className="me-5" variant="danger">
-                  Rechazar
-                </Button>
-                <Button className="mi-5" variant="success">
-                  Finalizada
-                </Button>
-              </ButtonToolbar>
-            </Card.Footer>
           </Card>
         </Col>
       ))}
