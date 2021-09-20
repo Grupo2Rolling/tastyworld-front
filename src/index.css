@@ -329,7 +329,14 @@ overflow: hidden;
 .btnHome {
   background-color: var(--verdeOsc);
   color: white;
+  height: 45px;
 }
+
+.errorP{
+  font-weight: bold;
+  font-size: 20px;
+}
+
 
 /*------------------------ About us style ------------------------*/
 
