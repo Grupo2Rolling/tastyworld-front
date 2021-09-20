@@ -191,7 +191,7 @@ const ModalProductos = (props) => {
           </Form>
         </Modal.Body>
       </Modal>
-    );
- }
+    )
+};
 
-  export default ModalProductos;
+export default ModalProductos;

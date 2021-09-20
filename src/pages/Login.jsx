@@ -63,7 +63,7 @@ const Login = () => {
   return (
     <Container fluid className="login-bg min-height d-flex flex-column justify-content-center">
       <Form
-        className="col-8 col-lg-5 mx-auto login-card py-4"
+        className="col-8 col-lg-5 mx-auto login-card py-4 mt-4"
         onSubmit={handleSubmit}
       >
         <Form.Label className="iniciaSesion d-flex justify-content-center mt-2">

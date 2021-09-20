@@ -4,7 +4,6 @@ import { TastyNavbar } from "./components/common/navbar/TastyNavbar";
 import "bootstrap/dist/css/bootstrap.css";
 import { TastyFooter } from "./components/common/footer/TastyFooter";
 import Inicio from "./pages/Inicio";
-//import Menu from './pages/Menu'
 import Login from './pages/Login'
 import Cocina from './pages/Cocina'
 import Barra from './pages/Barra'
@@ -16,6 +15,7 @@ import Registro from './pages/Registro'
 import Mozo from "./pages/Mozo";
 import Error from "./pages/Error404";
 import Nosotros from "./pages/Nosotros";
+import Bebidas from './pages/Bebidas.jsx';
 
 const App = () => {
   return (
@@ -39,6 +39,7 @@ const App = () => {
         <Route exact path="/mozo" component={Mozo} />
         <Route exact path="/error" component={Error} />
         <Route exact path="/nosotros" component={Nosotros} />
+        <Route exact path="/bebidas" component={Bebidas} />
       </Switch>
       <TastyFooter />
     </Router>

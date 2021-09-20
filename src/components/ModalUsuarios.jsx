@@ -168,4 +168,4 @@ const ModalUsuarios = (props) => {
     );
  }
 
-  export default ModalUsuarios;
+export default ModalUsuarios;

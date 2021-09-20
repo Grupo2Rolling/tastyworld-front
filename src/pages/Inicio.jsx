@@ -1,8 +1,5 @@
-
 import React, { useState, useEffect } from "react";
-import { getMenus } from "../helpers/menus";
 import { useHistory } from "react-router";
-import {Container} from 'react-bootstrap'
 import  listaCategorias from "../helpers/listaCategorias"
 import CardCategoria from "../components/CardCategoria";
 import { Parallax } from 'react-parallax';
