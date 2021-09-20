@@ -1,9 +1,9 @@
 import React from "react";
 
-const Error = () => {
+const Error404 = () => {
   return (
     <div className="body min-height">
-      <div className="container">
+      <div className="container mt-5 pt-5">
         <div className="row">
           <div className="col mt-5 mb-1 iniciaSesion">
             <h1>ERROR 404!!</h1>
@@ -34,4 +34,4 @@ const Error = () => {
   );
 };
 
-export default Error;
+export default Error404;

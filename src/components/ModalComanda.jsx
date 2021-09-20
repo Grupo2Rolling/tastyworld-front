@@ -1,23 +1,26 @@
-import React, { useState, useEffect } from 'react'
-import { Modal, Button, Form } from 'react-bootstrap'
-import { postComandaAdmin, putComanda } from '../helpers/comandas'
+import React, { useState, useEffect } from "react";
+import { Modal, Button, Form } from "react-bootstrap";
+import { postComandaAdmin, putComanda } from "../helpers/comandas";
+import Swal from "sweetalert2";
 //import { postProducto, putProducto, } from "../helpers/productos";
 
-const token = JSON.parse(localStorage.getItem("auth")) && JSON.parse(localStorage.getItem("auth")).token
+const token =
+  JSON.parse(localStorage.getItem("auth")) &&
+  JSON.parse(localStorage.getItem("auth")).token;
 
 const ModalComanda = (props) => {
-  const [producto, setProducto] = useState('')
-  const [prodId, setProdId] = useState('')
-  const [cantidad, setCantidad] = useState('')
-  const [nombreCliente, setNombreCliente] = useState('')
-  const [estado, setEstado] = useState('')
-  const [tipo, setTipo] = useState('')
-  const [mesa, setMesa] = useState('')
-  const [numeroPedido, setNumeroPedido] = useState(0)
-  const [descripcion, setDescripcion] = useState('')
+  const [producto, setProducto] = useState("");
+  const [prodId, setProdId] = useState("");
+  const [cantidad, setCantidad] = useState("");
+  const [nombreCliente, setNombreCliente] = useState("");
+  const [estado, setEstado] = useState("");
+  const [tipo, setTipo] = useState("");
+  const [mesa, setMesa] = useState("");
+  const [numeroPedido, setNumeroPedido] = useState(0);
+  const [descripcion, setDescripcion] = useState("");
 
   const handleSubmit = (e) => {
-    e.preventDefault()
+    e.preventDefault();
     const product = {
       producto,
       prodId,
@@ -28,79 +31,75 @@ const ModalComanda = (props) => {
       estado,
       numeroPedido,
       descripcion,
-    }
-    console.log(product)
+    };
+    console.log(product);
     if (props.comandaEditar) {
       putComanda(props.comandaEditar._id, product, token).then((respuesta) => {
         if (respuesta.errors) {
-          return Swal.fire(
-            {
-              title: respuesta.errors[0].msg,
-              text: "Opps!",
-              icon: "error",
-              confirmButtonColor: "#3085d6",
-            });
+          return Swal.fire({
+            title: respuesta.errors[0].msg,
+            text: "Opps!",
+            icon: "error",
+            confirmButtonColor: "#3085d6",
+          });
         }
         if (respuesta.msg) {
-          props.onHide()
-          props.setRender()
-          Swal.fire(
-            {
-              title: respuesta.msg,
-              text: "Operacion exitosa",
-              icon: "success",
-              confirmButtonColor: "#3085d6",
-            });
+          props.onHide();
+          props.setRender();
+          Swal.fire({
+            title: respuesta.msg,
+            text: "Operacion exitosa",
+            icon: "success",
+            confirmButtonColor: "#3085d6",
+          });
         }
-      })
+      });
     } else {
       postComandaAdmin(product, token).then((respuesta) => {
         if (respuesta.errors) {
-          return Swal.fire(
-            {
-              title: respuesta.errors[0].msg,
-              text: "Opps!",
-              icon: "error",
-              confirmButtonColor: "#3085d6",
-            });
+          return Swal.fire({
+            title: respuesta.errors[0].msg,
+            text: "Opps!",
+            icon: "error",
+            confirmButtonColor: "#3085d6",
+          });
         }
         if (respuesta.msg) {
-          props.onHide()
-          props.setRender()
-          Swal.fire(
-            {
-              title: respuesta.msg,
-              text: "Operacion exitosa",
-              icon: "success",
-              confirmButtonColor: "#3085d6",
-            });
+          props.onHide();
+          props.setRender();
+          Swal.fire({
+            title: respuesta.msg,
+            text: "Operacion exitosa",
+            icon: "success",
+            confirmButtonColor: "#3085d6",
+          });
         }
-      })
+      });
     }
-  }
+  };
 
   useEffect(() => {
-    const obj = props.comandaEditar
-    setProducto(obj ? obj.producto : '')
-    setProdId(obj ? obj.prodId : '')
-    setCantidad(obj ? obj.cantidad : '')
-    setTipo(obj ? obj.tipo : '')
-    setNombreCliente(obj ? obj.nombreCliente : '')
-    setMesa(obj ? obj.mesa : '')
-    setEstado(obj ? obj.estado : '')
-    setNumeroPedido(obj ? obj.numeroPedido : '')
-    setDescripcion(obj ? obj.descripcion : '')
-  }, [props.comandaEditar])
-  
+    const obj = props.comandaEditar;
+    setProducto(obj ? obj.producto : "");
+    setProdId(obj ? obj.prodId : "");
+    setCantidad(obj ? obj.cantidad : "");
+    setTipo(obj ? obj.tipo : "");
+    setNombreCliente(obj ? obj.nombreCliente : "");
+    setMesa(obj ? obj.mesa : "");
+    setEstado(obj ? obj.estado : "");
+    setNumeroPedido(obj ? obj.numeroPedido : "");
+    setDescripcion(obj ? obj.descripcion : "");
+  }, [props.comandaEditar]);
+
   const estados = [
     "Pendiente",
     "En proceso",
     "Realizado",
     "Entregado",
-    "Anulado"
-  ]
- 
-  const tipos = ['Plato', 'Bebida', 'Promo']
+    "Anulado",
+  ];
+
+  const tipos = ["Plato", "Bebida", "Promo"];
 
   return (
     <Modal
@@ -115,7 +114,6 @@ const ModalComanda = (props) => {
       <Modal.Body>
         <h4>Agregar producto a la comanda</h4>
         <Form onSubmit={(e) => handleSubmit(e)}>
-          
           <Form.Group className="mb-3">
             <Form.Label>Nombre de producto</Form.Label>
             <Form.Control
@@ -139,7 +137,8 @@ const ModalComanda = (props) => {
             <Form.Control
               value={cantidad}
               onChange={(e) => setCantidad(e.target.value)}
-              type="number" min="1"
+              type="number"
+              min="1"
             />
           </Form.Group>
 
@@ -169,7 +168,8 @@ const ModalComanda = (props) => {
             <Form.Control
               value={mesa}
               onChange={(e) => setMesa(e.target.value)}
-              type="number" min="1"
+              type="number"
+              min="1"
             />
           </Form.Group>
           <Form.Group className="mb-3">
@@ -186,7 +186,7 @@ const ModalComanda = (props) => {
               value={estado}
               onChange={(e) => setEstado(e.target.value)}
               as="select"
-              >
+            >
               <option>Elige un estado</option>
               {estados.map((estado, index) => (
                 <option key={index + 12679}>{estado}</option>
@@ -203,12 +203,12 @@ const ModalComanda = (props) => {
           </Form.Group>
 
           <Button variant="primary" type="submit">
-            {props.comandaEditar ? 'Editar' : 'Agregar'}
+            {props.comandaEditar ? "Editar" : "Agregar"}
           </Button>
         </Form>
       </Modal.Body>
     </Modal>
-  )
-}
+  );
+};
 
-export default ModalComanda
+export default ModalComanda;

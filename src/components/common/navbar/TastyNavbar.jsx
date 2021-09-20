@@ -8,82 +8,107 @@ export const TastyNavbar = () => {
   const [render, setRender] = useState(true);
   const history = useHistory();
   const location = useLocation();
-  const user = JSON.parse(localStorage.getItem('auth')) && JSON.parse(localStorage.getItem('auth')).usuario
-  const handleLogOut= () => {
-    setRender(false)
-    localStorage.removeItem('auth')
-    history.push('/login')
-  }
+  const user =
+    JSON.parse(localStorage.getItem("auth")) &&
+    JSON.parse(localStorage.getItem("auth")).usuario;
+  const handleLogOut = () => {
+    setRender(false);
+    localStorage.removeItem("auth");
+    history.push("/login");
+  };
 
   useEffect(() => {
-    setRender(true)
-  }, [location.pathname])
-
+    setRender(true);
+  }, [location.pathname]);
 
   const links = [
     {
       ruta: "/login",
       nombre: "Cerrar sesión",
       show: !user ? false : true,
-      function: () => handleLogOut()
+      function: () => handleLogOut(),
     },
     {
       ruta: "/login",
       nombre: "Login",
-      show: user ? false : true
+      show: user ? false : true,
     },
 
     {
-      ruta:'/carrito',
-      nombre:'Carrito',
+      ruta: "/carrito",
+      nombre: "Carrito",
       show: !user ? false : true,
     },
-     { ruta: "/",
-      nombre: "Inicio",
-      show: !user ? false : true,
+    { ruta: "/", nombre: "Inicio", show: !user ? false : true },
+    {
+      ruta: "/cocina",
+      nombre: "Cocina",
+      show: !user
+        ? false
+        : user.rol === "ADMIN_ROLE" || user.rol === "CHEF_ROLE"
+        ? true
+        : false,
     },
     {
-      ruta:'/cocina',
-      nombre:'Cocina',
-      show: !user ? false : (user.rol === 'ADMIN_ROLE' || user.rol === 'CHEF_ROLE') ? true : false
+      ruta: "/barra",
+      nombre: "Barra",
+      show: !user
+        ? false
+        : user.rol === "ADMIN_ROLE" || user.rol === "WAITER_ROLE"
+        ? true
+        : false,
     },
     {
-      ruta:'/barra',
-      nombre:'Barra',
-      show: !user ? false : (user.rol === 'ADMIN_ROLE' || user.rol === 'WAITER_ROLE') ? true : false
-    },    {
       ruta: "/mozo",
       nombre: "Mozo",
-      show: !user ? false : (user.rol === 'ADMIN_ROLE' || user.rol === 'WAITER_ROLE') ? true : false
+      show: !user
+        ? false
+        : user.rol === "ADMIN_ROLE" || user.rol === "WAITER_ROLE"
+        ? true
+        : false,
     },
     {
-      ruta:'/entregas',
-      nombre: 'Entregas',
-      show: !user ? false : (user.rol === 'ADMIN_ROLE' || user.rol === 'WAITER_ROLE') ? true : false
+      ruta: "/entregas",
+      nombre: "Entregas",
+      show: !user
+        ? false
+        : user.rol === "ADMIN_ROLE" || user.rol === "WAITER_ROLE"
+        ? true
+        : false,
     },
     {
-      ruta:'/administracion',
-      nombre:'Administración',
-      show: !user ? false : (user.rol === 'ADMIN_ROLE') ? true : false
-    }
-  ]
+      ruta: "/administracion",
+      nombre: "Administración",
+      show: !user ? false : user.rol === "ADMIN_ROLE" ? true : false,
+    },
+    { ruta: "/nosotros", nombre: "Sobre Nosotros", show: !user ? false : true },
+  ];
 
   return (
-    <div className="navBG fixed-top">     
-      <nav onBlur={() => setInterruptor(false)} className={`sidebar ${!interruptor && "cerrado"}`}>
-      <button onClick={() => setInterruptor(!interruptor)} className={`hamburger hamburger--slider ${interruptor ? 'is-active toggle' : 'toggle-cerrado'}`} type="button">
-        <span className="hamburger-box">
-          <span className="hamburger-inner"></span>
-        </span>
-      </button> 
-        <div className='py-3'>
+    <div className="navBG fixed-top">
+      <nav
+        onBlur={() => setInterruptor(false)}
+        className={`sidebar ${!interruptor && "cerrado"}`}
+      >
+        <button
+          onClick={() => setInterruptor(!interruptor)}
+          className={`hamburger hamburger--slider ${
+            interruptor ? "is-active toggle" : "toggle-cerrado"
+          }`}
+          type="button"
+        >
+          <span className="hamburger-box">
+            <span className="hamburger-inner"></span>
+          </span>
+        </button>
+        <div className="py-3">
           {links.map((link, index) => (
             <NavLink
               key={index + 78789}
               exact
               to={link.ruta}
               onClick={link.function && link.function}
-              className={`nav-link link ${!link.show && 'd-none'}`}
+              className={`nav-link link ${!link.show && "d-none"}`}
             >
               {link.nombre}
             </NavLink>
