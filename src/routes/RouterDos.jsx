@@ -4,26 +4,24 @@ import { TastyNavbar } from "../components/common/navbar/TastyNavbar";
 import "bootstrap/dist/css/bootstrap.css";
 import { TastyFooter } from "../components/common/footer/TastyFooter";
 import Inicio from "../pages/Inicio";
-import Login from '../pages/Login'
-import Cocina from '../pages/Cocina'
-import Barra from '../pages/Barra'
-import Entregas from '../pages/Entregas'
-import ComidasMundo from '../pages/ComidasMundo'
-import Carrito from '../pages/Carrito'
-import Administracion from '../components/Administracion'
-import Registro from '../pages/Registro'
+import Login from "../pages/Login";
+import Cocina from "../pages/Cocina";
+import Barra from "../pages/Barra";
+import Entregas from "../pages/Entregas";
+import ComidasMundo from "../pages/ComidasMundo";
+import Carrito from "../pages/Carrito";
+import Administracion from "../components/Administracion";
 import Mozo from "../pages/Mozo";
 import Error404 from "../pages/Error404";
 import Nosotros from "../pages/Nosotros";
-import Bebidas from '../pages/Bebidas.jsx';
+import Bebidas from "../pages/Bebidas.jsx";
 
 const RouterDos = () => {
   return (
     <Router>
-       <TastyNavbar />
+      <TastyNavbar />
       <Switch>
         <Route exact path="/login" component={Login} />
-        
         <Route exact path="/" component={Inicio} />
         <Route exact path="/ComidasMundo" component={ComidasMundo} />
         <Route
@@ -37,11 +35,8 @@ const RouterDos = () => {
         <Route exact path="/barra" component={Barra} />
         <Route exact path="/Entregas" component={Entregas} />
         <Route exact path="/mozo" component={Mozo} />
-        
-      
         <Route exact path="/bebidas" component={Bebidas} />
       </Switch>
-     
     </Router>
   );
 };

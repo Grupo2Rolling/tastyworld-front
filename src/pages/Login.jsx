@@ -13,7 +13,9 @@ const Login = () => {
   const [btnDisable, setBtnDisable] = useState(false);
   const [login, setLogin] = useState({});
 
-  const user = JSON.parse(localStorage.getItem('auth')) && JSON.parse(localStorage.getItem('auth')).usuario
+  const user =
+    JSON.parse(localStorage.getItem("auth")) &&
+    JSON.parse(localStorage.getItem("auth")).usuario;
 
   // useEffect(() => {
   //   if (login.token) {
@@ -23,9 +25,17 @@ const Login = () => {
   // }, [login, history]);
 
   useEffect(() => {
-    const ruta = user && ((user.rol === 'ADMIN_ROLE' ) ? '/administracion' : (user.rol === 'CHEF_ROLE') ? '/cocina' : (user.rol === 'WAITER_ROLE') ? '/mozo' : '/')
-    const redireccion = () => user && history.push(ruta)
-    redireccion()
+    const ruta =
+      user &&
+      (user.rol === "ADMIN_ROLE"
+        ? "/administracion"
+        : user.rol === "CHEF_ROLE"
+        ? "/cocina"
+        : user.rol === "WAITER_ROLE"
+        ? "/mozo"
+        : "/");
+    const redireccion = () => user && history.push(ruta);
+    redireccion();
   }, [formValue]);
 
   useEffect(() => {
@@ -48,7 +58,7 @@ const Login = () => {
       setBtnDisable(true);
       if (isMounted.current) {
         postAuth(formValue).then((respuesta) => {
-          console.log(respuesta)
+          console.log(respuesta);
           localStorage.setItem("auth", JSON.stringify(respuesta));
           setBtnDisable(false);
           setFormValue({
@@ -61,7 +71,10 @@ const Login = () => {
   };
 
   return (
-    <Container fluid className="login-bg min-height d-flex flex-column justify-content-center">
+    <Container
+      fluid
+      className="login-bg min-height d-flex flex-column justify-content-center"
+    >
       <Form
         className="col-8 col-lg-5 mx-auto login-card py-4 mt-4"
         onSubmit={handleSubmit}

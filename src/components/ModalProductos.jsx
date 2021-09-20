@@ -38,12 +38,24 @@ const ModalProductos = (props) => {
       if (props.productEditar){
         putProducto(props.productEditar._id, producto, props.token).then((respuesta) => {
           if (respuesta.errors) {
-            return window.alert(respuesta.errors[0].msg);
+            return Swal.fire(
+              {
+                title: respuesta.errors[0].msg,
+                text: "Opps!",
+                icon: "error",
+                confirmButtonColor: "#3085d6",
+              });
           }
           if (respuesta.msg) {
               props.onHide()
               props.setRender()
-              window.alert(respuesta.msg);
+              Swal.fire(
+                {
+                  title: respuesta.msg,
+                  text: "Operacion exitosa",
+                  icon: "success",
+                  confirmButtonColor: "#3085d6",
+                });
             }
           })
         } else {

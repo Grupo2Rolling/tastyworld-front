@@ -2,12 +2,12 @@ import React from "react";
 
 const Nosotros = () => {
   return (
-    <body className="body container-fluid">
+    <body className="body container-fluid min-height mt-5 pt-5">
       <div className="container">
         <div className="row">
           <div className="col-12 col-md-8 offset-md-2 my-4">
             <h1 className="iniciaSesion2">Conoce nuestra trayectoria</h1>
-            <hr className="about-hr my-4" />
+
             <h3 className="mb-3 iniciaSesion2">Nosotros</h3>
             <h5 className="font-weight-bold">
               Tasty World surge de nuestro fanatismo por los viajes y la
@@ -18,7 +18,7 @@ const Nosotros = () => {
             </h5>
           </div>
         </div>
-        <hr className="about-hr" />
+        <hr className="about" />
         <div className="row">
           <div className="col-12 col-md-8 offset-md-2">
             <h1 className="iniciaSesion2">Nuestro compromiso</h1>
@@ -32,7 +32,7 @@ const Nosotros = () => {
             </h5>
           </div>
         </div>
-        <hr className="about-hr" />
+        <hr className="about" />
         <section className="row font-weight-bold text-center">
           <div className="col">
             <img
