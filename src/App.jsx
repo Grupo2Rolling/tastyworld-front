@@ -15,6 +15,7 @@ import Registro from './pages/Registro'
 import Mozo from "./pages/Mozo";
 import Error from "./pages/Error404";
 import Nosotros from "./pages/Nosotros";
+import Bebidas from './pages/Bebidas.jsx';
 
 const App = () => {
   return (
