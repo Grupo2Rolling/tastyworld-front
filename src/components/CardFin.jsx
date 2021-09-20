@@ -76,7 +76,7 @@ const CardFin = ({pedidos}) => {
             </Form>
             <Card.Link href="Menu">Seguir comprando</Card.Link>
 
-            <Dropdown>
+            {/* <Dropdown>
               <Dropdown.Toggle variant="success" id="dropdown-basic">
                 Cantidad
               </Dropdown.Toggle>
@@ -88,7 +88,7 @@ const CardFin = ({pedidos}) => {
                 <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
                 <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
               </Dropdown.Menu>
-            </Dropdown>
+            </Dropdown> */}
             {/* <ListGroup variant="flush">
            <ListGroup.Item>TOTAL: calcularTotal() </ListGroup.Item>
            </ListGroup> */}
