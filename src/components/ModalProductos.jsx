@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 
 // import { ChevronDown, Plus, MoreVertical, Edit, Trash } from "react-feather";
 import { Modal, Button, Form } from "react-bootstrap";
-
+import DataTable from 'react-data-table-component';
 import Swal from "sweetalert2";
 import { postProducto, putProducto, } from "../helpers/productos";
 //getProducto, deleteProducto, getProductos 
@@ -196,7 +196,6 @@ const ModalProductos = (props) => {
                 type="number"
               />
             </Form.Group>
-    
             <Button variant="primary" type="submit" >
               {props.productEditar ? 'Editar' : 'Agregar'}
             </Button>

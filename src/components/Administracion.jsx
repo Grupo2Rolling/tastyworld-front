@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import DataTable from "react-data-table-component"; //, { createTheme }
 import { useHistory } from "react-router-dom";
 import { Edit, Trash } from "react-feather"; //ChevronDown, Plus, MoreVertical,
 //import { Modal, Button, Form } from "react-bootstrap";
@@ -260,7 +259,7 @@ const Administracion = () => {
           +
         </button>
       </div>
-      <div className="rounded mx-5">
+      <div className="rounded mx-5 scrollAdmin">
         <DataTable columns={columnasProductos} data={products.datos} />
       </div>
       <div className="d-flex align-items-center">
@@ -275,7 +274,7 @@ const Administracion = () => {
           +
         </button>
       </div>
-      <div className="rounded mx-5">
+      <div className="rounded mx-5 scrollAdmin">
         <DataTable columns={columnasComandas} data={comanda.datos} />
       </div>
       
@@ -291,7 +290,7 @@ const Administracion = () => {
           +
         </button>
       </div>
-      <div className="rounded mx-5">
+      <div className="rounded mx-5 scrollAdmin">
         <DataTable columns={columnasUsuarios} data={usuarios.datos} />
       </div>
 
