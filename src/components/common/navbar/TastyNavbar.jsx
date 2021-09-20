@@ -34,14 +34,13 @@ export const TastyNavbar = () => {
     },
 
     {
-<<<<<<< HEAD
       ruta:'/carrito',
-      nombre:'Carrito'
-=======
-      ruta: "/",
+      nombre:'Carrito',
+      show: !user ? false : true,
+    },
+     { ruta: "/",
       nombre: "Inicio",
       show: !user ? false : true,
->>>>>>> 4f0f9083ad1ba17a4f6bd648452f364429af74f4
     },
     {
       ruta:'/cocina',

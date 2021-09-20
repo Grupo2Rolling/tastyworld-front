@@ -37,7 +37,7 @@ const ModalComanda = (props) => {
         }
       })
     } else {
-      postComanda(product).then((respuesta) => {
+      postComanda(product.prodId, product).then((respuesta) => {
         if (respuesta.errors) {
           return window.alert(respuesta.errors[0].msg)
         }
