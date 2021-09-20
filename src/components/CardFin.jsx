@@ -1,18 +1,21 @@
 import React, { useEffect, useState } from "react";
 import { mesasTodasGet, mesasPut } from "../helpers/mesas";
-// import BtnSumarRestar from "./BtnSumarRestar";
 import { Form, Card, Dropdown, Container, Button } from "react-bootstrap";
-import { postComanda } from "../helpers/comandas";
+import { postComandaAdmin } from "../helpers/comandas";
+
+const token =
+  JSON.parse(localStorage.getItem("auth")) &&
+  JSON.parse(localStorage.getItem("auth")).token;
 
 const CardFin = ({ pedidos, eco, setEco }) => {
   const usuario = JSON.parse(localStorage.getItem("auth")).usuario;
   // const [descripcion, setDescripcion] = useState("");
- 
+
   // const [mesa, setMesa] = useState([]);
 
   useEffect(() => {
     setEco(true);
-    
+
     setEco(false);
   }, []);
 
@@ -20,39 +23,41 @@ const CardFin = ({ pedidos, eco, setEco }) => {
     return Math.floor(Math.random() * (max - min + 1) + min);
   };
 
- 
   const ocuparMesa = (id) => {
     let mesita = { estado: false };
     mesasPut(id, mesita);
     console.log(id);
   };
-//  const agregarDescripcion=(id)=>{
-//   pedidos.map((prod)=>{
-//     if (prod.id==id){
-//         prod.descripcion=descripcion
-// }})
-//  }
+  //  const agregarDescripcion=(id)=>{
+  //   pedidos.map((prod)=>{
+  //     if (prod.id==id){
+  //         prod.descripcion=descripcion
+  // }})
+  //  }
   const confirmarPedido = () => {
+    pedidos.map((pedido) => {
+      let product = {
+        producto: pedido.nombre,
+        prodId: pedido.id,
+        cantidad: 1,
+        tipo: pedido.tipo,
+        nombreCliente: usuario.nombre,
+        mesa: "1",
+        estado: "Pendiente",
+        numeroPedido: getRandomNumberBetween(1, 100000),
+        descripcion: pedido.descripcion,
+      };
+      console.log(product);
+      postComandaAdmin(product,token).then((respuesta) => {
+        console.log(respuesta.msg);
+        if (respuesta.errors) {
+          return window.alert(respuesta.errors[0].msg);
+        }
+      });
+    });
     
-    pedidos.map((pedido)=>{
-    let product = {
-      producto:pedido.nombre,
-      cantidad:1,
-      tipo:pedido.tipo,
-      cliente:usuario.uid,
-      nombreCliente:usuario.nombre,
-      mesa:"1",
-      estado:"Pendiente",
-      descripcion: pedido.descripcion
-    }
-    console.log(product);
-    postComanda(product).then((respuesta) => {
-      console.log(respuesta.msg);
-      if (respuesta.errors) {
-        return window.alert(respuesta.errors[0].msg)
-      }
+  };
 
-  })})}
 
   // const [comanda, setComanda] = useState({
   //   producto: "",
@@ -64,7 +69,6 @@ const CardFin = ({ pedidos, eco, setEco }) => {
   //   estado: "Pendiente",
   //   descripcion,
   // });
-  
 
   // const confirmarPed = (id) => {
   //  ocuparMesa(id)
@@ -82,7 +86,6 @@ const CardFin = ({ pedidos, eco, setEco }) => {
 
   //  })
   //   postComanda(comanda)
-
 
   // };
 
@@ -122,11 +125,13 @@ const CardFin = ({ pedidos, eco, setEco }) => {
   return (
     <Container>
       {pedidos.map((pedido) => (
-        <Card style={{ width: "50rem" }} key={getRandomNumberBetween(1, 1000000)} className="col-10 col-md-8 col-lg-5 mb-3 login-card cardcarrito">
+        <Card
+          style={{ width: "50rem" }}
+          key={getRandomNumberBetween(1, 1000000)}
+          className="col-10 col-md-8 col-lg-5 mb-3 login-card cardcarrito"
+        >
           <Card.Body>
-            <Card.Title className="mb-2 ">
-              {pedido.nombre}
-            </Card.Title>
+            <Card.Title className="mb-2 ">{pedido.nombre}</Card.Title>
             <Card.Text>$ {pedido.precio}</Card.Text>
             <Form>
               <Form.Control
@@ -141,7 +146,11 @@ const CardFin = ({ pedidos, eco, setEco }) => {
         </Card>
       ))}
 
-      <Button className="mb-4 pull-right" variant="light" onClick={()=>confirmarPedido()} >
+      <Button
+        className="mb-4 pull-right"
+        variant="light"
+        onClick={() => confirmarPedido()}
+      >
         CONFIRMAR PEDIDO
       </Button>
     </Container>

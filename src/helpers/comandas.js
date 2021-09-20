@@ -49,14 +49,13 @@ export const getComandasEntregas = async () => {
   return datos
 }
 
-
-export const postComanda = async (data) => {
-  const resp = await fetch(`${url}`, {
+export const postComandaAdmin = async (data, token) => {
+  const resp = await fetch(`${url}/admin`, {
     method: 'POST',
     body: JSON.stringify(data),
     headers: {
       'Content-type': 'application/json; charset=UTF-8',
-      'x-token': JSON.parse(localStorage.getItem('auth')).token,
+      'x-token': token
     },
   })
   const datos = await resp.json()
