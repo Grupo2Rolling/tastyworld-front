@@ -38,7 +38,7 @@ const Carrito = () => {
   // }, [])
 
   return (
-    <div>
+    <div className="min-height">
       <h1>TU TASTY PEDIDO:</h1>
       <CardFin pedidos={pedidos} />
     </div>

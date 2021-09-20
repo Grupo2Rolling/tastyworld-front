@@ -58,7 +58,7 @@ const CardFin = ({pedidos}) => {
   
   return (
     <Container>
-      {pedidos.map((pedido) => (
+      {pedidos && pedidos.map((pedido) => (
         <Card style={{ width: "50rem" }} key={pedido._id}>
           <Card.Body>
             <Card.Subtitle className="mb-2 text-muted">

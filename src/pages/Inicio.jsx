@@ -21,7 +21,7 @@ const Inicio = () => {
   return (
     <>
 
-     <Parallax className='inicioBackground min-height d-flex flex-column justify-content-center' bgImage={Imagen2} strength={500}>
+     <Parallax className='inicioBackground min-height d-flex justify-content-center' bgImage={Imagen2} strength={500}>
      
         
           <div>

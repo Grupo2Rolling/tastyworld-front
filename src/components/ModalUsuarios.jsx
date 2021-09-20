@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 
 // import { ChevronDown, Plus, MoreVertical, Edit, Trash } from "react-feather";
 import { Modal, Button, Form } from "react-bootstrap";
-
+import Swal from "sweetalert2";
 import { usuarioPost, usuarioGet, usuarioPut, usuarioDelete, usuariosGet } from "../helpers/usuarios";
 
 
@@ -29,23 +29,47 @@ const ModalUsuarios = (props) => {
       if (props.usuarioEditar){
         usuarioPut(props.usuarioEditar.uid, usuario).then((respuesta) => {
           if (respuesta.errors) {
-            return window.alert(respuesta.errors[0].msg);
+            return Swal.fire(
+              {
+                title: respuesta.errors[0].msg,
+                text: "Opps!",
+                icon: "error",
+                confirmButtonColor: "#3085d6",
+              });
           }
           if (respuesta.msg) {
               props.onHide()
               props.setRender()
-              window.alert(respuesta.msg);
+              Swal.fire(
+                {
+                  title: respuesta.msg,
+                  text: "Operacion exitosa",
+                  icon: "success",
+                  confirmButtonColor: "#3085d6",
+                });
             }
           })
         } else {
           usuarioPost(usuario).then((respuesta) => {
             if (respuesta.errors) {
-              return window.alert(respuesta.errors[0].msg);
+              return Swal.fire(
+                {
+                  title: respuesta.errors[0].msg,
+                  text: "Opps!",
+                  icon: "error",
+                  confirmButtonColor: "#3085d6",
+                });
             }
             if (respuesta.msg) {
               props.onHide()
               props.setRender()
-              window.alert(respuesta.msg);
+              Swal.fire(
+                {
+                  title: respuesta.msg,
+                  text: "Operacion exitosa",
+                  icon: "success",
+                  confirmButtonColor: "#3085d6",
+                });
           }
         })
       }

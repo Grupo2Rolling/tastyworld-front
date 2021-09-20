@@ -41,6 +41,7 @@ export const getComandasBarra = async (token) => {
     },
   })
   const datos = await resp.json()
+  console.log(datos)
   return datos
 }
 
