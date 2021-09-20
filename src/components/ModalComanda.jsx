@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Modal, Button, Form } from 'react-bootstrap'
 import { postComanda, putComanda } from '../helpers/comandas'
+import Swal from "sweetalert2";
 //import { postProducto, putProducto, } from "../helpers/productos";
 
 const token = JSON.parse(localStorage.getItem("auth")) && JSON.parse(localStorage.getItem("auth")).token
@@ -30,23 +31,47 @@ const ModalComanda = (props) => {
     if (props.comandaEditar) {
       putComanda(props.comandaEditar._id, product, token).then((respuesta) => {
         if (respuesta.errors) {
-          return window.alert(respuesta.errors[0].msg)
+          return Swal.fire(
+            {
+              title: respuesta.errors[0].msg,
+              text: "Opps!",
+              icon: "error",
+              confirmButtonColor: "#3085d6",
+            });
         }
         if (respuesta.msg) {
           props.onHide()
           props.setRender()
-          window.alert(respuesta.msg)
+          Swal.fire(
+            {
+              title: respuesta.msg,
+              text: "Operacion exitosa",
+              icon: "success",
+              confirmButtonColor: "#3085d6",
+            });
         }
       })
     } else {
       postComanda(product.prodId, product).then((respuesta) => {
         if (respuesta.errors) {
-          return window.alert(respuesta.errors[0].msg)
+          return Swal.fire(
+            {
+              title: respuesta.errors[0].msg,
+              text: "Opps!",
+              icon: "error",
+              confirmButtonColor: "#3085d6",
+            });
         }
         if (respuesta.msg) {
           props.onHide()
           props.setRender()
-          window.alert(respuesta.msg)
+          Swal.fire(
+            {
+              title: respuesta.msg,
+              text: "Operacion exitosa",
+              icon: "success",
+              confirmButtonColor: "#3085d6",
+            });
         }
       })
     }
