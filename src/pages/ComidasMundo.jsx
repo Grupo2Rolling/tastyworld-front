@@ -43,7 +43,7 @@ const ComidasMundo = () => {
         return menu.continente === continente;
       });
       setMenus(lista);
-      console.log(menus);
+     
     }
   }, [continente]);
 

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import {Form, Container, Button} from 'react-bootstrap'
 
 import { usuarioPost } from '../helpers/usuarios'
@@ -9,7 +9,7 @@ const Registro = () => {
   const [password, setPassword] = useState('')
   const [password2, setPassword2] = useState('')
   const [img, setImg] = useState('')
-  // const [rol, setRol] = useState('')
+ 
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -26,21 +26,13 @@ const Registro = () => {
         return window.alert(respuesta.errors[0].msg)
       }
       if (respuesta.msg) {
-        // props.onHide()
-        // props.setRender()
+       
         window.alert(respuesta.msg)
       }
     })
   }
 
-  // useEffect(() => {
-  //   setNombre(obj ? obj.nombre : '')
-  //   setEmail(obj ? obj.email : '')
-  //   setPassword1(obj ? obj.password1 : '')
-  //   setPassword2(obj ? obj.password2 : '')
-  //   setImg(obj ? obj.img : '')
-  //   setRol(obj ? obj.rol : '')
-  // }, [props.usuarioEditar])
+ 
 
   return (
     <Container fluid className="login-bg py-4 min-height">
@@ -57,6 +49,7 @@ const Registro = () => {
           value={nombre}
           onChange={(e) => setNombre(e.target.value)}
           type="text"
+          maxLength={100}
         />
 
         <Form.Group className="mb-3 mt-3" controlId="formBasicEmail">
@@ -66,6 +59,7 @@ const Registro = () => {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             autoComplete="email"
+            maxLength={100}
           />
         </Form.Group>
 
@@ -78,6 +72,7 @@ const Registro = () => {
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            maxLength={100}
           />
         </Form.Group>
 
@@ -90,6 +85,7 @@ const Registro = () => {
             type="password"
             value={password2}
             onChange={(e) => setPassword2(e.target.value)}
+            maxLength={100}
           />
         </Form.Group>
 
@@ -100,6 +96,7 @@ const Registro = () => {
             type="text"
             value={img}
             onChange={(e) => setImg(e.target.value)}
+            maxLength={100}
           />
         </Form.Group>
 

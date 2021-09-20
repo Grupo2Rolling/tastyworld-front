@@ -1,5 +1,5 @@
 const url = 'https://tasty-world-backend.herokuapp.com/api/comandas'
-//const url = 'https://localhost:8080/api/comandas'
+
 
 export const getComandas = async (token) => {
   const resp = await fetch(`${url}`, {
@@ -8,8 +8,7 @@ export const getComandas = async (token) => {
     headers: {
       'Content-type': 'application/json; charset=UTF-8',
       'x-token': token
-      //'x-token': "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2MTNlODNhMWQxNWI5ZGY5OTRhYjM3ODMiLCJpYXQiOjE2MzE4NDY0ODUsImV4cCI6MTYzMTg1MzY4NX0._ui1P1jpw-hCD5cfsy0AN8yth0hKIyZq_oA7B1wg_JU"
-      // en caso de no funcionar login, harcodear el token o agregar en el local storage del browser
+  
     },
   })
   const datos = await resp.json()
@@ -22,9 +21,7 @@ export const getComandasCocina = async () => {
     headers: {
       'Content-type': 'application/json; charset=UTF-8',
       'x-token': JSON.parse(localStorage.getItem('auth')).token,
-      //'x-token': token
-      //'x-token': "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2MTNlODNhMWQxNWI5ZGY5OTRhYjM3ODMiLCJpYXQiOjE2MzE4NDY0ODUsImV4cCI6MTYzMTg1MzY4NX0._ui1P1jpw-hCD5cfsy0AN8yth0hKIyZq_oA7B1wg_JU"
-      // en caso de no funcionar login, harcodear el token o agregar en el local storage del browser
+
     },
   })
   const datos = await resp.json()
@@ -38,8 +35,7 @@ export const getComandasBarra = async (token) => {
     headers: {
       'Content-type': 'application/json; charset=UTF-8',
       'x-token': token
-      //'x-token': "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2MTNlODNhMWQxNWI5ZGY5OTRhYjM3ODMiLCJpYXQiOjE2MzE4NDY0ODUsImV4cCI6MTYzMTg1MzY4NX0._ui1P1jpw-hCD5cfsy0AN8yth0hKIyZq_oA7B1wg_JU"
-      // en caso de no funcionar login, harcodear el token o agregar en el local storage del browser
+      
     },
   })
   const datos = await resp.json()
@@ -54,8 +50,7 @@ export const getComandasEntregas = async (token) => {
     headers: {
       'Content-type': 'application/json; charset=UTF-8',
       'x-token': token
-      //'x-token': "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2MTNlODNhMWQxNWI5ZGY5OTRhYjM3ODMiLCJpYXQiOjE2MzE4NDY0ODUsImV4cCI6MTYzMTg1MzY4NX0._ui1P1jpw-hCD5cfsy0AN8yth0hKIyZq_oA7B1wg_JU"
-      // en caso de no funcionar login, harcodear el token o agregar en el local storage del browser
+     
     },
   })
   const datos = await resp.json()

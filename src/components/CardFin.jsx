@@ -23,17 +23,7 @@ const CardFin = ({ pedidos, setEco }) => {
     return Math.floor(Math.random() * (max - min + 1) + min);
   };
 
-  // const ocuparMesa = (id) => {
-  //   let mesita = { estado: false };
-  //   mesasPut(id, mesita);
-  //   console.log(id);
-  // };
-  //  const agregarDescripcion=(id)=>{
-  //   pedidos.map((prod)=>{
-  //     if (prod.id==id){
-  //         prod.descripcion=descripcion
-  // }})
-  //  }
+  
   const confirmarPedido = () => {
     pedidos.map((pedido) => {
       let product = {
@@ -47,9 +37,8 @@ const CardFin = ({ pedidos, setEco }) => {
         numeroPedido: getRandomNumberBetween(1, 100000),
         descripcion: pedido.descripcion,
       };
-      console.log(product);
       postComandaAdmin(product,token).then((respuesta) => {
-        console.log(respuesta.msg);
+        
         if (respuesta.errors) {
           return window.alert(respuesta.errors[0].msg);
         }else{

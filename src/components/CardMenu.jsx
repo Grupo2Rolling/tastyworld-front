@@ -5,7 +5,7 @@ let lista = [];
 const CardMenu = ({ menus }) => {
   const agregarACarrito = (id) => {
     lista.push(id);
-    console.log(lista);
+    
     localStorage.setItem("carrito", JSON.stringify(lista));
     Swal.fire(
       {

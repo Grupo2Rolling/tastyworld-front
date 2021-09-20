@@ -58,7 +58,7 @@ const Login = () => {
       setBtnDisable(true);
       if (isMounted.current) {
         postAuth(formValue).then((respuesta) => {
-          console.log(respuesta);
+          
           localStorage.setItem("auth", JSON.stringify(respuesta));
           setBtnDisable(false);
           setFormValue({
@@ -90,6 +90,7 @@ const Login = () => {
             name="email"
             value={formValue.email}
             onChange={handleChange}
+            maxLength={150}
           />
         </Form.Group>
         <Form.Group
@@ -103,6 +104,7 @@ const Login = () => {
             name="password"
             value={formValue.password}
             onChange={handleChange}
+            maxLength={150}
           />
         </Form.Group>
 

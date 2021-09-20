@@ -8,11 +8,10 @@ const TablaPedidos = ({ pedidos, setEco }) => {
   const cambiarComanda = (id) => {
     let comanda = { estado: "Entregado" };
     putComanda(id, comanda, token).then((respuesta) => {
-      console.log("Pedido entregado");
+     
       setEco(true);
       setEco(false);
-      console.log(respuesta);
-      console.log(id);
+      
     });
   };
 

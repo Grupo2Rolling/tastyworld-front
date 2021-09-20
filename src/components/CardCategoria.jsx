@@ -10,7 +10,7 @@ const CardCategoria = ({ lista }) => {
           <Link  style={{ textDecoration: 'none' }}
             className="cardLink"
             to={`/${categoria.link}`}
-            key={categoria._id}
+            key={categoria.id}
           >
             <Card className="cardCateg my-3 mx-4 d-block">
               <Card.Body className="cardCatBod">

@@ -11,8 +11,7 @@ const BotonPedido = () => {
       setEstadoBot(true);
     }
   }, [comanda]);
-  // console.log(comanda);
-  // console.log(estadoBot);
+
   return (
     <section>
       <div id="botonPedStick">

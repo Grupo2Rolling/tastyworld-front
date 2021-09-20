@@ -24,15 +24,10 @@ JSON.parse(localStorage.getItem("auth")).token;
         setPedidos(pedido)
       })
     })
-    // console.log(pedido);
+    
   }, [eco])
 
-  // useEffect(()=>{
-  //   getProducto(pedidos).then((respuesta)=>{
-  //     setProductos(respuesta.producto)
-  //     console.log(productos)
-  //   })
-  // }, [])
+
 
   return (
     <Container className="tituloPag inicioBackground text-center min-height mt-5 pt-5">

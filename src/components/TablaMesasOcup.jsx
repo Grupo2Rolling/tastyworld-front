@@ -5,13 +5,13 @@ const TablaComandas = ({ mesasOcup }) => {
   const liberarMesa = (id) => {
     let mesa = { estado: true };
     mesasPut(id, mesa).then((respuesta) => {
-      console.log(respuesta.mesa.estado);
+     
     });
   };
 
   const deleteMesa = (id) => {
     mesasDelete(id).then((respuesta) => {
-      console.log(respuesta);
+      
     });
   };
 

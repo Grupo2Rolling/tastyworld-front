@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { Edit, Trash } from "react-feather"; //ChevronDown, Plus, MoreVertical,
-//import { Modal, Button, Form } from "react-bootstrap";
 import { getProductos, deleteProducto } from "../helpers/productos";
 import { getComandas, delComanda } from "../helpers/comandas";
 import { usuariosGet, usuarioDelete } from "../helpers/usuarios";
