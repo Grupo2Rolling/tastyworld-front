@@ -66,32 +66,8 @@ export const TastyNavbar = () => {
   ]
 
   return (
-    <div className="navBG">
-      {/* <nav className={`justify-content-between container navB`}>
-        <div className="d-flex align-items-center">
-          {render && links.map((link, index) => (
-            <NavLink
-              onClick={link.function && link.function}
-              key={index + 3206}
-              exact
-              to={link.ruta}
-              className={`nav-link link ${!link.show && 'd-none'}`}
-            >
-              {link.nombre}
-            </NavLink>
-          ))}
-        </div>
-      </nav> */}
-     
+    <div className="navBG">     
       <nav onBlur={() => setInterruptor(false)} className={`sidebar ${interruptor ? "" : "cerrado"}`}>
-        {/* <button
-          onClick={() => setInterruptor(!interruptor)}
-          className={`btn d-flex w-100 justify-content-end ${
-            interruptor ? "toggle" : "toggle-cerrado"
-          }`}
-        >
-          X
-        </button> */}
       <button onClick={() => setInterruptor(!interruptor)} class={`hamburger hamburger--slider ${interruptor ? 'is-active toggle' : '  toggle-cerrado'}`} type="button">
         <span class="hamburger-box">
           <span class="hamburger-inner"></span>
