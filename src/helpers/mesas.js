@@ -1,4 +1,4 @@
-const url = "https://tasty-world-backend.herokuapp.com/";
+const url = "https://tasty-world-backend.herokuapp.com";
 
 export const mesasGet = async () => {
   const resp = await fetch(`${url}/api/mesas`, {

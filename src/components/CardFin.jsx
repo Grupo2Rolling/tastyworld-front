@@ -1,32 +1,58 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import { mesasTodasGet, mesasPut } from "../helpers/mesas";
 // import BtnSumarRestar from "./BtnSumarRestar";
 import { Form, Card, Dropdown, Container, Button } from "react-bootstrap";
+import { postComanda } from "../helpers/comandas";
 
 const CardFin = ({ pedidos, eco, setEco }) => {
-  // const usuario = JSON.parse(localStorage.getItem("auth")).usuario;
+  const usuario = JSON.parse(localStorage.getItem("auth")).usuario;
   // const [descripcion, setDescripcion] = useState("");
-  // const [mesasLibres, setMesasLibres] = useState([]);
+ 
+  // const [mesa, setMesa] = useState([]);
 
-  // useEffect(() => {
-  //   setEco(true);
-  //   console.log(pedidos);
-  //   setEco(false);
-  // }, []);
+  useEffect(() => {
+    setEco(true);
+    
+    setEco(false);
+  }, []);
 
   const getRandomNumberBetween = (min, max) => {
     return Math.floor(Math.random() * (max - min + 1) + min);
   };
 
-  // useEffect(() => {
-  //   mesasTodasGet().then((respuesta) => {
-  //     let todas = respuesta.mesa;
-  //     let libres = todas.filter((mesa) => {
-  //       return mesa.estado === true;
-  //     });
-  //     setMesasLibres(libres);
-  //   });
-  // }, [mesasLibres]);
+ 
+  const ocuparMesa = (id) => {
+    let mesita = { estado: false };
+    mesasPut(id, mesita);
+    console.log(id);
+  };
+//  const agregarDescripcion=(id)=>{
+//   pedidos.map((prod)=>{
+//     if (prod.id==id){
+//         prod.descripcion=descripcion
+// }})
+//  }
+  const confirmarPedido = () => {
+    
+    pedidos.map((pedido)=>{
+    let product = {
+      producto:pedido.nombre,
+      cantidad:1,
+      tipo:pedido.tipo,
+      cliente:usuario.uid,
+      nombreCliente:usuario.nombre,
+      mesa:"1",
+      estado:"Pendiente",
+      descripcion: pedido.descripcion
+    }
+    console.log(product);
+    postComanda(product).then((respuesta) => {
+      console.log(respuesta.msg);
+      if (respuesta.errors) {
+        return window.alert(respuesta.errors[0].msg)
+      }
 
+  })})}
 
   // const [comanda, setComanda] = useState({
   //   producto: "",
@@ -34,18 +60,13 @@ const CardFin = ({ pedidos, eco, setEco }) => {
   //   tipo: "",
   //   cliente: "",
   //   nombreCliente: "",
-  //   mesa: "",
-  //   estado: Pendiente,
+  //   mesa:"",
+  //   estado: "Pendiente",
   //   descripcion,
   // });
-  // const ocuparMesa = (id) => {
-  //   let mesa = { estado: false };
-  //   mesasPut(id, mesa).then((respuesta) => {
-  //     console.log(respuesta.mesa.estado);
-  //   });
-  // };
+  
 
-  // const confirmarPed = () => {
+  // const confirmarPed = (id) => {
   //  ocuparMesa(id)
   //  pedidos.map((pedido)=>{
   //   setComanda({
@@ -54,13 +75,13 @@ const CardFin = ({ pedidos, eco, setEco }) => {
   //    tipo:pedido.tipo,
   //    cliente:usuario.uid,
   //    nombreCliente:usuario.nombre,
-
-
-
+  //    mesa:mesa,
+  //    estado:"Pendiente",
+  //    descripcion: descripcion
   //   })
 
   //  })
-
+  //   postComanda(comanda)
 
 
   // };
@@ -100,23 +121,9 @@ const CardFin = ({ pedidos, eco, setEco }) => {
 
   return (
     <Container>
-     {/* <Form>
-     <Form.Group className="mb-3">
-              <Form.Label>Mesas libres</Form.Label>
-              <Form.Control
-                onChange={(e) => setMesa(e.target.value)}
-                value={mesa.numero}
-                as="select"
-              >
-                <option>Elige una mesa</option>
-                {mesasLibres.map((mesa) => (
-                  <option key={mesa.id}>{mesa.numero}</option>
-                ))}
-              </Form.Control>
-            </Form.Group>
-     </Form> */}
+     
       {pedidos.map((pedido) => (
-        <Card style={{ width: "50rem" }} key={getRandomNumberBetween(1, 1000)}>
+        <Card style={{ width: "50rem" }} key={getRandomNumberBetween(1, 1000000)}>
           <Card.Body>
             <Card.Subtitle className="mb-2 text-muted">
               {pedido.nombre}
@@ -124,36 +131,20 @@ const CardFin = ({ pedidos, eco, setEco }) => {
             <Card.Text>{pedido.precio}</Card.Text>
             <Form>
               <Form.Control
-                // onChange={(e) => setDescripcion(e.target.value)}
+                // onChange={()=>agregarDescripcion(pedido.id)}
                 label="Comments"
                 as="textarea"
                 placeholder="¿Nos queres aclarar algo sobre tu Tastypedido?"
                 style={{ height: "100px" }}
               />
             </Form>
-            <Card.Link href="Menu">Seguir comprando</Card.Link>
-
-            <Dropdown>
-              <Dropdown.Toggle variant="success" id="dropdown-basic">
-                Cantidad
-              </Dropdown.Toggle>
-
-              <Dropdown.Menu>
-                <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
-                <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
-                <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
-              </Dropdown.Menu>
-            </Dropdown>
-            {/* <ListGroup variant="flush">
-           <ListGroup.Item>TOTAL: calcularTotal() </ListGroup.Item>
-           </ListGroup> */}
           </Card.Body>
         </Card>
       ))}
 
-      {/* <Button variant="primary" onClick={confirmarPed}>
+      <Button variant="primary" onClick={()=>confirmarPedido()} >
         CONFIRMAR PEDIDO
-      </Button> */}
+      </Button>
     </Container>
   );
 };

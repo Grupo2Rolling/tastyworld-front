@@ -49,6 +49,20 @@ export const getComandasEntregas = async () => {
   return datos
 }
 
+
+export const postComanda = async (data) => {
+  const resp = await fetch(`${url}`, {
+    method: 'POST',
+    body: JSON.stringify(data),
+    headers: {
+      'Content-type': 'application/json; charset=UTF-8',
+      'x-token': JSON.parse(localStorage.getItem('auth')).token,
+    },
+  })
+  const datos = await resp.json()
+
+  return datos
+}
 //Actualizar estado de comanda
 export const putComanda = async (id, data) => {
   const resp = await fetch(`${url}/${id}`, {
