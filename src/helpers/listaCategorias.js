@@ -9,7 +9,7 @@ estado:true,
     {id:"0002",
 
     nombre: "Bebidas",
-img:"https://diariodorio.com/wp-content/uploads/2019/03/drinks_com_gin.jpg",
+img:"https://images.unsplash.com/photo-1605270012917-bf157c5a9541?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
 estado:true,
     },
 

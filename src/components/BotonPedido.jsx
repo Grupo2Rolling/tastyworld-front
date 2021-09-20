@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import botonPed from "../assets/botonPed.svg";
+import botonPed from "../assets/botonPedido.svg";
 
 const BotonPedido = () => {
   const comanda = JSON.parse(localStorage.getItem("comanda")) || [];
