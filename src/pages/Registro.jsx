@@ -65,6 +65,7 @@ const Registro = () => {
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+            autoComplete="email"
           />
         </Form.Group>
 

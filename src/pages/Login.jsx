@@ -103,7 +103,7 @@ const Login = () => {
         </Button>
         <Form.Text className="text-left text-white mb-4 mx-4">
           ¿Aún no tienes una cuenta?
-          <Link className="login-regis mx-2" to="/">
+          <Link className="login-regis mx-2" to="/registro">
             Registrate
           </Link>
         </Form.Text>
