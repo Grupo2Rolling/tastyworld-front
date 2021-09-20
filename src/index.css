@@ -45,7 +45,7 @@
   font-family: "Montserrat";
   color: white;
   font-weight: 800;
-  text-shadow: 0.05em 0.07em rgb(221, 220, 220);
+  text-shadow: 0.08em 0.07em rgba(87, 87, 87, 0.664);
 }
 
 .inicioBackground {
@@ -67,6 +67,7 @@
  flex-direction: column;
 justify-content: space-around;
 flex-shrink: 1;
+
 }
 .cardLink {
   color: var(--verdeOsc);
@@ -76,15 +77,17 @@ flex-shrink: 1;
 .cardCatBod {
   align-content: center;
 }
-
+ 
   .cardLink h5{
     font-weight: 700;
     text-decoration: none;
+    
     text-shadow: rgb(155, 154, 154) 0.1em 0.1em 0.2em
   }
 
 .cardCateg{
     border-radius:5%;
+    border: solid 2px var(--verdeOsc);
     width: 80vw;
     transition-property: transform;
     transition-duration: 0.5s;
@@ -92,6 +95,7 @@ flex-shrink: 1;
 
   .cardCateg:hover{
     transform: scale(1.05);
+    box-shadow: rgb(112, 111, 111) 0.1em 0.2em 0.2em;
     
   }
 
@@ -104,18 +108,20 @@ flex-shrink: 1;
   background-color: var(--verdeOsc);
   color: white;
   border: none;
-}
+  bottom: 5vh;
+ }
 .botonAgrBa {
   color: var(--verdeOsc);
   background-color: white;
   border: none;
 }
 .wrapper {
-  height: 400px;
-  width: 300px;
+  height: 60vh;
+  width: 90vw;
   position: relative;
   transform-style: preserve-3d;
   perspective: 1000px;
+  
 }
 .wrapper .card {
   position: absolute;
@@ -135,7 +141,8 @@ flex-shrink: 1;
   transform: rotateY(-180deg);
 }
 .wrapper .card img {
-  width: 100%;
+ max-width: 100%;
+  max-height: 35vh;
   object-fit: contain;
   border-radius: 10px;
   padding: 3px;
@@ -161,8 +168,8 @@ flex-shrink: 1;
   transform: rotateY(0deg);
 }
 .wrapper .back-face img {
-  height: 120px;
-  width: 200px;
+  height: 30%;
+  width: 50%;
   padding: 3px;
   margin-top: 10px;
   border-radius: 20%;
@@ -184,7 +191,7 @@ flex-shrink: 1;
 }
 
 /* /----Estilo Carrusel continentes------/ */
-.cardCont{
+.cardConti{
   box-sizing: border-box ;
   border-radius:3%;
   width: 100%;
@@ -192,8 +199,8 @@ flex-shrink: 1;
   display: block;
   object-fit: contain;
   justify-content: center;
- 
-  min-height: auto;
+  border-radius: 100%;
+  overflow: hidden;
   border: solid 2px var(--verdeOsc);
   transition-property: transform;
   transition-duration: 0.5s;
@@ -202,14 +209,18 @@ flex-shrink: 1;
   transform: scale(1.03);
 }
 
-.cardConti{
+/* .cardConti{
 box-sizing: border-box;
 object-fit: contain;
 overflow: hidden;
+} */
+.cardCont{
+  max-height: 70%;
 }
 .cardCont img{
-  width: 90%;
-  height: 70%;
+ width: 90%;
+  max-height: 70%;
+  padding: 2px;
 }
 .nombreCont{
   font-family: 'Montserrat';
@@ -299,6 +310,11 @@ overflow: hidden;
     border-radius: 6%;
     
   }
+  .cardConti{
+    width: 250px;
+    height: 250px;
+
+  }
 }
 
 
@@ -330,6 +346,15 @@ overflow: hidden;
    flex-direction: row;
   justify-content: space-around;
   flex-shrink: 1;
+  }
+  .cardConti{
+    width: 235px;
+    height: 235px;
+
+  }
+  .wrapper {
+    height: 40vh;
+    width: 90vw;
   }
 }
 @media (min-width: 1200px){

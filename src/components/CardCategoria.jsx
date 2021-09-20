@@ -7,7 +7,7 @@ const CardCategoria = ({ lista }) => {
     <>
       <Container className="cardContainC">
         {lista.map((categoria) => (
-          <Link
+          <Link  style={{ textDecoration: 'none' }}
             className="cardLink"
             to={`/${categoria.nombre}`}
             key={categoria._id}

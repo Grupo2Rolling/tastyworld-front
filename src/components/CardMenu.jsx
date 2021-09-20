@@ -10,10 +10,10 @@ const CardMenu = ({ menus }) => {
 
   return (
     <>
-      <div className="row row-cols-1 row-cols-md-3 g-4">
+      <div className="row  row-cols-md-3 g-4">
         {menus.map((menu) => (
-          <div className="col d-flex justify-content-center" key={menu._id}>
-            <div className="wrapper">
+          <div className="col mt-2 mb-4 d-flex justify-content-center " key={menu._id}>
+            <div className=" wrapper">
               <div className="card front-face">
                 <img
                   src={menu.img}
@@ -27,7 +27,7 @@ const CardMenu = ({ menus }) => {
                   <div className="precioyBot">
                     <h5>${menu.precio}</h5>
                     <button
-                      className="btn btn-info botonAgr d-md-none"
+                      className="btn btn-info botonAgr"
                       onClick={() => agregarACarrito(menu._id)}
                     >
                       Agregar +
@@ -47,7 +47,7 @@ const CardMenu = ({ menus }) => {
                 <div className="precioyBot">
                   <h5>${menu.precio}</h5>
                   <button
-                    className="btn btn-info botonAgrBa d-md-none"
+                    className="btn btn-info botonAgrBa"
                     onClick={() => agregarACarrito(menu._id)}
                   >
                     Agregar +

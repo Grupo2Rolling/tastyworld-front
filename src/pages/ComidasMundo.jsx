@@ -21,8 +21,11 @@ const ComidasMundo = () => {
     });
 
     getProductos().then((respuesta) => {
-      setListaM(respuesta.producto);
-      setMenus(respuesta.producto);
+      let platos=respuesta.producto.filter((plato)=>{
+          return  plato.tipo=="Plato"
+      })
+      setListaM(platos);
+      setMenus(platos);
      
     });
   }, []);
@@ -47,6 +50,7 @@ const ComidasMundo = () => {
         </Container>
 
         <Container fluid>
+          <h2 className="tituloPag text-center mt-4 mb-3 ">Nuestros Platos</h2>
           <CardMenu menus={menus} />
         </Container>
         <BotonPedido />
