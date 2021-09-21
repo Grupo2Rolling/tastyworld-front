@@ -5,6 +5,7 @@ import { getProducto } from '../helpers/productos'
 
 
 const Carrito = () => {
+  let pedido = []
   let carrito = JSON.parse(localStorage.getItem('carrito')) || []
   const [pedidos, setPedidos] = useState([])
   const [eco, setEco] = useState(true)
@@ -17,15 +18,18 @@ JSON.parse(localStorage.getItem("auth")) &&
 JSON.parse(localStorage.getItem("auth")).token;
 
   useEffect(() => {
-    let pedido = []
-    carrito.map((producto) => {
+    cargarCarrito()
+    
+  }, [eco])
+
+  const cargarCarrito=()=>{
+  
+    carrito.forEach((producto) => {
       getProducto(producto,token).then((respuesta) => {
         pedido.push(respuesta.producto)
         setPedidos(pedido)
       })
-    })
-    
-  }, [eco])
+    })}
 
 
 

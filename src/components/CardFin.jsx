@@ -22,7 +22,14 @@ const CardFin = ({ pedidos, setEco }) => {
   const getRandomNumberBetween = (min, max) => {
     return Math.floor(Math.random() * (max - min + 1) + min);
   };
-
+//  const agregarDescripcion=(e,id)=>{
+  
+//    pedidos.map((prod)=>{
+//         if (prod.id==id){
+//             prod.descripcion=descripcion
+//     }})
+//      }
+ 
   
   const confirmarPedido = () => {
     pedidos.map((pedido) => {
@@ -52,9 +59,9 @@ const CardFin = ({ pedidos, setEco }) => {
         }
       });
 
-    });
+    });}
     
-  };
+  
 
 
  
@@ -72,7 +79,7 @@ const CardFin = ({ pedidos, setEco }) => {
             <Card.Text>$ {pedido.precio}</Card.Text>
             <Form>
               <Form.Control
-                // onChange={()=>agregarDescripcion(pedido.id)}
+                // onChange={(e)=> agregarDescripcion(pedido.id)}
                 label="Comments"
                 as="textarea"
                 placeholder="¿Nos queres aclarar algo sobre tu Tastypedido?"

@@ -4,9 +4,12 @@ import CardMenu from "../components/CardMenu";
 import {Container} from 'react-bootstrap'
 import { getProductos } from "../helpers/productos";
 const token = JSON.parse(localStorage.getItem("auth")) && JSON.parse(localStorage.getItem("auth")).token
+
+
+
 const Bebidas= () => {
   const [listaB, setListaB] = useState([]);
- 
+  const token = JSON.parse(localStorage.getItem("auth")).token
  
   useEffect(() => {
    
@@ -16,10 +19,11 @@ const Bebidas= () => {
           return  plato.tipo=="Bebida"
       })
       setListaB(Bebid);
-      
+      console.log(Bebid);
      
     });
   }, []);
+ 
 
 
  
