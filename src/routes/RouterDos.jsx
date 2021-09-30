@@ -29,7 +29,7 @@ const RouterDos = () => {
           path="/ComidasMundo/:continente"
           component={ComidasMundo}
         />
-        
+
         <Route exact path="/carrito" component={Carrito} />
         <Route exact path="/Administracion" component={Administracion} />
         <Route exact path="/cocina" component={Cocina} />
@@ -38,6 +38,7 @@ const RouterDos = () => {
         <Route exact path="/mozo" component={Mozo} />
         <Route exact path="/bebidas" component={Bebidas} />
       </Switch>
+     
     </Router>
   );
 };
