@@ -12,7 +12,7 @@ export const getComandas = async (token) => {
     },
   })
   const datos = await resp.json()
-  console.log(datos)
+  
   return datos
 }
 export const getComandasCocina = async () => {
@@ -39,7 +39,7 @@ export const getComandasBarra = async (token) => {
     },
   })
   const datos = await resp.json()
-  console.log(datos)
+ 
   return datos
 }
 
