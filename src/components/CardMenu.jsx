@@ -5,23 +5,24 @@ let lista = [];
 const CardMenu = ({ menus }) => {
   const agregarACarrito = (id) => {
     lista.push(id);
-    
+
     localStorage.setItem("carrito", JSON.stringify(lista));
-    Swal.fire(
-      {
-        title: "Producto agregado",
-       
-        icon: "success",
-        confirmButtonColor: "#3085d6",
-      });
-    
+    Swal.fire({
+      title: "Producto agregado",
+
+      icon: "success",
+      confirmButtonColor: "#3085d6",
+    });
   };
 
   return (
     <>
       <div className="row  row-cols-md-3 row-cols-lg-4 g-4">
         {menus.map((menu) => (
-          <div className="col mt-2 mb-4 d-flex justify-content-center " key={menu._id}>
+          <div
+            className="col mt-2 mb-4 d-flex justify-content-center "
+            key={menu._id}
+          >
             <div className=" wrapper">
               <div className="card front-face">
                 <img
@@ -68,7 +69,7 @@ const CardMenu = ({ menus }) => {
         ))}
       </div>
     </>
-  )
-}
+  );
+};
 
-export default CardMenu
+export default CardMenu;

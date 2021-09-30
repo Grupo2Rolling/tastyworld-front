@@ -22,7 +22,6 @@ const Nosotros = () => {
         <div className="row">
           <div className="col-12 col-md-8 offset-md-2">
             <h1 className="iniciaSesion2">Nuestro compromiso</h1>
-
             <h5 className="font-weight-bold">
               En cada plato nos comprometemos a dejar un 100% satisfechos a cada
               cliente, brindándoles el mejor servicio y atención, para lograr

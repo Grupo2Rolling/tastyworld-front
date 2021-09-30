@@ -17,11 +17,15 @@ const Mozo = () => {
   const [state, setState] = useState({ rol: "" });
 
   const history = useHistory();
-  const user = JSON.parse(localStorage.getItem('auth')) && JSON.parse(localStorage.getItem('auth')).usuario
+  const user =
+    JSON.parse(localStorage.getItem("auth")) &&
+    JSON.parse(localStorage.getItem("auth")).usuario;
 
   useEffect(() => {
-    const redireccion = () => (user && (user.rol === 'WAITER_ROLE' || user.rol === 'ADMIN_ROLE')) || history.push('/login')
-    redireccion()
+    const redireccion = () =>
+      (user && (user.rol === "WAITER_ROLE" || user.rol === "ADMIN_ROLE")) ||
+      history.push("/login");
+    redireccion();
   }, []);
 
   // useEffect(() => {
@@ -38,9 +42,11 @@ const Mozo = () => {
   useEffect(() => {
     mesasTodasGet().then((respuesta) => {
       let todas = respuesta.mesa;
-      let ocupadas = todas && todas.filter((mesa) => {
-        return mesa.estado === false;
-      });
+      let ocupadas =
+        todas &&
+        todas.filter((mesa) => {
+          return mesa.estado === false;
+        });
       setMesasOcup(ocupadas);
     });
   }, [mesasOcup]);

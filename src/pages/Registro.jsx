@@ -1,38 +1,34 @@
-import React, { useState } from 'react'
-import {Form, Container, Button} from 'react-bootstrap'
+import React, { useState } from "react";
+import { Form, Container, Button } from "react-bootstrap";
 
-import { usuarioPost } from '../helpers/usuarios'
+import { usuarioPost } from "../helpers/usuarios";
 
 const Registro = () => {
-  const [nombre, setNombre] = useState('')
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const [password2, setPassword2] = useState('')
-  const [img, setImg] = useState('')
- 
+  const [nombre, setNombre] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [password2, setPassword2] = useState("");
+  const [img, setImg] = useState("");
 
   const handleSubmit = (e) => {
-    e.preventDefault()
+    e.preventDefault();
     const usuario = {
       nombre,
       email,
       password,
       img,
-      rol: "USER_ROLE"
-    }
- 
+      rol: "USER_ROLE",
+    };
+
     usuarioPost(usuario).then((respuesta) => {
       if (respuesta.errors) {
-        return window.alert(respuesta.errors[0].msg)
+        return window.alert(respuesta.errors[0].msg);
       }
       if (respuesta.msg) {
-       
-        window.alert(respuesta.msg)
+        window.alert(respuesta.msg);
       }
-    })
-  }
-
- 
+    });
+  };
 
   return (
     <Container fluid className="login-bg py-4 min-height">
@@ -89,9 +85,8 @@ const Registro = () => {
           />
         </Form.Group>
 
-        <Form.Group
-          className="mb-4 mx-auto text-white">
-        <Form.Label>Carga tu foto:</Form.Label>
+        <Form.Group className="mb-4 mx-auto text-white">
+          <Form.Label>Carga tu foto:</Form.Label>
           <Form.Control
             type="text"
             value={img}
@@ -103,8 +98,9 @@ const Registro = () => {
         <Button
           variant="primary"
           type="submit"
-          className="mb-3 btn btn-success rounded login-btn">
-            CREAR CUENTA
+          className="mb-3 btn btn-success rounded login-btn"
+        >
+          CREAR CUENTA
         </Button>
 
         <Form.Group className="mb-3 text-white" id="formGridCheckbox">
@@ -115,7 +111,7 @@ const Registro = () => {
         </Form.Group>
       </Form>
     </Container>
-  )
-}
+  );
+};
 
-export default Registro
+export default Registro;

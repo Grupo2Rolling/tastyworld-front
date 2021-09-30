@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Link, useHistory } from "react-router-dom";
-import { postAuth } from "../helpers/autetication";
+import { postAuth } from "../helpers/authentication";
 import { Container, Form, Button } from "react-bootstrap";
 
 const Login = () => {
@@ -16,13 +16,6 @@ const Login = () => {
   const user =
     JSON.parse(localStorage.getItem("auth")) &&
     JSON.parse(localStorage.getItem("auth")).usuario;
-
-  // useEffect(() => {
-  //   if (login.token) {
-  //     localStorage.setItem("auth", JSON.stringify(login));
-  //     history.push("/");
-  //   }
-  // }, [login, history]);
 
   useEffect(() => {
     const ruta =
@@ -58,7 +51,6 @@ const Login = () => {
       setBtnDisable(true);
       if (isMounted.current) {
         postAuth(formValue).then((respuesta) => {
-          
           localStorage.setItem("auth", JSON.stringify(respuesta));
           setBtnDisable(false);
           setFormValue({

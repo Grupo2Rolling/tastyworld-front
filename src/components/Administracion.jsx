@@ -6,10 +6,9 @@ import { getComandas, delComanda } from "../helpers/comandas";
 import { usuariosGet, usuarioDelete } from "../helpers/usuarios";
 import ModalUsuarios from "./ModalUsuarios";
 import ModalProductos from "./ModalProductos";
-import ModalComandas from "./ModalComanda"
+import ModalComandas from "./ModalComanda";
 import Swal from "sweetalert2";
 import DataTable from "react-data-table-component";
-
 
 const Administracion = () => {
   const [render, setRender] = useState(false);
@@ -23,8 +22,12 @@ const Administracion = () => {
   const [comandaEditar, setComandaEditar] = useState({});
   const [usuarioEditar, setUsuarioEditar] = useState({});
 
-  const user = JSON.parse(localStorage.getItem('auth')) && JSON.parse(localStorage.getItem('auth')).usuario
-  const token = JSON.parse(localStorage.getItem("auth")) && JSON.parse(localStorage.getItem("auth")).token
+  const user =
+    JSON.parse(localStorage.getItem("auth")) &&
+    JSON.parse(localStorage.getItem("auth")).usuario;
+  const token =
+    JSON.parse(localStorage.getItem("auth")) &&
+    JSON.parse(localStorage.getItem("auth")).token;
   const history = useHistory();
 
   const handleDeleteProducto = (product) => {
@@ -41,17 +44,17 @@ const Administracion = () => {
       if (result.isConfirmed) {
         deleteProducto(product._id, token).then((respuesta) => {
           if (respuesta.msg) {
-            Swal.fire(
-              {
-                title: respuesta.msg,
-                text: "Operacion exitosa",
-                icon: "success",
-                confirmButtonColor: "#3085d6",
-              });
+            Swal.fire({
+              title: respuesta.msg,
+              text: "Operacion exitosa",
+              icon: "success",
+              confirmButtonColor: "#3085d6",
+            });
             setRender(!render);
           }
         });
-      }})
+      }
+    });
   };
   const handleEditProducto = (product) => {
     setProductEditar(product);
@@ -74,11 +77,12 @@ const Administracion = () => {
   }, [render]);
 
   useEffect(() => {
-    const redireccion = () => (user && ( user.rol === 'ADMIN_ROLE')) || history.push('/login')
-    redireccion()
+    const redireccion = () =>
+      (user && user.rol === "ADMIN_ROLE") || history.push("/login");
+    redireccion();
   }, []);
   //------------------------------------------------
-  
+
   const handleDeleteComanda = (comanda) => {
     delComanda(comanda._id).then((respuesta) => {
       if (respuesta.msg) {
@@ -95,12 +99,14 @@ const Administracion = () => {
   useEffect(() => {
     getComandas(token).then((respuesta) => {
       let todas = respuesta.comanda;
-      let activas = todas && todas.filter((comanda) => {
-        return comanda.estado !== "Entregado" || "Anulado"
-      });
+      let activas =
+        todas &&
+        todas.filter((comanda) => {
+          return comanda.estado !== "Entregado" || "Anulado";
+        });
       setComandas({
         datos: activas,
-        loading: false
+        loading: false,
       });
     });
   }, [render]);
@@ -160,7 +166,6 @@ const Administracion = () => {
     },
   ];
 
- 
   const columnasComandas = [
     {
       name: "NUMERO",
@@ -172,7 +177,7 @@ const Administracion = () => {
       name: "ESTADO",
       selector: "estado",
       sortable: true,
-      width: "20%"
+      width: "20%",
     },
     {
       name: "USUARIO",
@@ -279,7 +284,7 @@ const Administracion = () => {
       <div className="rounded mx-5 scrollAdmin">
         <DataTable columns={columnasComandas} data={comanda.datos} />
       </div>
-      
+
       <div className="d-flex align-items-center">
         <h5 className="text-white p-4">USUARIOS</h5>
         <button

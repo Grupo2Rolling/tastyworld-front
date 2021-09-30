@@ -32,7 +32,7 @@ const ModalComanda = (props) => {
       numeroPedido,
       descripcion,
     };
-   
+
     if (props.comandaEditar) {
       putComanda(props.comandaEditar._id, product, token).then((respuesta) => {
         if (respuesta.errors) {

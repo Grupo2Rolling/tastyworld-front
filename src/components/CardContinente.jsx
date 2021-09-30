@@ -1,6 +1,6 @@
-import React  from "react";
+import React from "react";
 import { Link } from "react-router-dom";
-import {  Card, Col } from "react-bootstrap";
+import { Card, Col } from "react-bootstrap";
 import Slider from "react-slick";
 
 const CardContinente = ({ continentes }) => {
@@ -38,7 +38,7 @@ const CardContinente = ({ continentes }) => {
           slidesToScroll: 4,
           initialSlide: 4,
           infinite: false,
-          dots:false,
+          dots: false,
         },
       },
       {
@@ -72,7 +72,8 @@ const CardContinente = ({ continentes }) => {
         {continentes.map((continente) => (
           <Col>
             <Card className="cardConti">
-              <Link style={{ textDecoration: 'none' }}
+              <Link
+                style={{ textDecoration: "none" }}
                 to={`/comidasmundo/${continente.nombre}`}
                 key={continente.id}
               >

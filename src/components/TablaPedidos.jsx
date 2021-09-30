@@ -2,16 +2,15 @@ import React from "react";
 import { putComanda } from "../helpers/comandas";
 
 const TablaPedidos = ({ pedidos, setEco }) => {
-  
-  const token = JSON.parse(localStorage.getItem("auth")) && JSON.parse(localStorage.getItem("auth")).token
-  
+  const token =
+    JSON.parse(localStorage.getItem("auth")) &&
+    JSON.parse(localStorage.getItem("auth")).token;
+
   const cambiarComanda = (id) => {
     let comanda = { estado: "Entregado" };
     putComanda(id, comanda, token).then((respuesta) => {
-     
       setEco(true);
       setEco(false);
-      
     });
   };
 
@@ -27,20 +26,21 @@ const TablaPedidos = ({ pedidos, setEco }) => {
             </tr>
           </thead>
           <tbody>
-            {pedidos && pedidos.map((pedido) => (
-              <tr className="text-white" key={pedido._id}>
-                <td>{pedido.mesa}</td>
-                <td>{pedido.numeroPedido}</td>
-                <td>
-                  <button
-                    className="btn btn-danger"
-                    onClick={() => cambiarComanda(pedido._id)}
-                  >
-                    Entregado
-                  </button>
-                </td>
-              </tr>
-            ))}
+            {pedidos &&
+              pedidos.map((pedido) => (
+                <tr className="text-white" key={pedido._id}>
+                  <td>{pedido.mesa}</td>
+                  <td>{pedido.numeroPedido}</td>
+                  <td>
+                    <button
+                      className="btn btn-danger"
+                      onClick={() => cambiarComanda(pedido._id)}
+                    >
+                      Entregado
+                    </button>
+                  </td>
+                </tr>
+              ))}
           </tbody>
         </table>
       </div>

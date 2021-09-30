@@ -22,15 +22,7 @@ const CardFin = ({ pedidos, setEco }) => {
   const getRandomNumberBetween = (min, max) => {
     return Math.floor(Math.random() * (max - min + 1) + min);
   };
-//  const agregarDescripcion=(e,id)=>{
-  
-//    pedidos.map((prod)=>{
-//         if (prod.id==id){
-//             prod.descripcion=descripcion
-//     }})
-//      }
- 
-  
+
   const confirmarPedido = () => {
     pedidos.map((pedido) => {
       let product = {
@@ -44,33 +36,25 @@ const CardFin = ({ pedidos, setEco }) => {
         numeroPedido: getRandomNumberBetween(1, 100000),
         descripcion: pedido.descripcion,
       };
-      postComandaAdmin(product,token).then((respuesta) => {
-        
+      postComandaAdmin(product, token).then((respuesta) => {
         if (respuesta.errors) {
           return window.alert(respuesta.errors[0].msg);
-        }else{
-          Swal.fire(
-            {
-              title: "Pedido confirmado",
-             
-              icon: "success",
-              confirmButtonColor: "#3085d6",
-            });
+        } else {
+          Swal.fire({
+            title: "Pedido confirmado",
+
+            icon: "success",
+            confirmButtonColor: "#3085d6",
+          });
         }
       });
-
-    });}
-    
-  
-
-
- 
+    });
+  };
 
   return (
     <Container className="text-center">
       {pedidos.map((pedido) => (
         <Card
-         
           key={getRandomNumberBetween(1, 1000000)}
           className="  mb-3 mi-4 login-card cardcarrito justify-center"
         >

@@ -4,13 +4,11 @@ import { mesasDelete, mesasPut } from "../helpers/mesas";
 const TablaMesas = ({ mesas }) => {
   const ocuparMesa = (id) => {
     let mesa = { estado: false };
-    mesasPut(id, mesa).then((respuesta) => {
-     
-    });
+    mesasPut(id, mesa).then((respuesta) => {});
   };
 
   const deleteMesa = (id) => {
-    mesasDelete(id)
+    mesasDelete(id);
   };
 
   return (

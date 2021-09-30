@@ -4,15 +4,11 @@ import { mesasDelete, mesasPut } from "../helpers/mesas";
 const TablaComandas = ({ mesasOcup }) => {
   const liberarMesa = (id) => {
     let mesa = { estado: true };
-    mesasPut(id, mesa).then((respuesta) => {
-     
-    });
+    mesasPut(id, mesa).then((respuesta) => {});
   };
 
   const deleteMesa = (id) => {
-    mesasDelete(id).then((respuesta) => {
-      
-    });
+    mesasDelete(id).then((respuesta) => {});
   };
 
   return (
@@ -26,25 +22,26 @@ const TablaComandas = ({ mesasOcup }) => {
             </tr>
           </thead>
           <tbody>
-            {mesasOcup && mesasOcup.map((mesa) => (
-              <tr className="text-white" key={mesa.id}>
-                <td>{mesa.numero}</td>
-                <td>
-                  <button
-                    className="btn btn-success"
-                    onClick={() => liberarMesa(mesa.id)}
-                  >
-                    Desocup
-                  </button>
-                  <button
-                    className="btn btn-danger"
-                    onClick={() => deleteMesa(mesa.id)}
-                  >
-                    X
-                  </button>
-                </td>
-              </tr>
-            ))}
+            {mesasOcup &&
+              mesasOcup.map((mesa) => (
+                <tr className="text-white" key={mesa.id}>
+                  <td>{mesa.numero}</td>
+                  <td>
+                    <button
+                      className="btn btn-success"
+                      onClick={() => liberarMesa(mesa.id)}
+                    >
+                      Desocup
+                    </button>
+                    <button
+                      className="btn btn-danger"
+                      onClick={() => deleteMesa(mesa.id)}
+                    >
+                      X
+                    </button>
+                  </td>
+                </tr>
+              ))}
           </tbody>
         </table>
       </div>
