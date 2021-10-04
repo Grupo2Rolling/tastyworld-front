@@ -1,19 +1,18 @@
-
-const listaCategorias=[
-   {
-    id:"0001",
-    nombre: "ComidasMundo",
-img:"https://caraotadigital.org/wp-content/uploads/2020/08/Lo-mejor-de-dos-milanesas-de-pollo-rellenas-de-pure-de-papa-Video.jpg",
-estado:true,
-    },
-    {id:"0002",
-
+const listaCategorias = [
+  {
+    id: "0001",
+    link: "ComidasMundo",
+    nombre: "Platos del Mundo",
+    img: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+    estado: true,
+  },
+  {
+    id: "0002",
+    link: "Bebidas",
     nombre: "Bebidas",
-img:"https://caraotadigital.org/wp-content/uploads/2020/08/Lo-mejor-de-dos-milanesas-de-pollo-rellenas-de-pure-de-papa-Video.jpg",
-estado:true,
-    },
-
-
-]
+    img: "https://images.unsplash.com/photo-1605270012917-bf157c5a9541?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+    estado: true,
+  },
+];
 
 export default listaCategorias;

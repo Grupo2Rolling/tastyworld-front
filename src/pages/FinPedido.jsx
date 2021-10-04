@@ -1,15 +1,12 @@
-import React from 'react'
-import CardFin from '../components/CardFin'
+import React from "react";
+import CardFin from "../components/CardFin";
 
 const FinPedido = () => {
-    return (
-        <div>
-      <CardFin/>
-        
+  return (
+    <div>
+      <CardFin />
+    </div>
+  );
+};
 
-            
-        </div>
-    )
-}
-
-export default FinPedido
+export default FinPedido;

@@ -1,6 +1,8 @@
 //VER COMO NOMRARON VARIABLES LOS CHICOS Y MODIFICAR
 const url = "https://tasty-world-backend.herokuapp.com";
-
+const token =
+  JSON.parse(localStorage.getItem("auth")) &&
+  JSON.parse(localStorage.getItem("auth")).token;
 
 export const usuariosGet = async () => {
   const resp = await fetch(`${url}/api/usuarios`, {
@@ -8,7 +10,7 @@ export const usuariosGet = async () => {
 
     headers: {
       "Content-type": "application/json; charset=UTF-8",
-      "x-token": JSON.parse(localStorage.getItem("auth")).token,
+      "x-token": token,
     },
   });
   const datos = await resp.json();
@@ -36,7 +38,7 @@ export const usuarioPost = async (data) => {
     body: JSON.stringify(data),
     headers: {
       "Content-type": "application/json; charset=UTF-8",
-      "x-token": JSON.parse(localStorage.getItem("auth")).token,
+      "x-token": token,
     },
   });
   const datos = await resp.json();
@@ -51,7 +53,7 @@ export const usuarioPut = async (id, data) => {
     body: JSON.stringify(data),
     headers: {
       "Content-type": "application/json; charset=UTF-8",
-      "x-token": JSON.parse(localStorage.getItem("auth")).token,
+      "x-token": token,
     },
   });
   const datos = await resp.json();
@@ -66,7 +68,7 @@ export const usuarioDelete = async (id) => {
 
     headers: {
       "Content-type": "application/json; charset=UTF-8",
-      "x-token": JSON.parse(localStorage.getItem("auth")).token,
+      "x-token": token,
     },
   });
   const datos = await resp.json();

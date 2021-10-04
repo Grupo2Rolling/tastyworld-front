@@ -1,74 +1,109 @@
-import { React, useState } from "react";
-import { NavLink } from "react-router-dom";
+import { React, useEffect, useState } from "react";
+import { NavLink, useHistory, useLocation } from "react-router-dom";
 import logo from "../../../assets/images/logo-blanco.png";
 import "./navbar.css";
 
 export const TastyNavbar = () => {
   const [interruptor, setInterruptor] = useState(false);
+  const [render, setRender] = useState(true);
+  const history = useHistory();
+  const location = useLocation();
+  const user =
+    JSON.parse(localStorage.getItem("auth")) &&
+    JSON.parse(localStorage.getItem("auth")).usuario;
+  const handleLogOut = () => {
+    setRender(false);
+    localStorage.removeItem("auth");
+    history.push("/login");
+  };
+
+  useEffect(() => {
+    setRender(true);
+  }, [location.pathname]);
+
   const links = [
     {
       ruta: "/login",
+      nombre: "Cerrar sesión",
+      show: !user ? false : true,
+      function: () => handleLogOut(),
+    },
+    {
+      ruta: "/login",
       nombre: "Login",
+      show: user ? false : true,
     },
-    {
-      ruta: "/",
-      nombre: "Inicio",
-    },
-    {
-      ruta: "/pedidos",
-      nombre: "Pedidos",
-    },
-    {
 
-      ruta:'/cocina',
-      nombre:'Cocina'
+    { ruta: "/", nombre: "Inicio", show: !user ? false : true },
+    {
+      ruta: "/cocina",
+      nombre: "Cocina",
+      show: !user
+        ? false
+        : user.rol === "ADMIN_ROLE" || user.rol === "CHEF_ROLE"
+        ? true
+        : false,
     },
     {
-      ruta:'/barra',
-      nombre:'Barra'
+      ruta: "/barra",
+      nombre: "Barra",
+      show: !user
+        ? false
+        : user.rol === "ADMIN_ROLE" || user.rol === "WAITER_ROLE"
+        ? true
+        : false,
     },
     {
-      ruta:'/entregas',
-      nombre: 'Entregas'
+      ruta: "/mozo",
+      nombre: "Mozo",
+      show: !user
+        ? false
+        : user.rol === "ADMIN_ROLE" || user.rol === "WAITER_ROLE"
+        ? true
+        : false,
     },
     {
-      ruta:'/administracion',
-      nombre:'Administración'
-    }
-  ]
+      ruta: "/entregas",
+      nombre: "Entregas",
+      show: !user
+        ? false
+        : user.rol === "ADMIN_ROLE" || user.rol === "WAITER_ROLE"
+        ? true
+        : false,
+    },
+    {
+      ruta: "/administracion",
+      nombre: "Administración",
+      show: !user ? false : user.rol === "ADMIN_ROLE" ? true : false,
+    },
+    { ruta: "/nosotros", nombre: "Sobre Nosotros", show: !user ? false : true },
+  ];
 
   return (
-    <div className="navBG">
-      <nav className={`justify-content-between container navB`}>
-        <div className="d-flex align-items-center">
-          {links.map((link, index) => (
-            <NavLink
-              key={index + 3206}
-              exact
-              to={link.ruta}
-              className="nav-link link"
-            >
-              {link.nombre}
-            </NavLink>
-          ))}
-        </div>
-      </nav>
-      <nav className={`sidebar ${interruptor ? "" : "cerrado"}`}>
+    <div className="navBG fixed-top">
+      <nav
+        onBlur={() => setInterruptor(false)}
+        className={`sidebar ${!interruptor && "cerrado"}`}
+      >
         <button
           onClick={() => setInterruptor(!interruptor)}
-          className={`btn d-flex w-100 justify-content-end ${
-            interruptor ? "toggle" : "toggle-cerrado"
+          className={`hamburger hamburger--slider ${
+            interruptor ? "is-active toggle" : "toggle-cerrado"
           }`}
+          type="button"
         >
-          X
+          <span className="hamburger-box">
+            <span className="hamburger-inner"></span>
+          </span>
         </button>
-        <div>
+        <div className="py-3">
           {links.map((link, index) => (
             <NavLink
               key={index + 78789}
               exact
               to={link.ruta}
-              className="nav-link link"
+              onClick={link.function && link.function}
+              className={`nav-link link ${!link.show && "d-none"}`}
             >
               {link.nombre}
             </NavLink>

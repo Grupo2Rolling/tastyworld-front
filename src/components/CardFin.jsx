@@ -1,34 +1,88 @@
-import React from 'react'
+import React, { useEffect, useState } from "react";
+import Swal from "sweetalert2";
+import { Form, Card, Dropdown, Container, Button } from "react-bootstrap";
+import { postComandaAdmin } from "../helpers/comandas";
 
+const token =
+  JSON.parse(localStorage.getItem("auth")) &&
+  JSON.parse(localStorage.getItem("auth")).token;
 
-const CardFin = () => {
-    
+const CardFin = ({ pedidos, setEco }) => {
+  const usuario = JSON.parse(localStorage.getItem("auth")).usuario;
+  // const [descripcion, setDescripcion] = useState("");
 
-    return (
-    <div>
-        <div className="card mb-3 max-width: 540px">
-            <div className="row g-0">
-        <div className="col-md-4">
-            <img src="..." className="img-fluid rounded-start" alt="..."/>
-    </div>
-        <div className="col-md-8">
-            <div className="card-body">
-            <h5 className="card-title">Este es tu pedido:</h5>
-            <p className="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-            <a href="#" className="card-link">Eliminar</a>
-            <a href="#" className="card-link">Another link</a>
-            
-    </div>
-    </div>
-        
-    </div>
-    {/* <div className="card text-end width: 18rem"> 
-        <a href="#" className="btn btn-primary">Go somewhere</a>
-    </div>   */}
-    </div>
-              
-    </div>
-    )
-}
+  // const [mesa, setMesa] = useState([]);
 
-export default CardFin
+  useEffect(() => {
+    setEco(true);
+
+    setEco(false);
+  }, []);
+
+  const getRandomNumberBetween = (min, max) => {
+    return Math.floor(Math.random() * (max - min + 1) + min);
+  };
+
+  const confirmarPedido = () => {
+    pedidos.map((pedido) => {
+      let product = {
+        producto: pedido.nombre,
+        prodId: pedido.id,
+        cantidad: 1,
+        tipo: pedido.tipo,
+        nombreCliente: usuario.nombre,
+        mesa: "1",
+        estado: "Pendiente",
+        numeroPedido: getRandomNumberBetween(1, 100000),
+        descripcion: pedido.descripcion,
+      };
+      postComandaAdmin(product, token).then((respuesta) => {
+        if (respuesta.errors) {
+          return window.alert(respuesta.errors[0].msg);
+        } else {
+          Swal.fire({
+            title: "Pedido confirmado",
+
+            icon: "success",
+            confirmButtonColor: "#3085d6",
+          });
+        }
+      });
+    });
+  };
+
+  return (
+    <Container className="text-center">
+      {pedidos.map((pedido) => (
+        <Card
+          key={getRandomNumberBetween(1, 1000000)}
+          className="  mb-3 mi-4 login-card cardcarrito justify-center"
+        >
+          <Card.Body>
+            <Card.Title className="mb-2 ">{pedido.nombre}</Card.Title>
+            <Card.Text>$ {pedido.precio}</Card.Text>
+            <Form>
+              <Form.Control
+                // onChange={(e)=> agregarDescripcion(pedido.id)}
+                label="Comments"
+                as="textarea"
+                placeholder="¿Nos queres aclarar algo sobre tu Tastypedido?"
+                style={{ height: "100px" }}
+              />
+            </Form>
+          </Card.Body>
+        </Card>
+      ))}
+
+      <Button
+        className="mb-4 pull-right"
+        variant="light"
+        onClick={() => confirmarPedido()}
+      >
+        CONFIRMAR PEDIDO
+      </Button>
+    </Container>
+  );
+};
+
+export default CardFin;

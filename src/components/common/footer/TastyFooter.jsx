@@ -4,6 +4,7 @@ import { AiOutlineInstagram } from "react-icons/ai";
 import { IoLogoFacebook } from "react-icons/io";
 import { AiFillTwitterCircle } from "react-icons/ai";
 
+
 export const TastyFooter = () => {
   return (
     <div>
@@ -14,17 +15,17 @@ export const TastyFooter = () => {
               <img src={logo} className="marca-foot" alt="logo footer" />
             </div>
             <div className="col-12 col-md-4 mb-4 mb-md-2 d-flex align-items-center justify-content-center">
-              <a href="#" className=" redes">
+              <a href="./error" className=" redes">
                 <i className="mx-2" aria-hidden="true">
                   <IoLogoFacebook style={{ fontSize: 40 }} />
                 </i>
               </a>
-              <a href="#" className=" redes">
+              <a href="./error" className=" redes">
                 <i className="mx-2" aria-hidden="true">
                   <AiOutlineInstagram style={{ fontSize: 40 }} />
                 </i>
               </a>
-              <a href="#" className=" redes">
+              <a href="./error" className=" redes">
                 <i className="mx-2" aria-hidden="true">
                   <AiFillTwitterCircle style={{ fontSize: 40 }} />
                 </i>
