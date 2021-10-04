@@ -4,7 +4,6 @@ import { AiOutlineInstagram } from "react-icons/ai";
 import { IoLogoFacebook } from "react-icons/io";
 import { AiFillTwitterCircle } from "react-icons/ai";
 
-
 export const TastyFooter = () => {
   return (
     <div>

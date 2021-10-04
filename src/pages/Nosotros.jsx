@@ -7,7 +7,7 @@ const Nosotros = () => {
         <div className="row">
           <div className="col-12 col-md-8 offset-md-2 my-4">
             <h1 className="iniciaSesion2">Conoce nuestra trayectoria</h1>
-
+            <hr className="about" />
             <h3 className="mb-3 iniciaSesion2">Nosotros</h3>
             <h5 className="font-weight-bold">
               Tasty World surge de nuestro fanatismo por los viajes y la
