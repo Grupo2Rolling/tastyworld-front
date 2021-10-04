@@ -23,7 +23,7 @@ const Error404 = () => {
               Regresar al{" "}
               <a href="./">
                 <button type="button" class="btn btnHome btn-lg text-center">
-                  HOME
+                  INICIO
                 </button>
               </a>
             </p>
