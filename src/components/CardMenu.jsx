@@ -1,7 +1,7 @@
 import React from "react";
 import Swal from "sweetalert2";
 let lista = [];
-
+console.log(lista);
 const CardMenu = ({ menus }) => {
   const agregarACarrito = (id) => {
     lista.push(id);

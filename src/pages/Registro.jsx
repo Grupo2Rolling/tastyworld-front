@@ -31,9 +31,9 @@ const Registro = () => {
   };
 
   return (
-    <Container fluid className="login-bg py-4 min-height">
+    <Container fluid className="login-bg py-5 min-height">
       <Form
-        className="col-8 col-lg-5 mx-auto login-card"
+        className="col-8 col-lg-5 mx-auto mt-5 login-card"
         onSubmit={(e) => handleSubmit(e)}
       >
         <Form.Label className="iniciaSesion d-flex justify-content-center mt-2">
@@ -45,7 +45,7 @@ const Registro = () => {
           value={nombre}
           onChange={(e) => setNombre(e.target.value)}
           type="text"
-          maxLength={100}
+          maxLength={50}
         />
 
         <Form.Group className="mb-3 mt-3" controlId="formBasicEmail">
@@ -55,7 +55,7 @@ const Registro = () => {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             autoComplete="email"
-            maxLength={100}
+            maxLength={50}
           />
         </Form.Group>
 
@@ -68,7 +68,7 @@ const Registro = () => {
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            maxLength={100}
+            maxLength={50}
           />
         </Form.Group>
 
@@ -81,7 +81,7 @@ const Registro = () => {
             type="password"
             value={password2}
             onChange={(e) => setPassword2(e.target.value)}
-            maxLength={100}
+            maxLength={50}
           />
         </Form.Group>
 
@@ -91,7 +91,7 @@ const Registro = () => {
             type="text"
             value={img}
             onChange={(e) => setImg(e.target.value)}
-            maxLength={100}
+            maxLength={50}
           />
         </Form.Group>
 
