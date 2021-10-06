@@ -59,9 +59,8 @@ const Login = () => {
           });
         });
       }
-    }}
-  
-
+    }
+  };
 
   return (
     <Container
@@ -69,7 +68,7 @@ const Login = () => {
       className="login-bg min-height d-flex flex-column justify-content-center"
     >
       <Form
-        className="col-8 col-lg-5 mx-auto login-card py-4 mt-4"
+        className="col-10 col-md-7 col-lg-5 mx-auto login-card  mt-5 pb-4"
         onSubmit={handleSubmit}
       >
         <Form.Label className="iniciaSesion d-flex justify-content-center mt-2">
@@ -83,7 +82,7 @@ const Login = () => {
             name="email"
             value={formValue.email}
             onChange={handleChange}
-            maxLength={150}
+            maxLength={50}
           />
         </Form.Group>
         <Form.Group
@@ -97,22 +96,22 @@ const Login = () => {
             name="password"
             value={formValue.password}
             onChange={handleChange}
-            maxLength={150}
+            maxLength={50}
           />
         </Form.Group>
-      
+
         <Button
           variant="primary"
           type="submit"
-          className="mb-1 btn btn-success rounded login-btn"
+          className="mt-2 btn btn-success rounded login-btn"
           disabled={btnDisable}
         >
           Ingresar
         </Button>
-        <Form.Text className="text-left text-white mb-4 mx-4">
+        <Form.Text className="row text-left text-white mb-4 mt-4 ms-1">
           ¿Aún no tienes una cuenta?
-          <Link className="login-regis mx-2" to="/registro">
-            Registrate
+          <Link className="login-regis mt-2 fs-6" to="/registro">
+            REGISTRATE
           </Link>
         </Form.Text>
         {login.ok === false && (
@@ -121,8 +120,8 @@ const Login = () => {
           </div>
         )}
       </Form>
-      </Container>
-    );
-  };
+    </Container>
+  );
+};
 
 export default Login;
