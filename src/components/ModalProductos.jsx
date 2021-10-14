@@ -17,11 +17,11 @@ const ModalProductos = (props) => {
   const [precio, setPrecio] = useState(0);
   const [paises, setPaises] = useState([]);
 
-  useEffect(() => {
-    fetch("https://restcountries.eu/rest/v2/all")
-      .then((response) => response.json())
-      .then((data) => setPaises(data));
-  }, []);
+  // useEffect(() => {
+  //   fetch("https://restcountries.eu/rest/v2/all")
+  //     .then((response) => response.json())
+  //     .then((data) => setPaises(data));
+  // }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();

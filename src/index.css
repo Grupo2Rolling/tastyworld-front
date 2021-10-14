@@ -25,7 +25,7 @@
 /* Sección administración */
 .bg {
   background-color: #36504f;
-};
+}
 
 /* Sección footer */
 .footer-clase {
@@ -339,13 +339,6 @@ overflow: hidden;
 .errorP {
   font-weight: bold;
   font-size: 20px;
-}
-
-/*admin*/
-
-.scrollAdmin {
-  max-height: 25vh;
-  overflow-y: scroll;
 }
 
 /*------------------------ About us style ------------------------*/

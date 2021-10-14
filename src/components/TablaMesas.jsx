@@ -17,8 +17,9 @@ const TablaMesas = ({ mesas }) => {
         <table className="table">
           <thead>
             <tr className="text-white mt-2">
-              <th scope="col-6">N° mesa</th>
-              <th scope="col-6">Estado</th>
+              <th scope="col-4">N° mesa</th>
+              <th scope="col-4">Capacidad</th>
+              <th scope="col-4">Estado</th>
             </tr>
           </thead>
           <tbody>
@@ -26,6 +27,7 @@ const TablaMesas = ({ mesas }) => {
               mesas.map((mesa) => (
                 <tr className="text-white" key={mesa.id}>
                   <td>{mesa.numero}</td>
+                  <td>{mesa.capacidad}</td>
                   <td>
                     <button
                       className="btn btn-info"

@@ -4,26 +4,21 @@ import { Card, Col } from "react-bootstrap";
 import Slider from "react-slick";
 
 const CardContinente = ({ continentes }) => {
-  // useEffect(() => {
-  //   handleClick()
-
-  // })
-
   const settings = {
     dots: false,
     infinite: false,
     speed: 600,
-    slidesToShow: 1,
+    slidesToShow: 1.2,
     slidesToScroll: 1,
     initialSlide: 1,
-    arrows: true,
+    arrows: false,
     centerPadding: "10px",
     slide: "Card",
     responsive: [
       {
         breakpoint: 1920,
         settings: {
-          slidesToShow: 4,
+          slidesToShow: 4.2,
           slidesToScroll: 3,
           initialSlide: 2,
           infinite: true,
@@ -34,7 +29,7 @@ const CardContinente = ({ continentes }) => {
       {
         breakpoint: 1024,
         settings: {
-          slidesToShow: 3,
+          slidesToShow: 3.2,
           slidesToScroll: 4,
           initialSlide: 4,
           infinite: false,
@@ -44,7 +39,7 @@ const CardContinente = ({ continentes }) => {
       {
         breakpoint: 768,
         settings: {
-          slidesToShow: 2,
+          slidesToShow: 2.2,
           slidesToScroll: 2,
           initialSlide: 2,
         },
@@ -52,7 +47,7 @@ const CardContinente = ({ continentes }) => {
       {
         breakpoint: 600,
         settings: {
-          slidesToShow: 2,
+          slidesToShow: 2.2,
           slidesToScroll: 2,
           initialSlide: 2,
         },
@@ -60,7 +55,7 @@ const CardContinente = ({ continentes }) => {
       {
         breakpoint: 480,
         settings: {
-          slidesToShow: 1,
+          slidesToShow: 1.2,
           slidesToScroll: 1,
         },
       },

@@ -112,6 +112,7 @@ const Administracion = () => {
   }, [render]);
 
   //------------------------------------------------
+  
 
   const handleDeleteUsuario = (usuario) => {
     console.log(usuario);
@@ -266,8 +267,8 @@ const Administracion = () => {
           +
         </button>
       </div>
-      <div className="rounded mx-5 scrollAdmin">
-        <DataTable columns={columnasProductos} data={products.datos} />
+      <div className="rounded mx-5">
+        <DataTable columns={columnasProductos} data={products.datos} pagination />
       </div>
       <div className="d-flex align-items-center">
         <h5 className="text-white p-4">COMANDAS</h5>
@@ -282,7 +283,7 @@ const Administracion = () => {
         </button>
       </div>
       <div className="rounded mx-5 scrollAdmin">
-        <DataTable columns={columnasComandas} data={comanda.datos} />
+        <DataTable columns={columnasComandas} data={comanda.datos} pagination />
       </div>
 
       <div className="d-flex align-items-center">
@@ -298,7 +299,7 @@ const Administracion = () => {
         </button>
       </div>
       <div className="rounded mx-5 scrollAdmin">
-        <DataTable columns={columnasUsuarios} data={usuarios.datos} />
+        <DataTable columns={columnasUsuarios} data={usuarios.datos} pagination />
       </div>
 
       <ModalProductos
@@ -323,5 +324,4 @@ const Administracion = () => {
     </div>
   );
 };
-
 export default Administracion;
