@@ -8,7 +8,7 @@ const CardEntregas = ({ comandas }) => {
   return (
     <Row xs={1} md={5} className="mt-5 g-2">
       {comandas &&
-        comandas.map((comanda) => (
+        comandas.reverse().map((comanda) => (
           <Col key={comanda._id} className="mt-4 mb-2">
             <Card>
               <Card.Body>
