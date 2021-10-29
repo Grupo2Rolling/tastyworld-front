@@ -121,9 +121,19 @@
   background-color: var(--verdeOsc);
   color: white;
   border: none;
-
   bottom: 20px;
   right: 26%;
+}
+.close{
+  background-color: var(--verdeOsc);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 4px 10px;
+
+}
+.sr-only{
+  display: none;
 }
 
 .botonAgrBa {

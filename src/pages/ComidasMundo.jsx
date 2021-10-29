@@ -22,9 +22,8 @@ const ComidasMundo = () => {
     });
 
     getProductos(token).then((respuesta) => {
-      let platos = respuesta.producto.filter((plato) => {
-        return plato.tipo == "Plato";
-      });
+      console.log('RESPUESTA', respuesta)
+      let platos = respuesta.producto?.filter((plato) => plato.tipo == "Plato") || [];
       setListaM(platos);
       setMenus(platos);
     });
