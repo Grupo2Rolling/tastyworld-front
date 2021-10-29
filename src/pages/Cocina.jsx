@@ -22,8 +22,13 @@ const Cocina = () => {
   useEffect(() => {
     getComandasCocina().then((respuesta) => {
       setComandas(respuesta.comanda);
-    });
-  }, [comandas]);
+    })
+    const intervalo = setInterval(() =>{
+        getComandasCocina().then((respuesta) => {
+        setComandas(respuesta.comanda);
+      })}, 30000)
+      return ()=> clearInterval(intervalo)
+      }, []);
 
   return (
     <>
