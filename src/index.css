@@ -45,7 +45,7 @@
   font-family: "Montserrat";
   color: white;
   font-weight: 800;
-  text-shadow: 0.08em 0.07em rgba(87, 87, 87, 0.664);
+  text-shadow: 0.08em 0.07em #36504f98;
 }
 
 .inicioBackground {
@@ -153,7 +153,7 @@
   height: 100%;
   width: 100%;
   padding: 5px;
-  background: #fce4d5;
+  background: #f7ece6;
   border-radius: 10px;
   transform: translateY(0deg);
   transform-style: preserve-3d;
@@ -171,13 +171,6 @@
   object-fit: contain;
   border-radius: 10px;
   padding: 3px;
-  background: linear-gradient(
-    to right top,
-    var(--salmon),
-    var(--verdeM),
-    #fcc098,
-    var(--verdeOsc)
-  );
   border-radius: 5%;
 }
 .wrapper .back-face {
