@@ -19,7 +19,7 @@ const App = () => {
         <Route exact path="/nosotros" component={Nosotros} />
         <ProtectedRoute path="/" component={RouterDos} />
       </Switch>
-      <TastyFooter/>
+      <TastyFooter />
     </Router>
   );
 };
