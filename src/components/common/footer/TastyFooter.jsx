@@ -39,6 +39,13 @@ export const TastyFooter = () => {
             </div>
           </div>
           <div className="row">
+            <div className="col-12 text-center mb-4">
+              <a href="./nosotros" className="redes-nosotros">
+                SOBRE NOSOTROS
+              </a>
+            </div>
+          </div>
+          <div className="row">
             <div className="col-12 text-center">
               <p className="small">
                 &copy; TastyWorld 2021. Todos los derechos reservados.

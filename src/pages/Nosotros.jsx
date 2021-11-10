@@ -1,5 +1,4 @@
 import React from "react";
-
 const Nosotros = () => {
   return (
     <body className="body container-fluid min-height mt-5 pt-5">
