@@ -35,7 +35,6 @@ export const getComandasBarra = async (token) => {
     },
   });
   const datos = await resp.json();
-
   return datos;
 };
 
@@ -49,6 +48,8 @@ export const getComandasEntregas = async (token) => {
     },
   });
   const datos = await resp.json();
+  console.log(token);
+  console.log(datos);
   return datos;
 };
 
