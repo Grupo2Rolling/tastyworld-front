@@ -25,7 +25,7 @@ const Barra = () => {
     getComandasBarra(token).then((respuesta) => {
       setComandas(respuesta.comanda);
     });
-  }, []);
+  }, [comandas]);
 
   return (
     <>
