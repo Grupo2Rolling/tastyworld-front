@@ -25,6 +25,7 @@ const CardFin = ({ pedidos, setEco }) => {
 
   const confirmarPedido = () => {
     pedidos.map((pedido) => {
+      console.log(pedido);
       let product = {
         producto: pedido.nombre,
         prodId: pedido.id,
@@ -37,6 +38,7 @@ const CardFin = ({ pedidos, setEco }) => {
         descripcion: pedido.descripcion,
       };
       postComandaAdmin(product, token).then((respuesta) => {
+        console.log(respuesta);
         if (respuesta.errors) {
           return window.alert(respuesta.errors[0].msg);
         } else {

@@ -7,10 +7,9 @@ import { Container } from "react-bootstrap";
 const Entrega = () => {
   const [comandas, setComandas] = useState([]);
 
-  const token =
-    JSON.parse(localStorage.getItem("auth")) &&
-    JSON.parse(localStorage.getItem("auth")).token;
+  const token = JSON.parse(localStorage.getItem("auth")).token;
   const history = useHistory();
+
   const user =
     JSON.parse(localStorage.getItem("auth")) &&
     JSON.parse(localStorage.getItem("auth")).usuario;
@@ -25,7 +24,7 @@ const Entrega = () => {
     getComandasEntregas(token).then((respuesta) => {
       setComandas(respuesta.comanda);
     });
-  }, [comandas]);
+  }, []);
 
   return (
     <>
