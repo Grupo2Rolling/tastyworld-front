@@ -57,7 +57,7 @@ export const usuarioPut = async (id, data) => {
     },
   });
   const datos = await resp.json();
-
+  console.log(datos);
   return datos;
 };
 

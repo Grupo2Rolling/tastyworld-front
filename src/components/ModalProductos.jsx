@@ -92,17 +92,6 @@ const ModalProductos = (props) => {
     setPrecio(obj ? obj.precio : "");
   }, [props.productEditar]);
 
-  // const paises = [
-  //   "Argentina",
-  //   "Peru",
-  //   "Colombia",
-  //   "Brasil",
-  //   "Venezuela",
-  //   "Ecuador",
-  //   "España",
-  //   "Japón"
-  // ];
-
   const continentes = [
     "Europa",
     "Norteamérica",
