@@ -22,8 +22,8 @@ const ComidasMundo = () => {
     });
 
     getProductos(token).then((respuesta) => {
-      console.log('RESPUESTA', respuesta)
-      let platos = respuesta.producto?.filter((plato) => plato.tipo == "Plato") || [];
+      let platos =
+        respuesta.producto?.filter((plato) => plato.tipo == "Plato") || [];
       setListaM(platos);
       setMenus(platos);
     });
@@ -63,6 +63,7 @@ const ComidasMundo = () => {
 
         <Container fluid>
           <h2 className="tituloPag text-center mt-4 pb-5">NUESTROS PLATOS</h2>
+          <h2 className="tituloPag text-center mb-4 pb-4">{continente}</h2>
           <CardMenu menus={menus} />
         </Container>
         <BotonPedido />

@@ -9,6 +9,7 @@ import TablaComandas from "../components/TablaMesasOcup";
 import TablaPedidos from "../components/TablaPedidos";
 
 const Mozo = () => {
+  const token = JSON.parse(localStorage.getItem("auth")).token;
   const [mesas, setMesas] = useState([]);
   const [mesasOcup, setMesasOcup] = useState([]);
   //pedidos
@@ -27,11 +28,6 @@ const Mozo = () => {
       history.push("/login");
     redireccion();
   }, []);
-
-  // useEffect(() => {
-  //   const datos = JSON.parse(localStorage.getItem("auth"));
-  //   setState(datos.usuario);
-  // }, [state.rol]);
 
   useEffect(() => {
     mesasGet().then((respuesta) => {
@@ -52,18 +48,11 @@ const Mozo = () => {
   }, [mesasOcup]);
 
   useEffect(() => {
-    getComandasEntregas().then((respuesta) => {
+    getComandasEntregas(token).then((respuesta) => {
       setPedidos(respuesta.comanda);
     });
   }, [eco]);
 
-  // if (state.rol !== "WAITER_ROLE" && state.rol !== "ADMIN_ROLE") {
-  //   return (
-  //     <div className="alert alert-danger text-center py-5 my-5" role="alert">
-  //       🚫Ingreso no autorizado🚫
-  //     </div>
-  //   );
-  // }
   return (
     <>
       <Container fluid className="login-bg py-4 mt-5">

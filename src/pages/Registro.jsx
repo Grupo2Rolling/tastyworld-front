@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Form, Container, Button } from "react-bootstrap";
-
+import { useHistory } from "react-router-dom";
 import { usuarioPost } from "../helpers/usuarios";
 
 const Registro = () => {
@@ -9,25 +9,32 @@ const Registro = () => {
   const [password, setPassword] = useState("");
   const [password2, setPassword2] = useState("");
   const [img, setImg] = useState("");
-
+  const history = useHistory();
   const handleSubmit = (e) => {
     e.preventDefault();
     const usuario = {
       nombre,
       email,
       password,
+      password2,
       img,
       rol: "USER_ROLE",
     };
-
-    usuarioPost(usuario).then((respuesta) => {
-      if (respuesta.errors) {
-        return window.alert(respuesta.errors[0].msg);
-      }
-      if (respuesta.msg) {
-        window.alert(respuesta.msg);
-      }
-    });
+    if (password === password2) {
+      usuarioPost(usuario).then((respuesta) => {
+        if (respuesta.errors) {
+          return window.alert(respuesta.errors[0].msg);
+        }
+        if (respuesta.msg) {
+          console.log(respuesta.msg);
+          window.alert(respuesta.msg);
+          const redireccion = () => history.push("/login");
+          redireccion();
+        }
+      });
+    } else {
+      return window.alert("Las constraseñas deben ser iguales");
+    }
   };
 
   return (

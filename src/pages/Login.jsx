@@ -110,10 +110,14 @@ const Login = () => {
         </Button>
         <Form.Text className="row text-left text-white mb-4 mt-4 ms-1">
           ¿Aún no tienes una cuenta?
-          <Link className="login-regis mt-2 fs-6" to="/registro">
-            REGISTRATE
-          </Link>
         </Form.Text>
+        <div className="row">
+          <div className="mt-2 fs-6">
+            <a href="./registro" className="login-regis">
+              REGISTRATE
+            </a>
+          </div>
+        </div>
         {login.ok === false && (
           <div className="alert alert-danger mt-3" role="alert">
             {login.msg}

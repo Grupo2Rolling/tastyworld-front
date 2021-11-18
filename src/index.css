@@ -41,6 +41,13 @@
   color: white;
 }
 
+.redes-nosotros {
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+  font-size: larger;
+}
+
 .tituloPag {
   font-family: "Montserrat";
   color: white;
@@ -124,15 +131,14 @@
   bottom: 20px;
   right: 26%;
 }
-.close{
+.close {
   background-color: var(--verdeOsc);
   color: white;
   border: none;
   border-radius: 5px;
   padding: 4px 10px;
-
 }
-.sr-only{
+.sr-only {
   display: none;
 }
 

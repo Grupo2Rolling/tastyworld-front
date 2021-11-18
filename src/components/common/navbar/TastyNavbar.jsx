@@ -76,7 +76,6 @@ export const TastyNavbar = () => {
       nombre: "Administración",
       show: !user ? false : user.rol === "ADMIN_ROLE" ? true : false,
     },
-    { ruta: "/nosotros", nombre: "Sobre Nosotros", show: !user ? false : true },
   ];
 
   return (

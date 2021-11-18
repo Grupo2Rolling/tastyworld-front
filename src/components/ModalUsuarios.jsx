@@ -80,7 +80,6 @@ const ModalUsuarios = (props) => {
     setPassword(obj ? obj.password : "");
     setImg(obj ? obj.img : "");
     setRol(obj ? obj.rol : "");
-    // setEstado(obj ? obj.estado : '')
   }, [props.usuarioEditar]);
 
   const roles = ["USER_ROLE", "ADMIN_ROLE", "WAITER_ROLE", "CHEF_ROLE"];
