@@ -2,16 +2,15 @@ import React, { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import { Form, Card, Dropdown, Container, Button } from "react-bootstrap";
 import { postComandaAdmin } from "../helpers/comandas";
+import { useHistory } from "react-router-dom";
 
 const token =
   JSON.parse(localStorage.getItem("auth")) &&
   JSON.parse(localStorage.getItem("auth")).token;
 
 const CardFin = ({ pedidos, setEco }) => {
+  const history = useHistory();
   const usuario = JSON.parse(localStorage.getItem("auth")).usuario;
-  // const [descripcion, setDescripcion] = useState("");
-
-  // const [mesa, setMesa] = useState([]);
 
   useEffect(() => {
     setEco(true);
@@ -25,7 +24,6 @@ const CardFin = ({ pedidos, setEco }) => {
 
   const confirmarPedido = () => {
     pedidos.map((pedido) => {
-      console.log(pedido);
       let product = {
         producto: pedido.nombre,
         prodId: pedido.id,
@@ -37,20 +35,22 @@ const CardFin = ({ pedidos, setEco }) => {
         numeroPedido: getRandomNumberBetween(1, 100000),
         descripcion: pedido.descripcion,
       };
+
       postComandaAdmin(product, token).then((respuesta) => {
-        console.log(respuesta);
         if (respuesta.errors) {
           return window.alert(respuesta.errors[0].msg);
         } else {
           Swal.fire({
             title: "Pedido confirmado",
-
             icon: "success",
             confirmButtonColor: "#3085d6",
           });
+          const redireccion = () => history.push("/");
+          redireccion();
         }
       });
     });
+    localStorage.setItem("carrito", JSON.stringify([]));
   };
 
   return (
