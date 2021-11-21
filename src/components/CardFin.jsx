@@ -75,7 +75,7 @@ const CardFin = ({ pedidos, setEco }) => {
       ))}
 
       <Button
-        className="mb-4 pull-right"
+        className="mb-4 pull-right mt-3"
         variant="light"
         onClick={() => confirmarPedido()}
       >
