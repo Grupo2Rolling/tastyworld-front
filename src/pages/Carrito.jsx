@@ -15,7 +15,7 @@ const Carrito = () => {
 
   useEffect(() => {
     cargarCarrito();
-  }, [eco]);
+  },[]);
 
   const cargarCarrito = () => {
     carrito.forEach((producto) => {
@@ -23,8 +23,8 @@ const Carrito = () => {
         pedido.push(respuesta.producto);
         setPedidos(pedido);
       });
-    });
-  };
+      });
+    };
 
   return (
     <Container className="tituloPag inicioBackground text-center min-height mt-5 pt-5">

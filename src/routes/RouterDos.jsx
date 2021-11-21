@@ -2,7 +2,6 @@ import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { TastyNavbar } from "../components/common/navbar/TastyNavbar";
 import "bootstrap/dist/css/bootstrap.css";
-import { TastyFooter } from "../components/common/footer/TastyFooter";
 import Inicio from "../pages/Inicio";
 import Login from "../pages/Login";
 import Cocina from "../pages/Cocina";
