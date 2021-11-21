@@ -1,45 +1,32 @@
 import React, { useState, useEffect } from "react";
-import { getMenus } from "../helpers/menus";
-import  listaMenus from "../helpers/listamenus"
-import CardMenu from "../components/CardMenu";
-import Categoria from "../components/Categoria";
-import  listaCategorias from "../helpers/listaCategorias"
+import { useHistory } from "react-router";
+import listaCategorias from "../helpers/listaCategorias";
 import CardCategoria from "../components/CardCategoria";
-
+import { Parallax } from "react-parallax";
+import Imagen2 from "../assets/imagen2.svg";
 
 const Inicio = () => {
-  // const [menus, setMenus] = useState([]);
-  // const [categorias,setCategorias]=useState([])
-  
-  // useEffect(() => {
-  //   getCategorias().then((respuesta) => {
-  //     // console.log(respuesta);
-  //     setCategorias(respuesta.categorias);
-      
-  //   });
-  // }, []);
+  const user =
+    JSON.parse(localStorage.getItem("auth")) &&
+    JSON.parse(localStorage.getItem("auth")).usuario;
+  const history = useHistory();
+  useEffect(() => {
+    const redireccion = () => user || history.push("/login");
+    redireccion();
+  }, []);
 
-  // useEffect(() => {
-  //   getMenus().then((respuesta) => {
-  //     // console.log(respuesta);
-  //     setMenus(respuesta.menus);
-      
-  //   });
-  // }, []);
-
- 
   return (
     <>
-      
-      <div className="container mb-3">
-        <h1 className="mb-3">Elige tu viaje culinario</h1>
-        <div className="d-flex justify-content-center my-3">
-         {/* <Categoria categorias={categorias}/> */}
+      <Parallax
+        className="inicioBackground min-height d-flex  justify-content-center pt-5 mt-5"
+        bgImage={Imagen2}
+        strength={500}
+      >
+        <div>
+          <h1 className="text-center tituloPag">BIENVENIDO</h1>
+          <CardCategoria lista={listaCategorias} />
         </div>
-        
-          <CardCategoria listaCategorias={listaCategorias}/>
-        
-      </div>
+      </Parallax>
     </>
   );
 };

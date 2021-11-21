@@ -1,9 +1,10 @@
-const url = "http://localhost:8080/api/categorias";
 
-export const getCategorias = async (desde) => {
-  const resp = await fetch(`${url}?desde=${desde}`, {
+const url = "https://tasty-world-backend.herokuapp.com";
+
+export const mesasGet = async () => {
+  const resp = await fetch(`${url}/api/mesas`, {
     method: "GET",
-
+    //?limite=${limite}&desde=${desde}
     headers: {
       "Content-type": "application/json; charset=UTF-8",
     },
@@ -13,12 +14,13 @@ export const getCategorias = async (desde) => {
   return datos;
 };
 
-export const getCategoriaId = async (id) => {
-  const resp = await fetch(`${url}/${id}`, {
+export const mesasTodasGet = async () => {
+  const resp = await fetch(`${url}/api/mesas/todas`, {
     method: "GET",
-
+    // ?limite=${limite}&desde=${desde}
     headers: {
       "Content-type": "application/json; charset=UTF-8",
+      "x-token": JSON.parse(localStorage.getItem("auth")).token,
     },
   });
   const datos = await resp.json();
@@ -26,8 +28,8 @@ export const getCategoriaId = async (id) => {
   return datos;
 };
 
-export const postCategoria = async (data) => {
-  const resp = await fetch(`${url}`, {
+export const mesasPost = async (data) => {
+  const resp = await fetch(`${url}/api/mesas`, {
     method: "POST",
     body: JSON.stringify(data),
     headers: {
@@ -40,8 +42,8 @@ export const postCategoria = async (data) => {
   return datos;
 };
 
-export const putCategoria = async (id, data) => {
-  const resp = await fetch(`${url}/${id}`, {
+export const mesasPut = async (id, data) => {
+  const resp = await fetch(`${url}/api/mesas/${id}`, {
     method: "PUT",
     body: JSON.stringify(data),
     headers: {
@@ -54,8 +56,8 @@ export const putCategoria = async (id, data) => {
   return datos;
 };
 
-export const deleteCategoria = async (id) => {
-  const resp = await fetch(`${url}/${id}`, {
+export const mesasDelete = async (id) => {
+  const resp = await fetch(`${url}/api/mesas/${id}`, {
     method: "DELETE",
 
     headers: {

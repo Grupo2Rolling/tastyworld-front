@@ -1,12 +1,12 @@
 const url = "https://tasty-world-backend.herokuapp.com/api/productos";
 
-//Traer todos los menus
-export const productosGet = async (desde) => {
-  const resp = await fetch(`${url}?desde=${desde}`, {
+export const getProductos = async (token) => {
+  const resp = await fetch(`${url}/all`, {
     method: "GET",
 
     headers: {
       "Content-type": "application/json; charset=UTF-8",
+      "x-token": token,
     },
   });
   const datos = await resp.json();
@@ -14,26 +14,13 @@ export const productosGet = async (desde) => {
   return datos;
 };
 
-export const getMenusCont = async (continente) => {
-  const resp = await fetch(`${url}?continente=${continente}`, {
-    method: "GET",
-
-    headers: {
-      "Content-type": "application/json; charset=UTF-8",
-    },
-  });
-  const datos = await resp.json();
-
-  return datos;
-};
-
-//Traer menu por Id
-export const getMenu = async (id) => {
+export const getProducto = async (id, token) => {
   const resp = await fetch(`${url}/${id}`, {
     method: "GET",
 
     headers: {
       "Content-type": "application/json; charset=UTF-8",
+      "x-token": token,
     },
   });
   const datos = await resp.json();
@@ -41,14 +28,13 @@ export const getMenu = async (id) => {
   return datos;
 };
 
-//Agregar menu
-export const postMenu = async (data) => {
+export const postProducto = async (data, token) => {
   const resp = await fetch(`${url}`, {
     method: "POST",
     body: JSON.stringify(data),
     headers: {
       "Content-type": "application/json; charset=UTF-8",
-      "x-token": JSON.parse(localStorage.getItem("auth")).token,
+      "x-token": token,
     },
   });
   const datos = await resp.json();
@@ -56,14 +42,13 @@ export const postMenu = async (data) => {
   return datos;
 };
 
-//Actualizar menu
-export const putMenu = async (id, data) => {
+export const putProducto = async (id, data, token) => {
   const resp = await fetch(`${url}/${id}`, {
     method: "PUT",
     body: JSON.stringify(data),
     headers: {
       "Content-type": "application/json; charset=UTF-8",
-      "x-token": JSON.parse(localStorage.getItem("auth")).token,
+      "x-token": token,
     },
   });
   const datos = await resp.json();
@@ -71,14 +56,13 @@ export const putMenu = async (id, data) => {
   return datos;
 };
 
-//Borrar menu
-export const deleteMenu = async (id) => {
+export const deleteProducto = async (id, token) => {
   const resp = await fetch(`${url}/${id}`, {
     method: "DELETE",
 
     headers: {
       "Content-type": "application/json; charset=UTF-8",
-      "x-token": JSON.parse(localStorage.getItem("auth")).token,
+      "x-token": token,
     },
   });
   const datos = await resp.json();
