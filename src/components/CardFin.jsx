@@ -4,7 +4,7 @@ import { Form, Card, Dropdown, Container, Button } from "react-bootstrap";
 import { postComandaAdmin } from "../helpers/comandas";
 import { useHistory } from "react-router-dom";
 
-const token = JSON.parse(localStorage.getItem("auth")).token;
+const token = JSON.parse(localStorage.getItem("auth")) && JSON.parse(localStorage.getItem("auth")).token;
 
 const CardFin = ({ pedidos, setEco }) => {
   const history = useHistory();
