@@ -11,6 +11,7 @@ const Carrito = () => {
   const [eco, setEco] = useState(true);
   const [loadVisible, setLoadVisible] = useState(true);
 
+
   const token =
     JSON.parse(localStorage.getItem("auth")) &&
     JSON.parse(localStorage.getItem("auth")).token;
@@ -42,7 +43,7 @@ const Carrito = () => {
          width="100"
          visible={loadVisible}
       />   
-      <CardFin pedidos={pedidos} eco={eco} setEco={setEco} />
+      <CardFin pedidos={pedidos} eco={eco} setEco={setEco} setPedidos={setPedidos}  />
     </Container>
   );
 };

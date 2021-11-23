@@ -1,11 +1,10 @@
-import React from "react";
+import React,{useState} from "react";
 import Swal from "sweetalert2";
-let lista = [];
 const CardMenu = ({ menus }) => {
-  const agregarACarrito = (id) => {
-    lista.push(id);
-
-    localStorage.setItem("carrito", JSON.stringify(lista));
+  let lista = JSON.parse(localStorage.getItem('carrito')) || [];
+  const agregarACarrito = async (id) => {
+    lista.push(id)
+   localStorage.setItem("carrito", JSON.stringify(lista));
     Swal.fire({
       title: "Producto agregado",
 
