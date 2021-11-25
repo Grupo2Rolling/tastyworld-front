@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { postAuth } from "../helpers/authentication";
 import { Container, Form, Button } from "react-bootstrap";
+import Swal from "sweetalert2";
 
 const Login = () => {
   const isMounted = useRef(true);
@@ -11,7 +12,8 @@ const Login = () => {
     password: "",
   });
   const [btnDisable, setBtnDisable] = useState(false);
-  const [login, setLogin] = useState({});
+  //const [login, setLogin] = useState({});
+  const login = [];
 
   const user =
     JSON.parse(localStorage.getItem("auth")) &&
@@ -44,23 +46,52 @@ const Login = () => {
     });
   };
 
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   const { email, password } = formValue;
+  //   if (email && password) {
+  //     setBtnDisable(true);
+  //     if (isMounted.current) {
+  //       postAuth(formValue).then((respuesta) => {
+  //         localStorage.setItem("auth", JSON.stringify(respuesta));
+  //         setBtnDisable(false);
+  //         setFormValue({
+  //           email: "",
+  //           password: "",
+  //         });
+  //       });
+  //     }
+  //   }
+  // };
+
   const handleSubmit = (e) => {
+    
     e.preventDefault();
-    const { email, password } = formValue;
-    if (email && password) {
-      setBtnDisable(true);
-      if (isMounted.current) {
-        postAuth(formValue).then((respuesta) => {
-          localStorage.setItem("auth", JSON.stringify(respuesta));
-          setBtnDisable(false);
-          setFormValue({
-            email: "",
-            password: "",
+      const { email, password } = formValue;
+      if (email && password) {
+        setBtnDisable(true);
+        if (isMounted.current) {
+          postAuth(formValue).then((respuesta) => {
+            if (respuesta.msg === "Usuario validado") {
+              localStorage.setItem("auth", JSON.stringify(respuesta));
+              setBtnDisable(false);
+              setFormValue({
+                email: "",
+                password: "",
+              });
+            } else {
+              Swal.fire({
+                title: respuesta.msg,
+                icon: "error",
+                confirmButtonColor: "#3085d6",
+              });
+              setBtnDisable(false);
+            }
           });
-        });
+        }
       }
-    }
   };
+
 
   return (
     <Container
