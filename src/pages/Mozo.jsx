@@ -15,7 +15,7 @@ const Mozo = () => {
   //pedidos
   const [pedidos, setPedidos] = useState([]);
   const [eco, setEco] = useState(false);
-  const [state, setState] = useState({ rol: "" });
+  const state = { rol: "" };
 
   const history = useHistory();
   const user =

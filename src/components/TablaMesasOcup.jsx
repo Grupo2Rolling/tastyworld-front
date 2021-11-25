@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { mesasDelete, mesasPut } from "../helpers/mesas";
 
 const TablaComandas = ({ mesasOcup }) => {

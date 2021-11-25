@@ -1,5 +1,6 @@
-import React,{useState} from "react";
+import React from "react";
 import Swal from "sweetalert2";
+
 const CardMenu = ({ menus }) => {
   let lista = JSON.parse(localStorage.getItem('carrito')) || [];
   const agregarACarrito = async (id) => {
@@ -7,7 +8,6 @@ const CardMenu = ({ menus }) => {
    localStorage.setItem("carrito", JSON.stringify(lista));
     Swal.fire({
       title: "Producto agregado",
-
       icon: "success",
       confirmButtonColor: "#3085d6",
     });

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { useHistory } from "react-router";
 import listaCategorias from "../helpers/listaCategorias";
 import CardCategoria from "../components/CardCategoria";
