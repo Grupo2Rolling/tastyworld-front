@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { postAuth } from "../helpers/authentication";
 import { Container, Form, Button } from "react-bootstrap";
 import Swal from "sweetalert2";
@@ -12,8 +12,7 @@ const Login = () => {
     password: "",
   });
   const [btnDisable, setBtnDisable] = useState(false);
-  //const [login, setLogin] = useState({});
-  const login = [];
+  const [login, setLogin] = useState({});
 
   const user =
     JSON.parse(localStorage.getItem("auth")) &&
@@ -45,24 +44,6 @@ const Login = () => {
       [target.name]: target.value,
     });
   };
-
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   const { email, password } = formValue;
-  //   if (email && password) {
-  //     setBtnDisable(true);
-  //     if (isMounted.current) {
-  //       postAuth(formValue).then((respuesta) => {
-  //         localStorage.setItem("auth", JSON.stringify(respuesta));
-  //         setBtnDisable(false);
-  //         setFormValue({
-  //           email: "",
-  //           password: "",
-  //         });
-  //       });
-  //     }
-  //   }
-  // };
 
   const handleSubmit = (e) => {
     

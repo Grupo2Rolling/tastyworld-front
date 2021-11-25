@@ -1,14 +1,9 @@
 import React, { useState, useEffect } from "react";
-
-// import { ChevronDown, Plus, MoreVertical, Edit, Trash } from "react-feather";
 import { Modal, Button, Form } from "react-bootstrap";
 import Swal from "sweetalert2";
 import {
   usuarioPost,
-  usuarioGet,
   usuarioPut,
-  usuarioDelete,
-  usuariosGet,
 } from "../helpers/usuarios";
 
 const ModalUsuarios = (props) => {
@@ -26,7 +21,6 @@ const ModalUsuarios = (props) => {
       password,
       img,
       rol,
-      // estado,
     };
     if (props.usuarioEditar) {
       usuarioPut(props.usuarioEditar.uid, usuario).then((respuesta) => {

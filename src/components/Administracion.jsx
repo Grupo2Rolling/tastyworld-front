@@ -112,10 +112,8 @@ const Administracion = () => {
   }, [render]);
 
   //------------------------------------------------
-  
 
   const handleDeleteUsuario = (usuario) => {
-    console.log(usuario);
     usuarioDelete(usuario.uid).then((respuesta) => {
       if (respuesta.msg) {
         window.alert(respuesta.msg);
@@ -131,19 +129,19 @@ const Administracion = () => {
   const columnasProductos = [
     {
       name: "NOMBRE",
-      selector: "nombre",
+      selector: (row) => row.nombre,
       sortable: true,
       width: "29%",
     },
     {
       name: "PRECIO",
-      selector: "precio",
+      selector: (row) => row.precio,
       sortable: true,
       width: "29%",
     },
     {
       name: "PAIS",
-      selector: "pais",
+      selector: (row) => row.pais,
       sortable: true,
       width: "29%",
     },
@@ -170,25 +168,25 @@ const Administracion = () => {
   const columnasComandas = [
     {
       name: "NUMERO",
-      selector: "numeroPedido",
+      selector: (row) => row.numeroPedido,
       sortable: true,
       width: "10%",
     },
     {
       name: "ESTADO",
-      selector: "estado",
+      selector: (row) => row.estado,
       sortable: true,
       width: "20%",
     },
     {
       name: "USUARIO",
-      selector: "nombreCliente",
+      selector: (row) => row.nombreCliente,
       sortable: true,
       width: "25%",
     },
     {
       name: "PRODUCTO",
-      selector: "producto",
+      selector: (row) => row.producto,
       sortable: true,
       width: "30%",
     },
@@ -217,19 +215,19 @@ const Administracion = () => {
   const columnasUsuarios = [
     {
       name: "NOMBRE USUARIO",
-      selector: "nombre",
+      selector: (row) => row.nombre,
       sortable: true,
       width: "29%",
     },
     {
       name: "EMAIL USUARIO",
-      selector: "email",
+      selector: (row) => row.email,
       sortable: true,
       width: "29%",
     },
     {
       name: "ROL",
-      selector: "rol",
+      selector: (row) => row.rol,
       sortable: true,
       width: "29%",
     },
@@ -268,7 +266,12 @@ const Administracion = () => {
         </button>
       </div>
       <div className="rounded mx-5">
-        <DataTable columns={columnasProductos} data={products.datos} pagination />
+        <DataTable
+          columns={columnasProductos}
+          data={products.datos}
+          pagination
+          selectableRows
+        />
       </div>
       <div className="d-flex align-items-center">
         <h5 className="text-white p-4">COMANDAS</h5>
@@ -283,7 +286,12 @@ const Administracion = () => {
         </button>
       </div>
       <div className="rounded mx-5 scrollAdmin">
-        <DataTable columns={columnasComandas} data={comanda.datos} pagination />
+        <DataTable
+          columns={columnasComandas}
+          data={comanda.datos}
+          pagination
+          selectableRows
+        />
       </div>
 
       <div className="d-flex align-items-center">
@@ -299,7 +307,12 @@ const Administracion = () => {
         </button>
       </div>
       <div className="rounded mx-5 scrollAdmin">
-        <DataTable columns={columnasUsuarios} data={usuarios.datos} pagination />
+        <DataTable
+          columns={columnasUsuarios}
+          data={usuarios.datos}
+          pagination
+          selectableRows
+        />
       </div>
 
       <ModalProductos

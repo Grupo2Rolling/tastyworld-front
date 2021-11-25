@@ -10,8 +10,7 @@ const Cocina = () => {
   const user =
     JSON.parse(localStorage.getItem("auth")) &&
     JSON.parse(localStorage.getItem("auth")).usuario;
-  //const token = JSON.parse(localStorage.getItem("auth")) && JSON.parse(localStorage.getItem("auth")).token
-
+  
   useEffect(() => {
     const redireccion = () =>
       (user && (user.rol === "CHEF_ROLE" || user.rol === "ADMIN_ROLE")) ||

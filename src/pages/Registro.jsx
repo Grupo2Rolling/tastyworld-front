@@ -26,7 +26,6 @@ const Registro = () => {
           return window.alert(respuesta.errors[0].msg);
         }
         if (respuesta.msg) {
-          console.log(respuesta.msg);
           window.alert(respuesta.msg);
           const redireccion = () => history.push("/login");
           redireccion();
