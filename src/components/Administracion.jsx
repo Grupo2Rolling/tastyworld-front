@@ -46,7 +46,6 @@ const Administracion = () => {
           if (respuesta.msg) {
             Swal.fire({
               title: respuesta.msg,
-              text: "Operacion exitosa",
               icon: "success",
               confirmButtonColor: "#3085d6",
             });
@@ -82,15 +81,32 @@ const Administracion = () => {
     redireccion();
   }, []);
   //------------------------------------------------
-
   const handleDeleteComanda = (comanda) => {
-    delComanda(comanda._id).then((respuesta) => {
-      if (respuesta.msg) {
-        window.alert(respuesta.msg);
-        setRender(!render);
+    Swal.fire({
+      title: "¿Seguro que quieres eliminar la comanda?",
+      text: "No puedes revertir esta acción",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes",
+      cancelButtonText: "No",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        delComanda(comanda._id, token).then((respuesta) => {
+          if (respuesta.msg) {
+            Swal.fire({
+              title: respuesta.msg,
+              icon: "success",
+              confirmButtonColor: "#3085d6",
+            });
+            setRender(!render);
+          }
+        });
       }
     });
   };
+
   const handleEditComanda = (comanda) => {
     setComandaEditar(comanda);
     setToggleComandas(true);
@@ -112,15 +128,32 @@ const Administracion = () => {
   }, [render]);
 
   //------------------------------------------------
-
   const handleDeleteUsuario = (usuario) => {
-    usuarioDelete(usuario.uid).then((respuesta) => {
-      if (respuesta.msg) {
-        window.alert(respuesta.msg);
-        setRender(!render);
+    Swal.fire({
+      title: "¿Seguro que quieres eliminar este usuario?",
+      text: "No puedes revertir esta acción",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes",
+      cancelButtonText: "No",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        usuarioDelete(usuario.uid, token).then((respuesta) => {
+          if (respuesta.msg) {
+            Swal.fire({
+              title: "Tasty usuario eliminado",
+              icon: "success",
+              confirmButtonColor: "#3085d6",
+            });
+            setRender(!render);
+          }
+        });
       }
     });
   };
+
   const handleEditUsuario = (usuario) => {
     setUsuarioEditar(usuario);
     setToggleUsuarios(true);
