@@ -46,33 +46,38 @@ const Login = () => {
   };
 
   const handleSubmit = (e) => {
-    
     e.preventDefault();
-      const { email, password } = formValue;
-      if (email && password) {
-        setBtnDisable(true);
-        if (isMounted.current) {
-          postAuth(formValue).then((respuesta) => {
-            if (respuesta.msg === "Usuario validado") {
-              localStorage.setItem("auth", JSON.stringify(respuesta));
-              setBtnDisable(false);
-              setFormValue({
-                email: "",
-                password: "",
-              });
-            } else {
-              Swal.fire({
-                title: respuesta.msg,
-                icon: "error",
-                confirmButtonColor: "#3085d6",
-              });
-              setBtnDisable(false);
-            }
-          });
-        }
+    const { email, password } = formValue;
+    if (password === "") {
+      Swal.fire({
+        title: "Debe introducir la contraseña",
+        icon: "error",
+        confirmButtonColor: "#3085d6",
+      });
+    }
+    if (email && password) {
+      setBtnDisable(true);
+      if (isMounted.current) {
+        postAuth(formValue).then((respuesta) => {
+          if (respuesta.msg === "Usuario validado") {
+            localStorage.setItem("auth", JSON.stringify(respuesta));
+            setBtnDisable(false);
+            setFormValue({
+              email: "",
+              password: "",
+            });
+          } else {
+            Swal.fire({
+              title: respuesta.msg,
+              icon: "error",
+              confirmButtonColor: "#3085d6",
+            });
+            setBtnDisable(false);
+          }
+        });
       }
+    }
   };
-
 
   return (
     <Container
@@ -109,6 +114,7 @@ const Login = () => {
             value={formValue.password}
             onChange={handleChange}
             maxLength={50}
+            minLength={6}
           />
         </Form.Group>
 

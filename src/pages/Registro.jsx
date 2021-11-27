@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Form, Container, Button } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
 import { usuarioPost } from "../helpers/usuarios";
+import Swal from "sweetalert2";
 
 const Registro = () => {
   const [nombre, setNombre] = useState("");
@@ -20,22 +21,37 @@ const Registro = () => {
       img,
       rol: "USER_ROLE",
     };
-    if (password === password2) {
-      usuarioPost(usuario).then((respuesta) => {
-        if (respuesta.errors) {
-          return window.alert(respuesta.errors[0].msg);
-        }
-        if (respuesta.msg) {
-          window.alert(respuesta.msg);
-          const redireccion = () => history.push("/login");
-          redireccion();
-        }
-      });
+    if (password && password2) {
+      if (password === password2) {
+        usuarioPost(usuario).then((respuesta) => {
+          if (respuesta.errors) {
+            return Swal.fire({
+              title: respuesta.errors[0].msg,
+              icon: "success",
+              confirmButtonColor: "#3085d6",
+            });
+          }
+          if (respuesta.msg) {
+            window.alert(respuesta.msg);
+            const redireccion = () => history.push("/login");
+            redireccion();
+          }
+        });
+      } else {
+        return Swal.fire({
+          title: "Las constraseñas deben ser iguales",
+          icon: "warning",
+          cancelButtonColor: "#d33",
+        });
+      }
     } else {
-      return window.alert("Las constraseñas deben ser iguales");
+      return Swal.fire({
+        title: "Debe completar todos los campos",
+        icon: "warning",
+        cancelButtonColor: "#d33",
+      });
     }
   };
-
   return (
     <Container fluid className="login-bg py-5 min-height">
       <Form

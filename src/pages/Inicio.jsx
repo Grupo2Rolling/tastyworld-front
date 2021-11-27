@@ -23,7 +23,7 @@ const Inicio = () => {
         strength={500}
       >
         <div>
-          <h1 className="text-center tituloPag">BIENVENIDO</h1>
+          <h1 className="text-center tituloPag">BIENVENID@</h1>
           <CardCategoria lista={listaCategorias} />
         </div>
       </Parallax>
