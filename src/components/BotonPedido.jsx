@@ -7,7 +7,7 @@ const BotonPedido = () => {
   const [estadoBot, setEstadoBot] = useState(false);
 
   useEffect(() => {
-    if (comanda != []) {
+    if (comanda !== []) {
       setEstadoBot(true);
     }
   }, [comanda]);

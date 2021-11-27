@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import Swal from "sweetalert2";
-import { Form, Card, Dropdown, Container, Button } from "react-bootstrap";
+import { Form, Card, Container, Button } from "react-bootstrap";
 import { postComandaAdmin } from "../helpers/comandas";
 import { useHistory } from "react-router-dom";
 
 const token = JSON.parse(localStorage.getItem("auth")) && JSON.parse(localStorage.getItem("auth")).token;
 
-const CardFin = ({ pedidos, setEco }) => {
+const CardFin = ({ pedidos, setEco, setPedidos }) => {
   const history = useHistory();
   const usuario = JSON.parse(localStorage.getItem("auth")).usuario;
 
@@ -19,19 +19,19 @@ const CardFin = ({ pedidos, setEco }) => {
   const getRandomNumberBetween = (min, max) => {
     return Math.floor(Math.random() * (max - min + 1) + min);
   };
-
+  
   const confirmarPedido = () => {
-    pedidos.map((pedido) => {
+    pedidos.forEach((pedido) => {
       let product = {
         producto: pedido.nombre,
-        prodId: pedido.id,
+        prodId: pedido._id,
         cantidad: 1,
         tipo: pedido.tipo,
         nombreCliente: usuario.nombre,
         mesa: "1",
         estado: "Pendiente",
         numeroPedido: getRandomNumberBetween(1, 100000),
-        descripcion: pedido.descripcion,
+        descripcion: pedido?.notas || 'No se especificaron notas para este pedido',
       };
 
       postComandaAdmin(product, token).then((respuesta) => {
@@ -53,7 +53,7 @@ const CardFin = ({ pedidos, setEco }) => {
 
   return (
     <Container className="text-center">
-      {pedidos.map((pedido) => (
+      {pedidos.map((pedido, index) => (
         <Card
           key={getRandomNumberBetween(1, 1000000)}
           className="  mb-3 mi-4 login-card cardcarrito justify-center"
@@ -63,14 +63,29 @@ const CardFin = ({ pedidos, setEco }) => {
             <Card.Text>$ {pedido.precio}</Card.Text>
             <Form>
               <Form.Control
-                // onChange={(e)=> agregarDescripcion(pedido.id)}
+                onChange={(e)=> {
+                  pedidos[index]= {...pedido, notas: e.target.value}
+                  setPedidos(pedidos)
+                }}
                 label="Comments"
                 as="textarea"
+                maxLength='150'
                 placeholder="¿Nos queres aclarar algo sobre tu Tastypedido?"
                 style={{ height: "100px" }}
               />
             </Form>
           </Card.Body>
+          <Button
+            className="mb-4 pull-right mt-3"
+            variant="light"
+            onClick={() => {
+              const _pedidos = JSON.parse(localStorage.getItem('carrito')) || []
+              localStorage.setItem('carrito', JSON.stringify(_pedidos.map(e => e).filter(e => e !== pedido._id)))
+              setPedidos(pedidos.filter(e => pedido._id !== e._id))
+            }}
+           >
+            BORRAR
+          </Button>
         </Card>
       ))}
 

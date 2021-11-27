@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { useHistory } from "react-router";
 import listaCategorias from "../helpers/listaCategorias";
 import CardCategoria from "../components/CardCategoria";
@@ -23,7 +23,7 @@ const Inicio = () => {
         strength={500}
       >
         <div>
-          <h1 className="text-center tituloPag">BIENVENIDO</h1>
+          <h1 className="text-center tituloPag">BIENVENID@</h1>
           <CardCategoria lista={listaCategorias} />
         </div>
       </Parallax>

@@ -18,7 +18,7 @@ export const TastyNavbar = () => {
   };
 
   useEffect(() => {
-    setRender(true);
+    setRender(!render);
   }, [location.pathname]);
 
   const links = [

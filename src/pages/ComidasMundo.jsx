@@ -23,7 +23,7 @@ const ComidasMundo = () => {
 
     getProductos(token).then((respuesta) => {
       let platos =
-        respuesta.producto?.filter((plato) => plato.tipo == "Plato") || [];
+        respuesta.producto?.filter((plato) => plato.tipo === "Plato") || [];
       setListaM(platos);
       setMenus(platos);
     });

@@ -1,11 +1,7 @@
 import React, { useState, useEffect } from "react";
-
-// import { ChevronDown, Plus, MoreVertical, Edit, Trash } from "react-feather";
 import { Modal, Button, Form } from "react-bootstrap";
-import DataTable from "react-data-table-component";
 import Swal from "sweetalert2";
 import { postProducto, putProducto } from "../helpers/productos";
-//getProducto, deleteProducto, getProductos
 
 const ModalProductos = (props) => {
   const [pais, setPais] = useState("");
@@ -16,12 +12,6 @@ const ModalProductos = (props) => {
   const [img, setImagen] = useState("");
   const [precio, setPrecio] = useState(0);
   const [paises, setPaises] = useState([]);
-
-  // useEffect(() => {
-  //   fetch("https://restcountries.eu/rest/v2/all")
-  //     .then((response) => response.json())
-  //     .then((data) => setPaises(data));
-  // }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();

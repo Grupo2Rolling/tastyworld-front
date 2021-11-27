@@ -1,15 +1,7 @@
 import React, { useState, useEffect } from "react";
-
-// import { ChevronDown, Plus, MoreVertical, Edit, Trash } from "react-feather";
 import { Modal, Button, Form } from "react-bootstrap";
 import Swal from "sweetalert2";
-import {
-  usuarioPost,
-  usuarioGet,
-  usuarioPut,
-  usuarioDelete,
-  usuariosGet,
-} from "../helpers/usuarios";
+import { usuarioPost, usuarioPut } from "../helpers/usuarios";
 
 const ModalUsuarios = (props) => {
   const [nombre, setNombre] = useState("");
@@ -26,13 +18,12 @@ const ModalUsuarios = (props) => {
       password,
       img,
       rol,
-      // estado,
     };
     if (props.usuarioEditar) {
       usuarioPut(props.usuarioEditar.uid, usuario).then((respuesta) => {
         if (respuesta.errors) {
           return Swal.fire({
-            title: respuesta.errors[0].msg,
+            title: "Hubo un problema, por favor intentalo de nuevo",
             text: "Opps!",
             icon: "error",
             confirmButtonColor: "#3085d6",
@@ -42,8 +33,7 @@ const ModalUsuarios = (props) => {
           props.onHide();
           props.setRender();
           Swal.fire({
-            title: respuesta.msg,
-            text: "Operacion exitosa",
+            title: "Tasty usuario editado correctamente!",
             icon: "success",
             confirmButtonColor: "#3085d6",
           });
@@ -64,7 +54,6 @@ const ModalUsuarios = (props) => {
           props.setRender();
           Swal.fire({
             title: respuesta.msg,
-            text: "Operacion exitosa",
             icon: "success",
             confirmButtonColor: "#3085d6",
           });
