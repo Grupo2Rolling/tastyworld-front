@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { Modal, Button, Form } from "react-bootstrap";
 import { postComandaAdmin, putComanda } from "../helpers/comandas";
 import Swal from "sweetalert2";
-//import { postProducto, putProducto, } from "../helpers/productos";
 
 const token =
   JSON.parse(localStorage.getItem("auth")) &&
