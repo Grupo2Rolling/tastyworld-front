@@ -11,7 +11,7 @@ const ModalProductos = (props) => {
   const [descripcion, setDescripcion] = useState("");
   const [img, setImagen] = useState("");
   const [precio, setPrecio] = useState(0);
-  const [paises, setPaises] = useState([]);
+  const [paises] = useState([]);
 
   const handleSubmit = (e) => {
     e.preventDefault();

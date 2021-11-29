@@ -27,7 +27,7 @@ const Mozo = () => {
       (user && (user.rol === "WAITER_ROLE" || user.rol === "ADMIN_ROLE")) ||
       history.push("/login");
     redireccion();
-  }, []);
+  }, );
 
   useEffect(() => {
     mesasGet().then((respuesta) => {
@@ -51,7 +51,7 @@ const Mozo = () => {
     getComandasEntregas(token).then((respuesta) => {
       setPedidos(respuesta.comanda);
     });
-  }, [eco]);
+  }, );
 
   return (
     <>

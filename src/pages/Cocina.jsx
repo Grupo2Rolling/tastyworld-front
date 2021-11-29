@@ -16,7 +16,7 @@ const Cocina = () => {
       (user && (user.rol === "CHEF_ROLE" || user.rol === "ADMIN_ROLE")) ||
       history.push("/login");
     redireccion();
-  }, []);
+  }, );
 
   useEffect(() => {
     getComandasCocina().then((respuesta) => {

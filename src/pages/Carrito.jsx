@@ -18,7 +18,7 @@ const Carrito = () => {
 
   useEffect(() => {
     cargarCarrito();
-  },[]);
+  },);
 
   const cargarCarrito = () => {
     carrito.forEach((producto) => {

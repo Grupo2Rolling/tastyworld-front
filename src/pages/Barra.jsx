@@ -14,18 +14,19 @@ const Barra = () => {
   const user =
     JSON.parse(localStorage.getItem("auth")) &&
     JSON.parse(localStorage.getItem("auth")).usuario;
+
   useEffect(() => {
     const redireccion = () =>
       (user && (user.rol === "WAITER_ROLE" || user.rol === "ADMIN_ROLE")) ||
       history.push("/login");
     redireccion();
-  }, []);
+  }, );
 
   useEffect(() => {
     getComandasBarra(token).then((respuesta) => {
       setComandas(respuesta.comanda);
     });
-  }, [comandas]);
+  }, );
 
   return (
     <>
