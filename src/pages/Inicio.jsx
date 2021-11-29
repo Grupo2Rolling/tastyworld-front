@@ -10,10 +10,11 @@ const Inicio = () => {
     JSON.parse(localStorage.getItem("auth")) &&
     JSON.parse(localStorage.getItem("auth")).usuario;
   const history = useHistory();
+  
   useEffect(() => {
     const redireccion = () => user || history.push("/login");
     redireccion();
-  }, []);
+  }, );
 
   return (
     <>

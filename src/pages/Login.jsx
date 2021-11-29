@@ -12,7 +12,7 @@ const Login = () => {
     password: "",
   });
   const [btnDisable, setBtnDisable] = useState(false);
-  const [login, setLogin] = useState({});
+  const [login] = useState({});
 
   const user =
     JSON.parse(localStorage.getItem("auth")) &&
@@ -30,7 +30,7 @@ const Login = () => {
         : "/");
     const redireccion = () => user && history.push(ruta);
     redireccion();
-  }, [formValue]);
+  }, );
 
   useEffect(() => {
     return () => {
