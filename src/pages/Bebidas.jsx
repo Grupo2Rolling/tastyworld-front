@@ -13,7 +13,7 @@ const Bebidas = () => {
   
   useEffect(() => {
     getProductos(token).then((respuesta) => {
-      let Bebid = respuesta.producto.filter((plato) => {
+      let Bebid = respuesta.producto?.filter((plato) => {
         return plato.tipo === "Bebida";
       });
       setListaB(Bebid);
