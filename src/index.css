@@ -245,11 +245,6 @@
   transform: scale(1.03);
 }
 
-/* .cardConti{
-box-sizing: border-box;
-object-fit: contain;
-overflow: hidden;
-} */
 .cardCont {
   max-height: 70%;
   padding: 20px;
