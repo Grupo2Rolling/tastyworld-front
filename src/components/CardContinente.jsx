@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Card, Col,Row, Container } from "react-bootstrap";
+import { Card, Col, Row, Container } from "react-bootstrap";
 import Slider from "react-slick";
 
 const CardContinente = ({ continentes }) => {
@@ -63,63 +63,47 @@ const CardContinente = ({ continentes }) => {
   };
   return (
     <>
-     
-        <Slider {...settings}>
-        
+      <Slider {...settings}>
         <Card className="cardConti">
-                <Link
-                  style={{ textDecoration: "none" }}
-                  to={`/comidasmundo/`}
-        
-                >
-                  <Card.Body className="cardCont">
-                    <Row>
-                      <Card.Img
-                        src='https://i.postimg.cc/3xd8QZp8/mundo.png'
-                        itemID="imgCon"
-                        alt="Mundo"
-                      />
-                    </Row>
+          <Link style={{ textDecoration: "none" }} to={`/comidasmundo/`}>
+            <Card.Body className="cardCont">
+              <Row>
+                <Card.Img
+                  src="https://i.postimg.cc/3xd8QZp8/mundo.png"
+                  itemID="imgCon"
+                  alt="Mundo"
+                />
+              </Row>
+              <h5 className="card-title text-center nombreCont">Todos </h5>
+            </Card.Body>
+          </Link>
+        </Card>
+        {continentes.map((continente) => (
+          <Container className="d-flex flex-col" key={continente.nombre}>
+            <Card className="cardConti">
+              <Link
+                style={{ textDecoration: "none" }}
+                to={`/comidasmundo/${continente.nombre}`}
+              >
+                <Card.Body className="cardCont">
+                  <Col>
+                    <Card.Img
+                      src={continente.img}
+                      itemID="imgCon"
+                      alt={continente.nombre}
+                    />
+                  </Col>
+                  <Col>
                     <h5 className="card-title text-center nombreCont">
-                      Todos             </h5>
-                  </Card.Body>
-                </Link>
-              </Card>
-          {continentes.map((continente) => (
-          <Container d-flex flex-col>
-              <Card className="cardConti">
-                <Link
-                  style={{ textDecoration: "none" }}
-                  to={`/comidasmundo/${continente.nombre}`}
-                  key={continente._id}
-                >
-                  
-                  <Card.Body className="cardCont">
-                  
-                      
-                        <Col>
-                          <Card.Img
-                            src={continente.img}
-                            itemID="imgCon"
-                            alt={continente.nombre}
-                          />
-                        </Col>
-                        <Col>
-                          <h5 className="card-title text-center nombreCont">
-                            {continente.nombre}
-                          </h5>
-                        </Col>
-                      
-                    
-                  </Card.Body>
-                 
-                </Link>
-              </Card>
-              </Container>
-          ))}
-        
-        </Slider>
-      
+                      {continente.nombre}
+                    </h5>
+                  </Col>
+                </Card.Body>
+              </Link>
+            </Card>
+          </Container>
+        ))}
+      </Slider>
     </>
   );
 };

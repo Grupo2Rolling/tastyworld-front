@@ -10,16 +10,16 @@ const Inicio = () => {
     JSON.parse(localStorage.getItem("auth")) &&
     JSON.parse(localStorage.getItem("auth")).usuario;
   const history = useHistory();
-  
+
   useEffect(() => {
     const redireccion = () => user || history.push("/login");
     redireccion();
-  }, );
+  });
 
   return (
     <>
       <Parallax
-        className="inicioBackground min-height d-flex  justify-content-center pt-5 mt-5"
+        className="inicioBackground min-height d-flex justify-content-center pt-5 mt-5"
         bgImage={Imagen2}
         strength={500}
       >
