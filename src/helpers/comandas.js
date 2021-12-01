@@ -1,12 +1,12 @@
 const url = "https://tasty-world-backend.herokuapp.com/api/comandas";
 
-export const getComandas = async (token) => {
+export const getComandas = async () => {
   const resp = await fetch(`${url}`, {
     method: "GET",
 
     headers: {
       "Content-type": "application/json; charset=UTF-8",
-      "x-token": token,
+      "x-token": JSON.parse(localStorage.getItem("auth")).token,
     },
   });
   const datos = await resp.json();
@@ -25,39 +25,39 @@ export const getComandasCocina = async () => {
   return datos;
 };
 
-export const getComandasBarra = async (token) => {
+export const getComandasBarra = async () => {
   const resp = await fetch(`${url}/barra`, {
     method: "GET",
 
     headers: {
       "Content-type": "application/json; charset=UTF-8",
-      "x-token": token,
+      "x-token": JSON.parse(localStorage.getItem("auth")).token,
     },
   });
   const datos = await resp.json();
   return datos;
 };
 
-export const getComandasEntregas = async (token) => {
+export const getComandasEntregas = async () => {
   const resp = await fetch(`${url}/entregas`, {
     method: "GET",
 
     headers: {
       "Content-type": "application/json; charset=UTF-8",
-      "x-token": token,
+      "x-token": JSON.parse(localStorage.getItem("auth")).token,
     },
   });
   const datos = await resp.json();
   return datos;
 };
 
-export const postComandaAdmin = async (data, token) => {
+export const postComandaAdmin = async (data) => {
   const resp = await fetch(`${url}/admin`, {
     method: "POST",
     body: JSON.stringify(data),
     headers: {
       "Content-type": "application/json; charset=UTF-8",
-      "x-token": token,
+      "x-token": JSON.parse(localStorage.getItem("auth")).token,
     },
   });
   const datos = await resp.json();
@@ -66,13 +66,13 @@ export const postComandaAdmin = async (data, token) => {
 };
 
 //Actualizar estado de comanda
-export const putComanda = async (id, data, token) => {
+export const putComanda = async (id, data) => {
   const resp = await fetch(`${url}/${id}`, {
     method: "PUT",
     body: JSON.stringify(data),
     headers: {
       "Content-type": "application/json; charset=UTF-8",
-      "x-token": token,
+      "x-token": JSON.parse(localStorage.getItem("auth")).token,
     },
   });
   const datos = await resp.json();
@@ -80,7 +80,7 @@ export const putComanda = async (id, data, token) => {
   return datos;
 };
 
-export const delComanda = async (id, data) => {
+export const delComanda = async (id) => {
   const resp = await fetch(`${url}/${id}`, {
     method: "DELETE",
     headers: {
