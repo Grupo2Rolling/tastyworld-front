@@ -29,8 +29,8 @@ const CardCocina = ({ comandas }) => {
     <Row xs={1} md={5} className="mt-5 g-2">
       {comandas &&
         comandas.reverse().map((comanda) => (
-          <Col className="mt-4 mb-2">
-            <Card key={comanda._id}>
+          <Col key={comanda._id} className="mt-4 mb-2">
+            <Card>
               <Card.Body>
                 <Card.Header>Pedido: {comanda.numeroPedido}</Card.Header>
                 <Card.Title className="m-2">{comanda.producto}</Card.Title>
