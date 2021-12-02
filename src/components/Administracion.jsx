@@ -80,7 +80,7 @@ const Administracion = () => {
       (user && user.rol === "ADMIN_ROLE") || history.push("/login");
     redireccion();
   }, []);
-  //------------------------------------------------
+
   const handleDeleteComanda = (comanda) => {
     Swal.fire({
       title: "¿Seguro que quieres eliminar la comanda?",
