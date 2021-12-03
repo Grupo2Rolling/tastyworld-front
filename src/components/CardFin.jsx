@@ -79,7 +79,7 @@ const CardFin = ({ pedidos, setEco, setPedidos }) => {
             className="mb-4 pull-right mt-3"
             variant="light"
             onClick={() => {
-              const _pedidos = JSON.parse(localStorage.getItem('carrito')) || []
+              let _pedidos = JSON.parse(localStorage.getItem('carrito')) || []
               localStorage.setItem('carrito', JSON.stringify(_pedidos.map(e => e).filter(e => e !== pedido._id)))
               setPedidos(pedidos.filter(e => pedido._id !== e._id))
             }}

@@ -16,7 +16,7 @@ const CardMenu = ({ menus }) => {
   return (
     <>
       <div className="row  row-cols-md-3 row-cols-lg-4 g-4">
-        {menus.map((menu) => (
+        {menus?.map((menu) => (
           <div
             className="col mt-2 mb-4 d-flex justify-content-center "
             key={menu._id}
