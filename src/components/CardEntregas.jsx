@@ -23,9 +23,6 @@ const CardEntregas = ({ comandas }) => {
                   <ListGroup.Item>Mesa: {comanda.mesa}</ListGroup.Item>
                   <ListGroup.Item>Estado: {comanda.estado}</ListGroup.Item>
                 </ListGroup>
-                <Card.Footer>
-                  <TimerComandas />
-                </Card.Footer>
               </Card.Body>
             </Card>
           </Col>

@@ -251,20 +251,9 @@
   position: absolute;
   top: -35px;
 }
-.cardCont img {
-  width: 90%;
-  max-height: 70%;
-  padding: 20px;
-}
-.nombreCont {
-  font-family: "Montserrat";
-  text-decoration: none;
-  color: var(--verdeOsc);
-  font-weight: 700;
-}
 
 #imgCon {
-  object-fit: contain;
+  object-fit: fill;
   box-sizing: border-box;
   width: 50vw;
   padding: 5px;

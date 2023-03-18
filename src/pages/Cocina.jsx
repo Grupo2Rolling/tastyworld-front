@@ -10,16 +10,17 @@ const Cocina = () => {
   const user =
     JSON.parse(localStorage.getItem("auth")) &&
     JSON.parse(localStorage.getItem("auth")).usuario;
-  
+
   useEffect(() => {
     const redireccion = () =>
       (user && (user.rol === "CHEF_ROLE" || user.rol === "ADMIN_ROLE")) ||
       history.push("/login");
     redireccion();
-  }, );
+  });
 
   useEffect(() => {
     getComandasCocina().then((respuesta) => {
+      console.log({ respuesta });
       setComandas(respuesta.comanda);
     });
     const intervalo = setInterval(() => {
@@ -28,7 +29,7 @@ const Cocina = () => {
       });
     }, 30000);
     return () => clearInterval(intervalo);
-  }, [comandas]);
+  }, []);
 
   return (
     <>

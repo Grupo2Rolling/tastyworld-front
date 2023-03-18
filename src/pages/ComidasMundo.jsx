@@ -8,6 +8,15 @@ import { useParams, useHistory } from "react-router";
 import { getContinentes } from "../helpers/continentes";
 
 const ComidasMundo = () => {
+  const history = useHistory();
+  useEffect(() => {
+    getProductos(token).then((respuesta) => {
+      if (!respuesta.producto) {
+        localStorage.removeItem("auth");
+        history.push("/login");
+      }
+    });
+  }, []);
   let { continente } = useParams();
 
   const [listaM, setListaM] = useState([]);
@@ -28,8 +37,6 @@ const ComidasMundo = () => {
       setMenus(platos);
     });
   }, []);
-
-  const history = useHistory();
   const user =
     JSON.parse(localStorage.getItem("auth")) &&
     JSON.parse(localStorage.getItem("auth")).usuario;
@@ -46,6 +53,8 @@ const ComidasMundo = () => {
           return menu.continente === continente;
         });
       setMenus(lista);
+    } else {
+      setMenus(listaM);
     }
   }, [continente]);
 
@@ -63,7 +72,9 @@ const ComidasMundo = () => {
 
         <Container fluid>
           <h2 className="tituloPag text-center mt-4 pb-5">NUESTROS PLATOS</h2>
-          <h2 className="tituloPag text-center mb-4 pb-4">{continente}</h2>
+          <h2 className="tituloPag text-center mb-4 pb-4">
+            {continente ? continente : "Todos"}
+          </h2>
           <CardMenu menus={menus} />
         </Container>
         <BotonPedido />

@@ -19,13 +19,13 @@ const Entrega = () => {
       (user && (user.rol === "WAITER_ROLE" || user.rol === "ADMIN_ROLE")) ||
       history.push("/login");
     redireccion();
-  }, );
+  });
 
   useEffect(() => {
     getComandasEntregas(token).then((respuesta) => {
       setComandas(respuesta.comanda);
     });
-  }, );
+  }, []);
 
   return (
     <>

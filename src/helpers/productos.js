@@ -1,4 +1,4 @@
-const url = "https://tasty-world-backend.herokuapp.com/api/productos";
+const url = "http://localhost:4005/api/productos";
 
 export const getProductos = async (token) => {
   const resp = await fetch(`${url}/all`, {
@@ -29,6 +29,7 @@ export const getProducto = async (id, token) => {
 };
 
 export const postProducto = async (data, token) => {
+  console.log(token);
   const resp = await fetch(`${url}`, {
     method: "POST",
     body: JSON.stringify(data),

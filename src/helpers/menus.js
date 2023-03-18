@@ -1,4 +1,4 @@
-const url = "https://tasty-world-backend.herokuapp.com/api/productos";
+const url = "http://localhost:4005/api/productos";
 
 //Traer todos los menus
 export const productosGet = async (desde) => {

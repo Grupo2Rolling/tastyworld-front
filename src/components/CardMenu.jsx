@@ -2,10 +2,10 @@ import React from "react";
 import Swal from "sweetalert2";
 
 const CardMenu = ({ menus }) => {
-  let lista = JSON.parse(localStorage.getItem('carrito')) || [];
+  let lista = JSON.parse(localStorage.getItem("carrito")) || [];
   const agregarACarrito = async (id) => {
-    lista.push(id)
-   localStorage.setItem("carrito", JSON.stringify(lista));
+    lista.push(id);
+    localStorage.setItem("carrito", JSON.stringify(lista));
     Swal.fire({
       title: "Producto agregado",
       icon: "success",
@@ -34,12 +34,7 @@ const CardMenu = ({ menus }) => {
                   <strong>{menu.categoria}</strong>
                   <div className="precioyBot">
                     <h5 className="precioPlato text-center">${menu.precio}</h5>
-                    <button
-                      className="btn btn-info botonAgr"
-                      onClick={() => agregarACarrito(menu._id)}
-                    >
-                      Agregar +
-                    </button>
+                    <h2>{menu.pais}</h2>
                   </div>
                 </div>
               </div>

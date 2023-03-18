@@ -1,4 +1,4 @@
-const url = "https://tasty-world-backend.herokuapp.com/api/comandas";
+const url = "http://localhost:4005/api/comandas";
 
 export const getComandas = async () => {
   const resp = await fetch(`${url}`, {
@@ -13,6 +13,7 @@ export const getComandas = async () => {
 
   return datos;
 };
+
 export const getComandasCocina = async () => {
   const resp = await fetch(`${url}/cocina`, {
     method: "GET",
@@ -28,7 +29,6 @@ export const getComandasCocina = async () => {
 export const getComandasBarra = async () => {
   const resp = await fetch(`${url}/barra`, {
     method: "GET",
-
     headers: {
       "Content-type": "application/json; charset=UTF-8",
       "x-token": JSON.parse(localStorage.getItem("auth")).token,
@@ -41,7 +41,6 @@ export const getComandasBarra = async () => {
 export const getComandasEntregas = async () => {
   const resp = await fetch(`${url}/entregas`, {
     method: "GET",
-
     headers: {
       "Content-type": "application/json; charset=UTF-8",
       "x-token": JSON.parse(localStorage.getItem("auth")).token,

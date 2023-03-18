@@ -11,7 +11,6 @@ const ModalProductos = (props) => {
   const [descripcion, setDescripcion] = useState("");
   const [img, setImagen] = useState("");
   const [precio, setPrecio] = useState(0);
-  const [paises] = useState([]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -106,17 +105,12 @@ const ModalProductos = (props) => {
         <h4>Agregue un producto</h4>
         <Form onSubmit={(e) => handleSubmit(e)}>
           <Form.Group className="mb-3">
-            <Form.Label>País</Form.Label>
+            <Form.Label>Nombre del País</Form.Label>
             <Form.Control
-              value={pais}
               onChange={(e) => setPais(e.target.value)}
-              as="select"
-            >
-              <option>Elige un país</option>
-              {paises.map((pais, index) => (
-                <option key={index + 4567}>{pais.name}</option>
-              ))}
-            </Form.Control>
+              value={pais}
+              type="text"
+            />
           </Form.Group>
 
           <Form.Group className="mb-3">
