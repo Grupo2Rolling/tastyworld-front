@@ -16,11 +16,11 @@ const Carrito = () => {
     JSON.parse(localStorage.getItem("auth")).token;
 
   useEffect(() => {
-    cargarCarrito();
+    cargarCarrito(carrito);
   }, []);
 
-  const cargarCarrito = () => {
-    carrito.forEach((producto) => {
+  const cargarCarrito = (c) => {
+    c.forEach((producto) => {
       getProducto(producto, token).then((respuesta) => {
         pedido.push(respuesta.producto);
       });
@@ -28,7 +28,7 @@ const Carrito = () => {
     setTimeout(function () {
       setPedidos(pedido);
       setLoadVisible(false);
-    }, 5000);
+    }, 500);
   };
 
   return (
@@ -42,6 +42,7 @@ const Carrito = () => {
         visible={loadVisible}
       />
       <CardFin
+        cargarCarrito={cargarCarrito}
         pedidos={pedidos}
         eco={eco}
         setEco={setEco}

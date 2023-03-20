@@ -32,8 +32,8 @@ export const TastyFooter = () => {
             </div>
             <div className="col-12 col-md-4 mb-4 mb-md-2 d-flex align-items-center justify-content-center">
               <span>
-                +543815673097 <br />
-                Tucumán, Argentina <br />
+                +34-678871919 <br />
+                Valencia, España <br />
                 tastyworld@gmail.com
               </span>
             </div>
@@ -48,7 +48,7 @@ export const TastyFooter = () => {
           <div className="row">
             <div className="col-12 text-center">
               <p className="small">
-                &copy; TastyWorld 2021. Todos los derechos reservados.
+                &copy; TastyWorld 2023. Todos los derechos reservados.
               </p>
             </div>
           </div>

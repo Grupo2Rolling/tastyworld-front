@@ -8,6 +8,7 @@ import { useParams, useHistory } from "react-router";
 import { getContinentes } from "../helpers/continentes";
 
 const ComidasMundo = () => {
+  const [contadorProductosFlag, setContadorProductosFlag] = useState(false);
   const history = useHistory();
   useEffect(() => {
     getProductos(token).then((respuesta) => {
@@ -75,9 +76,15 @@ const ComidasMundo = () => {
           <h2 className="tituloPag text-center mb-4 pb-4">
             {continente ? continente : "Todos"}
           </h2>
-          <CardMenu menus={menus} />
+          <CardMenu
+            menus={menus}
+            setContadorProductosFlag={setContadorProductosFlag}
+          />
         </Container>
-        <BotonPedido />
+        <BotonPedido
+          setContadorProductosFlag={setContadorProductosFlag}
+          contadorProductosFlag={contadorProductosFlag}
+        />
       </Container>
     </>
   );

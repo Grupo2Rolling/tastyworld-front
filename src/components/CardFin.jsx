@@ -1,30 +1,30 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Swal from "sweetalert2";
 import { Form, Card, Container, Button } from "react-bootstrap";
 import { postComandaAdmin } from "../helpers/comandas";
 import { useHistory } from "react-router-dom";
 
-const CardFin = ({ pedidos, setEco, setPedidos }) => {
+const CardFin = ({ pedidos, setEco, setPedidos, cargarCarrito }) => {
   const token =
     JSON.parse(localStorage.getItem("auth")) &&
     JSON.parse(localStorage.getItem("auth")).token;
   const history = useHistory();
   const usuario = JSON.parse(localStorage.getItem("auth")).usuario;
   let precioTotal = 0;
+  // useEffect(() => {
+  //   setEco(true);
 
-  useEffect(() => {
-    setEco(true);
-
-    setEco(false);
-  });
-
-  pedidos.forEach(function (a) {
-    precioTotal += Number(a.precio);
-  });
-
+  //   setEco(false);
+  // });
+  // Symbol(pedido).toString + pedido
   const getRandomNumberBetween = (min, max) => {
     return Math.floor(Math.random() * (max - min + 1) + min);
   };
+  pedidos.forEach(function (pedido) {
+    precioTotal += Number(pedido.precio);
+
+    pedido.numPlato = getRandomNumberBetween(1, 10000);
+  });
 
   const confirmarPedido = () => {
     pedidos.forEach((pedido) => {
@@ -57,6 +57,19 @@ const CardFin = ({ pedidos, setEco, setPedidos }) => {
     });
     localStorage.setItem("carrito", JSON.stringify([]));
   };
+  const borrarProd = (pedido) => {
+    console.log(`Id q aprieto ${pedido._id}`);
+    // console.log(`numPlato q aprito ${pedido.numPlato}`);
+
+    let newCarrito = [];
+    pedidos.forEach((element) => {
+      if (element.numPlato !== pedido.numPlato) {
+        newCarrito.push(element._id);
+      }
+    });
+    localStorage.setItem("carrito", JSON.stringify(newCarrito));
+    cargarCarrito(newCarrito);
+  };
 
   return (
     <Container className="text-center">
@@ -87,17 +100,7 @@ const CardFin = ({ pedidos, setEco, setPedidos }) => {
           <Button
             className="mb-4 pull-right mt-3"
             variant="light"
-            onClick={() => {
-              const _pedidos =
-                JSON.parse(localStorage.getItem("carrito")) || [];
-              localStorage.setItem(
-                "carrito",
-                JSON.stringify(
-                  _pedidos.map((e) => e).filter((e) => e !== pedido._id)
-                )
-              );
-              setPedidos(pedidos.filter((e) => pedido._id !== e._id));
-            }}
+            onClick={(e) => borrarProd(pedido)}
           >
             BORRAR
           </Button>
