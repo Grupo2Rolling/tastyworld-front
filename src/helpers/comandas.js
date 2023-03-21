@@ -1,4 +1,5 @@
-const url = "http://localhost:4005/api/comandas";
+// const url = "http://localhost:4005/api/comandas";
+const url = "https://vercel.com/ferreque/tasty-world-back/api/comandas";
 
 export const getComandas = async () => {
   const resp = await fetch(`${url}`, {

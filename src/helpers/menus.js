@@ -1,4 +1,5 @@
-const url = "http://localhost:4005/api/productos";
+// const url = "http://localhost:4005/api/productos";
+const url = "https://vercel.com/ferreque/tasty-world-back/api/productos";
 
 //Traer todos los menus
 export const productosGet = async (desde) => {

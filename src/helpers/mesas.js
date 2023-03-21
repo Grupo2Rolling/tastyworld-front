@@ -1,4 +1,5 @@
-const url = "http://localhost:4005";
+// const url = "http://localhost:4005";
+const url = "https://vercel.com/ferreque/tasty-world-back";
 
 export const mesasGet = async () => {
   const resp = await fetch(`${url}/api/mesas`, {
