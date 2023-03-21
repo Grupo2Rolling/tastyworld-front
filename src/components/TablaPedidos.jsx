@@ -1,17 +1,15 @@
 import React from "react";
 import { putComanda } from "../helpers/comandas";
 
-const TablaPedidos = ({ pedidos, setEco }) => {
+const TablaPedidos = ({ pedidos, setMesasFlag }) => {
   const token =
     JSON.parse(localStorage.getItem("auth")) &&
     JSON.parse(localStorage.getItem("auth")).token;
 
   const cambiarComanda = (id) => {
     let comanda = { estado: "Entregado" };
-    putComanda(id, comanda, token).then((respuesta) => {
-      setEco(true);
-      setEco(false);
-    });
+    putComanda(id, comanda, token).then((respuesta) => {});
+    setMesasFlag(true);
   };
 
   return (

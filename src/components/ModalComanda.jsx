@@ -90,13 +90,7 @@ const ModalComanda = (props) => {
     setDescripcion(obj ? obj.descripcion : "");
   }, [props.comandaEditar]);
 
-  const estados = [
-    "Pendiente",
-    "En proceso",
-    "Realizado",
-    "Entregado",
-    "Anulado",
-  ];
+  const estados = ["Pendiente", "Realizado", "Entregado", "Anulado"];
 
   const tipos = ["Plato", "Bebida", "Promo"];
 

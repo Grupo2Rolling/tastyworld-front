@@ -6,6 +6,7 @@ import { Container } from "react-bootstrap";
 
 const Cocina = () => {
   const [comandas, setComandas] = useState([]);
+  const [comandaFlag, setComandaFlag] = useState(false);
   const history = useHistory();
   const user =
     JSON.parse(localStorage.getItem("auth")) &&
@@ -20,21 +21,25 @@ const Cocina = () => {
 
   useEffect(() => {
     getComandasCocina().then((respuesta) => {
-      console.log({ respuesta });
       setComandas(respuesta.comanda);
     });
-    const intervalo = setInterval(() => {
-      getComandasCocina().then((respuesta) => {
-        setComandas(respuesta.comanda);
-      });
-    }, 30000);
-    return () => clearInterval(intervalo);
-  }, []);
+    setComandaFlag(false);
+    // const intervalo = setInterval(() => {
+    //   getComandasCocina().then((respuesta) => {
+    //     setComandas(respuesta.comanda);
+    //   });
+    // }, 30000);
+    // return () => clearInterval(intervalo);
+  }, [comandaFlag]);
 
   return (
     <>
       <Container fluid className="mt-2 min-height">
-        <CardCocina comandas={comandas} />
+        <CardCocina
+          comandas={comandas}
+          comandaFlag={comandaFlag}
+          setComandaFlag={setComandaFlag}
+        />
       </Container>
     </>
   );

@@ -1,66 +1,65 @@
-import React from "react";
+import React, { useState } from "react";
 import Swal from "sweetalert2";
 import { Form, Card, Container, Button } from "react-bootstrap";
 import { postComandaAdmin } from "../helpers/comandas";
 import { useHistory } from "react-router-dom";
 
-const CardFin = ({ pedidos, setEco, setPedidos, cargarCarrito }) => {
+const CardFin = ({ pedidos, setPedidos, cargarCarrito }) => {
+  const [mesa, setMesa] = useState();
+
   const token =
     JSON.parse(localStorage.getItem("auth")) &&
     JSON.parse(localStorage.getItem("auth")).token;
   const history = useHistory();
   const usuario = JSON.parse(localStorage.getItem("auth")).usuario;
   let precioTotal = 0;
-  // useEffect(() => {
-  //   setEco(true);
 
-  //   setEco(false);
-  // });
   // Symbol(pedido).toString + pedido
   const getRandomNumberBetween = (min, max) => {
     return Math.floor(Math.random() * (max - min + 1) + min);
   };
   pedidos.forEach(function (pedido) {
     precioTotal += Number(pedido.precio);
-
     pedido.numPlato = getRandomNumberBetween(1, 10000);
   });
 
   const confirmarPedido = () => {
-    pedidos.forEach((pedido) => {
-      let product = {
-        producto: pedido.nombre,
-        prodId: pedido._id,
-        cantidad: 1,
-        tipo: pedido.tipo,
-        nombreCliente: usuario.nombre,
-        mesa: "1",
-        estado: "Pendiente",
-        numeroPedido: getRandomNumberBetween(1, 100000),
-        descripcion:
-          pedido?.notas || "No se especificaron notas para este pedido",
-      };
+    if (!mesa) {
+      window.alert("debe introducirr un numero de mesa");
+    } else {
+      pedidos.forEach((pedido) => {
+        let product = {
+          hora: Date(),
+          mesa: mesa,
+          producto: pedido.nombre,
+          prodId: pedido._id,
+          tipo: pedido.tipo,
+          nombreCliente: usuario.nombre,
+          estado: "Pendiente",
+          numeroPedido: getRandomNumberBetween(1, 100000),
+          descripcion:
+            pedido?.notas || "No se especificaron notas para este pedido",
+        };
+        console.log(product);
 
-      postComandaAdmin(product, token).then((respuesta) => {
-        if (respuesta.errors) {
-          return window.alert(respuesta.errors[0].msg);
-        } else {
-          Swal.fire({
-            title: "Pedido confirmado",
-            icon: "success",
-            confirmButtonColor: "#3085d6",
-          });
-          const redireccion = () => history.push("/");
-          redireccion();
-        }
+        postComandaAdmin(product, token).then((respuesta) => {
+          if (respuesta.errors) {
+            return window.alert(respuesta.errors[0].msg);
+          } else {
+            Swal.fire({
+              title: "Pedido confirmado",
+              icon: "success",
+              confirmButtonColor: "#3085d6",
+            });
+            const redireccion = () => history.push("/");
+            redireccion();
+          }
+        });
       });
-    });
-    localStorage.setItem("carrito", JSON.stringify([]));
+      localStorage.setItem("carrito", JSON.stringify([]));
+    }
   };
   const borrarProd = (pedido) => {
-    console.log(`Id q aprieto ${pedido._id}`);
-    // console.log(`numPlato q aprito ${pedido.numPlato}`);
-
     let newCarrito = [];
     pedidos.forEach((element) => {
       if (element.numPlato !== pedido.numPlato) {
@@ -73,6 +72,20 @@ const CardFin = ({ pedidos, setEco, setPedidos, cargarCarrito }) => {
 
   return (
     <Container className="text-center">
+      <div className="input-group input-group-lg">
+        <span className="input-group-text" id="inputGroup-sizing-lg">
+          NUMERO DE MESA
+        </span>
+        <input
+          type="text"
+          placeholder="Introduzca el numero de su mesa"
+          onChange={(e) => setMesa(e.target.value)}
+          className="form-control"
+          aria-label="Sizing example input"
+          aria-describedby="inputGroup-sizing-lg"
+        ></input>
+      </div>
+
       <h1>Precio total:{precioTotal}</h1>
       {pedidos.map((pedido, index) => (
         <Card

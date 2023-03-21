@@ -12,9 +12,9 @@ const Mozo = () => {
   const token = JSON.parse(localStorage.getItem("auth")).token;
   const [mesas, setMesas] = useState([]);
   const [mesasOcup, setMesasOcup] = useState([]);
+  const [mesasFlag, setMesasFlag] = useState(false);
   //pedidos
   const [pedidos, setPedidos] = useState([]);
-  const [eco, setEco] = useState(false);
   const state = { rol: "" };
 
   const history = useHistory();
@@ -27,13 +27,14 @@ const Mozo = () => {
       (user && (user.rol === "WAITER_ROLE" || user.rol === "ADMIN_ROLE")) ||
       history.push("/login");
     redireccion();
-  }, );
+  }, []);
 
   useEffect(() => {
     mesasGet().then((respuesta) => {
       setMesas(respuesta.mesa);
     });
-  }, [mesas]);
+    setMesasFlag(false);
+  }, [mesasFlag]);
 
   useEffect(() => {
     mesasTodasGet().then((respuesta) => {
@@ -45,13 +46,15 @@ const Mozo = () => {
         });
       setMesasOcup(ocupadas);
     });
-  }, [mesasOcup]);
+    setMesasFlag(false);
+  }, [mesasFlag]);
 
   useEffect(() => {
     getComandasEntregas(token).then((respuesta) => {
       setPedidos(respuesta.comanda);
     });
-  }, );
+    setMesasFlag(false);
+  }, [mesasFlag]);
 
   return (
     <>
@@ -59,15 +62,15 @@ const Mozo = () => {
         <h1 className="text-white text-center">{state.nombre}</h1>
         <h1 className="iniciaSesion text-center my-3">Mesas Libres</h1>
         <Row className="text-center">
-          <TablaMesas mesas={mesas} />
+          <TablaMesas mesas={mesas} setMesasFlag={setMesasFlag} />
         </Row>
         <h1 className="iniciaSesion text-center my-3">Mesas Ocupadas</h1>
         <Row className="mb-5 text-center">
-          <TablaComandas mesasOcup={mesasOcup} />
+          <TablaComandas mesasOcup={mesasOcup} setMesasFlag={setMesasFlag} />
         </Row>
         <h1 className="iniciaSesion text-center my-3">Pedidos</h1>
         <Row className="mb-5 text-center">
-          <TablaPedidos pedidos={pedidos} eco={eco} setEco={setEco} />
+          <TablaPedidos pedidos={pedidos} setMesasFlag={setMesasFlag} />
         </Row>
       </Container>
     </>

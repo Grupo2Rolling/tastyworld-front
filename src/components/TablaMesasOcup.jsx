@@ -1,14 +1,16 @@
 import React from "react";
 import { mesasDelete, mesasPut } from "../helpers/mesas";
 
-const TablaComandas = ({ mesasOcup }) => {
+const TablaComandas = ({ mesasOcup, setMesasFlag }) => {
   const liberarMesa = (id) => {
     let mesa = { estado: true };
     mesasPut(id, mesa).then((respuesta) => {});
+    setMesasFlag(true);
   };
 
   const deleteMesa = (id) => {
     mesasDelete(id).then((respuesta) => {});
+    setMesasFlag(true);
   };
 
   return (

@@ -42,7 +42,7 @@ const CardBarra = ({ comandas }) => {
                   <ListGroup.Item>Mesa: {comanda.mesa}</ListGroup.Item>
                   <ListGroup.Item>Estado: {comanda.estado}</ListGroup.Item>
                 </ListGroup>
-                <TimerComandas />
+                {/* <TimerComandas /> */}
               </Card.Body>
               <Card.Footer>
                 <ButtonToolbar

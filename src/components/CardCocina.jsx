@@ -7,24 +7,26 @@ import {
   Button,
   ButtonToolbar,
 } from "react-bootstrap";
-import TimerComandas from "./TimerComandas";
+// import TimerComandas from "./TimerComandas";
 import { putComanda } from "../helpers/comandas";
 
-const token =
-  JSON.parse(localStorage.getItem("auth")) &&
-  JSON.parse(localStorage.getItem("auth")).token;
+const CardCocina = ({ comandas, comandaFlag, setComandaFlag }) => {
+  const token =
+    JSON.parse(localStorage.getItem("auth")) &&
+    JSON.parse(localStorage.getItem("auth")).token;
 
-const pedidoRealizado = (id) => {
-  let comanda = { estado: "Realizado" };
-  putComanda(id, comanda, token);
-};
+  const pedidoRealizado = (id) => {
+    let comanda = { estado: "Realizado" };
+    putComanda(id, comanda, token);
+    setComandaFlag(true);
+  };
 
-const pedidoAnulado = (id) => {
-  let comanda = { estado: "Anulado" };
-  putComanda(id, comanda, token);
-};
+  const pedidoAnulado = (id) => {
+    let comanda = { estado: "Anulado" };
+    putComanda(id, comanda, token);
+    setComandaFlag(true);
+  };
 
-const CardCocina = ({ comandas }) => {
   return (
     <Row xs={1} md={5} className="mt-5 g-2">
       {comandas &&
@@ -35,16 +37,18 @@ const CardCocina = ({ comandas }) => {
                 <Card.Header>Pedido: {comanda.numeroPedido}</Card.Header>
                 <Card.Title className="m-2">{comanda.producto}</Card.Title>
                 <ListGroup>
-                  <ListGroup.Item>Cantidad: {comanda.cantidad}</ListGroup.Item>
+                  <ListGroup.Item>{comanda.hora}</ListGroup.Item>
                   <ListGroup.Item>Notas: {comanda.descripcion}</ListGroup.Item>
                   <ListGroup.Item>
                     Cliente: {comanda.nombreCliente}
                   </ListGroup.Item>
-                  <ListGroup.Item>Mesa: {comanda.mesa}</ListGroup.Item>
+                  <ListGroup.Item>
+                    <h2>Mesa: {comanda.mesa}</h2>{" "}
+                  </ListGroup.Item>
                   <ListGroup.Item>Estado: {comanda.estado}</ListGroup.Item>
                 </ListGroup>
               </Card.Body>
-              <TimerComandas />
+              {/* <TimerComandas /> */}
               <Card.Footer>
                 <ButtonToolbar
                   className="justify-content-center"

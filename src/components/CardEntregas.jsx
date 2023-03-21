@@ -2,8 +2,6 @@ import React from "react";
 //import React from 'react'
 import { Card, Row, Col, ListGroup } from "react-bootstrap";
 
-import TimerComandas from "./TimerComandas";
-
 const CardEntregas = ({ comandas }) => {
   return (
     <Row xs={1} md={5} className="mt-5 g-2">
@@ -12,10 +10,10 @@ const CardEntregas = ({ comandas }) => {
           <Col key={comanda._id} className="mt-4 mb-2">
             <Card>
               <Card.Body>
-                <Card.Header>Pedido: {comanda.numeroPedido}</Card.Header>
+                <Card.Header>{comanda.numeroPedido}</Card.Header>
                 <Card.Title className="m-2">{comanda.producto}</Card.Title>
                 <ListGroup>
-                  <ListGroup.Item>Cantidad: {comanda.cantidad}</ListGroup.Item>
+                  <ListGroup.Item>{comanda.cantidad}</ListGroup.Item>
                   <ListGroup.Item>Notas: {comanda.descripcion}</ListGroup.Item>
                   <ListGroup.Item>
                     Cliente: {comanda.nombreCliente}
